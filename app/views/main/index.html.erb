@@ -1,0 +1,30 @@
+<h1> Login </h1>
+<%= form_tag "/main/profile" do %>
+    
+    Your email:<br />
+    <input name="email" type="text" value="" size="30"/> <br /> 
+    Password:<br />
+    <input name="password" type="password" value="" size="30"/><br/>
+    
+    <input type="submit" value="SUBMIT"/>
+    
+<%end%>
+<br/>
+<%= @error_login %>
+<h1>Registration form</h1>
+
+<%= form_tag "/main/confirm" do %>
+    
+    First Name:<br />
+    <input name="fname" type="text" value="" size="30"/><br/>
+    Last Name:<br />
+    <input name="lname" type="text" value="" size="30"/> <br /> 
+    Your email:<br />
+    <input name="email" type="text" value="" size="30"/> <br /> 
+    Password:<br />
+    <input name="password" type="password" value="" size="30"/><br/>
+    Re Password:<br />
+    <input name="repassword" type="password" value="" size="30"/><br/>
+    <input type="submit" value="SUBMIT"/>
+    
+<%end%>
