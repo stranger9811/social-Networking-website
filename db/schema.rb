@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140226175526) do
+ActiveRecord::Schema.define(version: 20140228171631) do
+
+  create_table "answers", force: true do |t|
+    t.integer  "question_id"
+    t.text     "content"
+    t.integer  "added_by"
+    t.integer  "upvote"
+    t.integer  "downvote"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "non_verified_users", force: true do |t|
     t.string   "fname"
@@ -19,6 +29,17 @@ ActiveRecord::Schema.define(version: 20140226175526) do
     t.string   "email"
     t.string   "password"
     t.string   "passcode"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "questions", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "added_by"
+    t.string   "privacy"
+    t.integer  "upvote"
+    t.integer  "downvote"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

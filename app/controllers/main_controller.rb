@@ -1,22 +1,35 @@
 class MainController < ApplicationController
 require "httparty"
 require 'digest/md5'
- 	require 'securerandom'
+ require 'securerandom'
   def profile
-  	@error=""
-  	password = Digest::MD5.hexdigest(params[:password])
-  	email = params[:email]
-  	@user = Users.find_by_sql("SELECT * from users where password=\""+password+"\" and email=\""+email+"\"")
-  	@user = @user[0]
-  	if @user==nil
-  		redirect_to action: "index", error_login: "user not registered/ wrong password"
-  	else
-  		@name = @user.fname
-  	end
-  end
+  	@questions = Question.find_by_sql("select * from questions")
+  	if cookies[:user_name]==nil
+	  	@error=""
+	  	password = Digest::MD5.hexdigest(params[:password])
+	  	email = params[:email]
+	  	@user = Users.find_by_sql("SELECT * from users where password=\""+password+"\" and email=\""+email+"\"")
+	  	@user = @user[0]
+	  	if @user==nil
+	  		redirect_to action: "index", error_login: "user not registered/ wrong password"
+	  	else
+	  		@name = @user.fname
+	  		cookies[:user_name]=@name
+	  		cookies[:user_id]=@user.id
+	  	end
+	 else
+	 	@name = cookies[:user_name]
 
+	 end
+  end
+  def logout
+  	cookies.delete :user_name
+  	cookies.delete :user_id
+  	redirect_to action: "index"
+  end
   def index
   	@error_login = params[:error_login]
+
   end
   def confirm
   	@passcode  = params[:passcode]
@@ -33,6 +46,7 @@ require 'digest/md5'
 		    new_user.password = user.password
 		    new_user.save
 		    @error = "email verified"
+		    redirect_to action: "profile"
 	    end
 
   	else
@@ -78,6 +92,7 @@ require 'digest/md5'
 	      	non_verified_user.password = password_hash
 	      	non_verified_user.passcode = random_number
 	      	non_verified_user.save
+	      	redirect_to action: "profile"
 	  	end
 	  end
 	end

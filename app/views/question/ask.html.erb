@@ -1,0 +1,23 @@
+<a href="/main/profile"><%= cookies[:user_name] %></a>
+<a href="/question/ask">Ask Question</a>
+<a href="/question/myquestions">My Question</a>
+
+<a href="/main/logout">logout</a>
+<%= form_tag "/question/add" do %>
+    
+    Title:<br />
+    <input name="title" type="text" value="" size="100"/><br/>
+    <%= params[:error_title] %> <br/>
+    Content:<br />
+    
+    <label for="text"></label> <textarea id="text"  name="content"  rows="20" cols="90" class="required"></textarea>
+   <br/>
+   <%= params[:error_content] %> <br/>
+   Tags:<br />
+    <input name="tags" type="text" value="" size="100"/><br/>
+    <%= @error_tags %>
+    <% params[:error_content]="" %>
+    <% params[:error_title]="" %>
+    <input type="submit" value="SUBMIT"/>
+    
+<%end%>
