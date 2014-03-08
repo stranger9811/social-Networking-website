@@ -1,3 +1,4 @@
+
 <a href="/main/profile"><%= cookies[:user_name] %></a>
 <a href="/question/ask">Ask Question</a>
 <a href="/question/myquestions">My Question</a>
@@ -27,7 +28,7 @@
     <% for answer in @answers %>
           <%= "upvote:" + answer.upvote.to_s    + "downvote:"+ answer.downvote.to_s %> <br\> 
           <%= answer.content %> <br/>
-          <% user = Users.find(answer.added_by) %> 
+          <% user = User.find(answer.added_by) %> 
           <%= user.fname + " " + user.lname %>
           <%= button_to "Upvote", :action => "upvote",:id => answer.id %>
           <%= button_to "Downvote", :action => "downvote",:id => answer.id %>

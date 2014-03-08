@@ -15,7 +15,7 @@ class QuestionController < ApplicationController
   end  
   def view 
   	@question = Question.find(params[:id])
-    @answers = Answers.find_by_sql("select * from answers where question_id="+params[:id])
+    @answers = Answer.find_by_sql("select * from answers where question_id="+params[:id])
     $id = params[:id]
   end
   def edit

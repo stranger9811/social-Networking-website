@@ -1,4 +1,9 @@
 DatabaseProject::Application.routes.draw do
+  get "pages/create"
+  post "pages/submit"
+  post "pages/add"
+  get "pages/add"
+  get "pages/show"
   get "question/ask"
   post "question/ask"
   get "question/addAnswer"
@@ -17,6 +22,7 @@ DatabaseProject::Application.routes.draw do
   post "question/myquestions"
   get "question/add"
   post "question/add"
+  post "pages/comment"
   get "question/view"
   post "question/view"
   get "main/index"
@@ -24,14 +30,19 @@ DatabaseProject::Application.routes.draw do
   post "main/index"
   get "main/logout"
   post "main/logout"
+  get "main/update"
+  post "main/update"
   post "main/profile"
   post "main/confirm"
   get "main/confirm"
+  post "pages/pageLike"
+   post "main/manageFriends"
+  get "main/manageFriends"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'main#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

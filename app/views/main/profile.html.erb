@@ -1,33 +1,80 @@
+<style>
+.myButton {
+   border-top: 1px solid #96d1f8;
+   background: #65a9d7;
+   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+   background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+   background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+   background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+   background: -o-linear-gradient(top, #3e779d, #65a9d7);
+   padding: 5px 10px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 14px;
+   font-family: Georgia, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.button:hover {
+   border-top-color: #28597a;
+   background: #28597a;
+   color: #ccc;
+   }
+.button:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
+</style>
 
-<a href="/main/profile"><%= cookies[:user_name] %></a>
-<a href="/question/ask">Ask Question</a>
-<a href="/question/myquestions">My Question</a>
+<% if params[:id] %>
+    <%= @status %>
+    <a href=<%="/main/profile?id="+params[:id]%>><%=@user.fname+" "+@user.lname%></a>
+    <%= button_to @status,{:action => "manageFriends", :status => @status, :id => params[:id]},{:class => "myButton"} %>
 
-<a href="/main/logout">logout</a>
+<%else%>
+  <% for current_friend in @friend_requests %>
+    <div>
+      <%= current_friend.fname%>
+      <%= button_to "confirm",:action => "manageFriends", :status => "accept", :id => current_friend.id, :check => "1"%>
+      <%= button_to "reject", :action => "manageFriends", :status => "cancel others friend requests", :id => current_friend.id, :check => "1" %>
+      <br/>
+    <div>
+  <%end%>
+  <a href="/main/profile"><%= cookies[:user_name] %></a>
+  <a href="/question/ask">Ask Question</a>
+  <a href="/question/myquestions">My Question</a>
+ <a href="/main/logout">logout</a>
 
-<table>
-  <tr>
-    <td> 
-      <h1>Title</h1>
-    </td>
-    <td>
-      <h1>Content</h1>
-    </td>
-    
-  </tr>
-<% for q in @questions %>
-  <tr>
-    <td>
-      <% viewQuestion = "/question/view?id="+q.id.to_s %>
-      <a href="<%= viewQuestion %>" > <%= q.title %> </a>
+  <table>
+    <tr>
+      <td> 
+        <h1>Title</h1>
+      </td>
+      <td>
+        <h1>Content</h1>
+      </td>
       
-    </td>
-    <td>
-      <%= q.content %>
-    </td>
+    </tr>
+  <% for q in @questions %>
+    <tr>
+      <td>
+        <% viewQuestion = "/question/view?id="+q.id.to_s %>
+        <a href="<%= viewQuestion %>" > <%= q.title %> </a>
+        
+      </td>
+      <td>
+        <%= q.content %>
+      </td>
 
-      
-      
-  </tr>
-<% end %>
-</table>
+        
+        
+    </tr>
+  <% end %>
+  </table>
+<%end%>

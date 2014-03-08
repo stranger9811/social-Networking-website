@@ -1,18 +1,15 @@
 source 'https://rubygems.org'
 gem 'rails', '4.0.0'
-gem 'xmpp4r_facebook'
-gem 'itunes'
-gem 'mini_fb'
 gem 'httparty'
 require 'digest/md5'
 require 'securerandom'
-gem 'koala'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+gem 'paperclip'
 
 
 # Use SCSS for stylesheets
