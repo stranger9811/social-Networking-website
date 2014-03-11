@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308164136) do
+ActiveRecord::Schema.define(version: 20140311124650) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -98,6 +98,38 @@ ActiveRecord::Schema.define(version: 20140308164136) do
     t.string   "lname"
     t.string   "email"
     t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "wall_comment_likes", force: true do |t|
+    t.integer  "wall_comment_id"
+    t.integer  "liked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "wall_post_comments", force: true do |t|
+    t.integer  "wall_post_id"
+    t.integer  "likes"
+    t.string   "comment"
+    t.integer  "added_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "wall_post_likes", force: true do |t|
+    t.integer  "wall_post_id"
+    t.integer  "liked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "wall_posts", force: true do |t|
+    t.string   "content"
+    t.integer  "likes"
+    t.integer  "from_id"
+    t.integer  "to_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

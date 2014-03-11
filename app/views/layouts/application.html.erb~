@@ -6,8 +6,12 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <link type="text/css" rel="stylesheet" href="/css/stylish_div.css" />
   <%= csrf_meta_tags %>
-    <script   src="/javascript/jquery.js">
-    $(document).ready(function() {
+</head>
+<body style="background-color: 233,234,237;">
+<form id="search_form"> <input id="search_box" type="text" name="search_box"/></form>
+<%= yield %>
+<script type = "/text/javascript">
+$(document).ready(function() {
     $(function() {
         $("#search_box").autocomplete({
             source: ['Google', 'Yahoo', 'StackOverflow'],
@@ -18,15 +22,8 @@
             },
             minLength: 1
         });
-      });
     });
+});
 </script>
-</head>
-
-<body style="background-color: 233,234,237;">
-
-<form id="search_form"> <input id="search_box" type="text" name="search_box"/></form>
-<%= yield %>
-
 </body>
 </html>

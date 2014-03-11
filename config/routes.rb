@@ -1,6 +1,10 @@
 DatabaseProject::Application.routes.draw do
   get "pages/create"
   post "pages/submit"
+   post "main/post_submit"
+   post "main/add_comment"
+   post "main/like_comment"
+   post "main/like_post"
   post "pages/add"
   get "pages/add"
   get "pages/show"

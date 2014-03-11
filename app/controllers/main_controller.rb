@@ -2,10 +2,84 @@ class MainController < ApplicationController
 require "httparty"
 require 'digest/md5'
  require 'securerandom'
+ layout 'application', :except => "index"
  def update
  	@user = Users.find(cookies[:user_id])
  end
- 
+ def like_post
+ 	if params[:is_liked]=="like"
+ 		new_like = WallPostLike.new
+ 		new_like.liked_by = cookies[:user_id]
+ 		new_like.wall_post_id = params[:post_id]
+
+ 		find_post = WallPost.find(params[:post_id])
+ 		find_post.likes = find_post.likes + 1 
+ 		find_post.save
+ 		new_like.save
+ 	else
+ 		WallPostLike.find_by_sql("select * from wall_post_likes where wall_post_id="+params[:post_id]+" and liked_by="+cookies[:user_id])[0].destroy
+ 		find_post = WallPost.find(params[:post_id])
+ 		find_post.likes = find_post.likes - 1 
+ 		find_post.save
+ 	end
+ 	if params[:id]==cookies[:user_id]
+ 		redirect_to action: "profile"
+ 	else
+ 		redirect_to action: "profile", id: params[:id]
+ 	end
+ end
+ def like_comment
+ 	if params[:is_liked]=="like"
+ 		new_like = WallCommentLike.new
+ 		new_like.liked_by = cookies[:user_id]
+ 		new_like.wall_comment_id = params[:comment_id]
+
+ 		find_comment = WallPostComment.find(params[:comment_id])
+ 		find_comment.likes = find_comment.likes + 1 
+ 		find_comment.save
+ 		new_like.save
+ 	else
+ 		WallCommentLike.find_by_sql("select * from wall_comment_likes where wall_comment_id="+params[:comment_id]+" and liked_by="+cookies[:user_id])[0].destroy
+ 		find_comment = WallPostComment.find(params[:comment_id])
+ 		find_comment.likes = find_comment.likes - 1 
+ 		find_comment.save
+ 	end
+ 	if params[:id]==cookies[:user_id]
+ 		redirect_to action: "profile"
+ 	else
+ 		redirect_to action: "profile", id: params[:id]
+ 	end
+ end
+ def post_submit
+ 	if params[:content]!=""
+ 		new_post = WallPost.new
+ 		new_post.content = params[:content]
+ 		new_post.from_id = cookies[:user_id]
+ 		new_post.to_id 	= params[:id]
+ 		new_post.likes = 0
+ 		new_post.save
+ 	end
+ 	if params[:id]==cookies[:user_id]
+ 		redirect_to action: "profile"
+ 	else
+ 		redirect_to action: "profile", id: params[:id]
+ 	end
+ end
+ def add_comment
+ 	if params[:comment]!=""
+      new_comment = WallPostComment.new
+      new_comment.added_by = cookies[:user_id]
+      new_comment.comment = params[:comment]
+      new_comment.wall_post_id = params[:post_id]
+      new_comment.likes = 0
+      new_comment.save
+    end
+    if params[:id]==cookies[:user_id]
+ 		redirect_to action: "profile"
+ 	else
+ 		redirect_to action: "profile", id: params[:id]
+ 	end
+ end
  
  def manageFriends
  	if params[:status] == "Add friend"
@@ -42,9 +116,10 @@ require 'digest/md5'
   	
   	if params[:id]
   		@user = User.find_by_sql("select * from users where id="+params[:id])
-  		if @user==nil
+  		if @user[0]==nil
   			redirect_to action: "profile"
   		else
+  			@my_posts = WallPost.find_by_sql("select * from wall_posts where to_id="+params[:id])
   			@user = @user[0]
   			if Friend.find_by_sql("select * from friends where user1="+params[:id]+" and user2=\""+cookies[:user_id]+"\"")[0]!=nil
   				@status = "unfriend"
@@ -57,7 +132,7 @@ require 'digest/md5'
   			end	 	 
   		end
   	else
-	  	@questions = Question.find_by_sql("select * from questions")
+  		@my_posts = WallPost.find_by_sql("select * from wall_posts where to_id="+cookies[:user_id])
 	  	if params[:password] and params[:email]
 		  	@error=""
 		  	password = Digest::MD5.hexdigest(params[:password])

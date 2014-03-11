@@ -11,8 +11,9 @@
 <%end%>
 <br/>
 <%= @error_login %>
-<h1>Registration form</h1>
 
+<div class="drop-shadow curled">
+      <h1>Registration form</h1>
 <%= form_tag "/main/confirm" do %>
     
     First Name:<br />
@@ -28,3 +29,4 @@
     <input type="submit" value="SUBMIT"/>
     
 <%end%>
+</div>
