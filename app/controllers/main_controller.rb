@@ -113,7 +113,7 @@ require 'digest/md5'
 
  end
   def profile
-  	
+  	@style = "background-color: red; width: 25em;padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;"
   	if params[:id]
   		@user = User.find_by_sql("select * from users where id="+params[:id])
   		if @user[0]==nil
@@ -132,7 +132,7 @@ require 'digest/md5'
   			end	 	 
   		end
   	else
-  		@my_posts = WallPost.find_by_sql("select * from wall_posts where to_id="+cookies[:user_id])
+  		
 	  	if params[:password] and params[:email]
 		  	@error=""
 		  	password = Digest::MD5.hexdigest(params[:password])
@@ -149,6 +149,7 @@ require 'digest/md5'
 		 elsif cookieCheck==0
 		 	redirect_to action: "index"
 		 end
+
 		 if cookieCheck==1
 		 	@temp = PendingFriend.where(:user2 => cookies[:user_id])
 		 	@friend_requests=[]
@@ -157,6 +158,7 @@ require 'digest/md5'
 		 	end
 		 end
 	end
+	@my_posts = WallPost.find_by_sql("select * from wall_posts where to_id="+cookies[:user_id].to_s)
   end
   def logout
   	cookies.delete :user_name

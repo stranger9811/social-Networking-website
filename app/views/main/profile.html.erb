@@ -22,7 +22,7 @@
     <%= form_tag "/main/like_post" do %>
               <%= hidden_field_tag 'post_id', post.id %>
               <%= hidden_field_tag 'id', params[:id] %>
-              <% if WallPostLike.find_by_sql("select * from wall_post_likes where wall_post_id="+post.id.to_s+" and liked_by="+cookies[:user_id])[0]==nil%>
+              <% if WallPostLike.find_by_sql("select * from wall_post_likes where wall_post_id="+post.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
                   <input type="image" width="20px" height="10px" src="/images/like.png"  alt="like"/> 
                   <%= hidden_field_tag 'is_liked', "like" %>
               <%else%>
@@ -39,7 +39,7 @@
           <%= form_tag "/main/like_comment" do %>
               <%= hidden_field_tag 'comment_id', comment.id %>
               <%= hidden_field_tag 'id', params[:id] %>
-              <% if WallCommentLike.find_by_sql("select * from wall_comment_likes where wall_comment_id="+comment.id.to_s+" and liked_by="+cookies[:user_id])[0]==nil%>
+              <% if WallCommentLike.find_by_sql("select * from wall_comment_likes where wall_comment_id="+comment.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
                   <input type="image" width="20px" height="10px" src="/images/like.png"  alt="like"/> 
                   <%= hidden_field_tag 'is_liked', "like" %>
               <%else%>
@@ -87,14 +87,14 @@
 
 
  <% for post in @my_posts %>
-  <div style="background-color: orange; width: 25em;padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;">
+  <div style= "<%= @style %>" >
     <%= post.content %>
     <br/><br/>
     likes: <%= post.likes %>
     <%= form_tag "/main/like_post" do %>
               <%= hidden_field_tag 'post_id', post.id %>
               <%= hidden_field_tag 'id', cookies[:user_id] %>
-              <% if WallPostLike.find_by_sql("select * from wall_post_likes where wall_post_id="+post.id.to_s+" and liked_by="+cookies[:user_id])[0]==nil%>
+              <% if WallPostLike.find_by_sql("select * from wall_post_likes where wall_post_id="+post.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
                   <input type="image" width="20px" height="10px" src="/images/like.png"  alt="like"/> 
                   <%= hidden_field_tag 'is_liked', "like" %>
               <%else%>
@@ -111,7 +111,7 @@
           <%= form_tag "/main/like_comment" do %>
               <%= hidden_field_tag 'comment_id', comment.id %>
               <%= hidden_field_tag 'id', cookies[:user_id] %>
-              <% if WallCommentLike.find_by_sql("select * from wall_comment_likes where wall_comment_id="+comment.id.to_s+" and liked_by="+cookies[:user_id])[0]==nil%>
+              <% if WallCommentLike.find_by_sql("select * from wall_comment_likes where wall_comment_id="+comment.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
                   <input type="image" width="20px" height="10px" src="/images/like.png"  alt="like"/> 
                   <%= hidden_field_tag 'is_liked', "like" %>
               <%else%>
