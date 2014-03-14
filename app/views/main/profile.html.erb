@@ -62,76 +62,105 @@
 
 
 <%else%>
+
+
+  <div> 
+      <div style="float:left;width:25%;">
+            <div style="padding:10px;margin:10px;"class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Profile 
+                    </div>
+                    <div class="panel-body">
+                        <img src="/images/ashok.jpg" style="width:150px;height:150px"/><br/>
+                        <a href="/main/profile"><%= cookies[:fname] %></a>
+                        <a href="/main/logout" style="width:200px" class="btn btn-success btn-lg">logout</a>
+                    </div>
+                </div>
+            </div>
+
+            
+      </div>
+      <div style="float:left;width:50%;padding:10px;margin:10px">
+            <div style="padding:10px;height:5%;">
+                <input id="autocomplete" type="text" width="2" name="search_box"/>
+            </div>
+            <div style="heigth:300px;background-image:url('/images/cover.jpg')">
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            </div>
+            <div>
+              <div style="padding:10px;margin:10px;width:45%;float:left">
+                <%= form_tag "/main/post_submit" do %>
+                <%= hidden_field_tag 'id', cookies[:user_id] %>
+                <label for="text"></label> <textarea id="text"  name="content"  rows="3" cols="35" class="required"></textarea>
+                <br/>
+                <input type="submit" value="Post"/>
+                <%end%>
+            </div>
+
+            <% for post in @my_posts %>
+            <div style="background-color: white;margin:10px;padding:10px;width:45%;float:left" >
+                        <%= post.content %>
+                        <br/><br/>
+                        likes: <%= post.likes %>
+                        <%= form_tag "/main/like_post" do %>
+                                  <%= hidden_field_tag 'post_id', post.id %>
+                                  <%= hidden_field_tag 'id', cookies[:user_id] %>
+                                  <% if WallPostLike.find_by_sql("select * from wall_post_likes where wall_post_id="+post.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
+                                      <input type="image" width="20px" height="10px" src="/images/like.png"  alt="like"/> 
+                                      <%= hidden_field_tag 'is_liked', "like" %>
+                                  <%else%>
+                                      <input type="image" width="20px" height="10px" src="/images/unlike.png"  alt="unlike"/> 
+                                      <%= hidden_field_tag 'is_liked', "unlike" %>
+                                  <%end%>
+                        <%end%>
+                        <div style="background-color: white; padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;">
+                          <% comments = WallPostComment.find_by_sql("select * from wall_post_comments where wall_post_id="+post.id.to_s) %>
+                          <% for comment in comments %>
+                            <div style="background-color: grey;padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;margin-bottom:5px">
+                              <%= comment.comment%><br/>
+                              likes: <%= comment.likes %>
+                              <%= form_tag "/main/like_comment" do %>
+                                  <%= hidden_field_tag 'comment_id', comment.id %>
+                                  <%= hidden_field_tag 'id', cookies[:user_id] %>
+                                  <% if WallCommentLike.find_by_sql("select * from wall_comment_likes where wall_comment_id="+comment.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
+                                      <input type="image" width="20px" height="10px" src="/images/like.png"  alt="like"/> 
+                                      <%= hidden_field_tag 'is_liked', "like" %>
+                                  <%else%>
+                                      <input type="image" width="20px" height="10px" src="/images/unlike.png"  alt="unlike"/> 
+                                      <%= hidden_field_tag 'is_liked', "unlike" %>
+                                  <%end%>
+                              <%end%>
+                            </div>
+                          <% end %>
+                          <%= form_tag "/main/add_comment" do %>
+                               <label for="text"></label> 
+                               <textarea id="text"name="comment" ></textarea>
+                               <%= hidden_field_tag 'post_id', post.id %>
+                               <%= hidden_field_tag 'id', cookies[:user_id] %>
+                               <input type="submit" value="comment"/> 
+                          <%end%>
+                        </div>
+                      </div>
+            <%end%>       
+      </div>
+      <div style="padding:20px;">
+                
+      </div>
+  </div>
+
+
+
+
+
   <% for current_friend in @friend_requests %>
     <div>
       <%= current_friend.fname%>
       <%= button_to "confirm",:action => "manageFriends", :status => "accept", :id => current_friend.id, :check => "1"%>
       <%= button_to "reject", :action => "manageFriends", :status => "cancel others friend requests", :id => current_friend.id, :check => "1" %>
-      <br/>
-    <div>
   <%end%>
-  <a href="/main/profile"><%= cookies[:user_name] %></a>
-  <a href="/question/ask">Ask Question</a>
-  <a href="/question/myquestions">My Question</a>
- <a href="/main/logout">logout</a>
+  
 
-
-<%= form_tag "/main/post_submit" do %>
-          <%= hidden_field_tag 'id', cookies[:user_id] %>
-   
-          <label for="text"></label> <textarea id="text"  name="content"  rows="3" cols="35" class="required"></textarea>
-          <br/>
-          <input type="submit" value="Post"/>
-        <%end%>
-
-
-
- <% for post in @my_posts %>
-  <div style= "<%= @style %>" >
-    <%= post.content %>
-    <br/><br/>
-    likes: <%= post.likes %>
-    <%= form_tag "/main/like_post" do %>
-              <%= hidden_field_tag 'post_id', post.id %>
-              <%= hidden_field_tag 'id', cookies[:user_id] %>
-              <% if WallPostLike.find_by_sql("select * from wall_post_likes where wall_post_id="+post.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
-                  <input type="image" width="20px" height="10px" src="/images/like.png"  alt="like"/> 
-                  <%= hidden_field_tag 'is_liked', "like" %>
-              <%else%>
-                  <input type="image" width="20px" height="10px" src="/images/unlike.png"  alt="unlike"/> 
-                  <%= hidden_field_tag 'is_liked', "unlike" %>
-              <%end%>
-    <%end%>
-    <div style="background-color: white; padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;">
-      <% comments = WallPostComment.find_by_sql("select * from wall_post_comments where wall_post_id="+post.id.to_s) %>
-      <% for comment in comments %>
-        <div style="background-color: grey;padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;margin-bottom:5px">
-          <%= comment.comment%><br/>
-          likes: <%= comment.likes %>
-          <%= form_tag "/main/like_comment" do %>
-              <%= hidden_field_tag 'comment_id', comment.id %>
-              <%= hidden_field_tag 'id', cookies[:user_id] %>
-              <% if WallCommentLike.find_by_sql("select * from wall_comment_likes where wall_comment_id="+comment.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
-                  <input type="image" width="20px" height="10px" src="/images/like.png"  alt="like"/> 
-                  <%= hidden_field_tag 'is_liked', "like" %>
-              <%else%>
-                  <input type="image" width="20px" height="10px" src="/images/unlike.png"  alt="unlike"/> 
-                  <%= hidden_field_tag 'is_liked', "unlike" %>
-              <%end%>
-          <%end%>
-        </div>
-      <% end %>
-      <%= form_tag "/main/add_comment" do %>
-           <label for="text"></label> 
-           <textarea id="text"name="comment" ></textarea>
-           <%= hidden_field_tag 'post_id', post.id %>
-           <%= hidden_field_tag 'id', cookies[:user_id] %>
-           <input type="submit" value="comment"/> 
-      <%end%>
-    </div>
-  </div>
-  <br/>
-<%end%>
 
 
 <%end%>

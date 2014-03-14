@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2 -->
+<html class="sidebar sidebar-social footer-sticky js flexbox flexboxlegacy no-touch rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms no-csstransforms3d csstransitions fontface generatedcontent"><!-- <![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/core.init.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/mixitup.init.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/menus.sidebar.chat.init.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/bootstrap-select.init.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/sidebar.collapse.init.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/sidebar.main.init.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/gridalicious.init.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/twitter.init.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/ajaxify.init.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/ie.prototype.polyfill.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/excanvas.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/less.min.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/jquery.mixitup.min.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/bootstrap-select.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/jquery.gridalicious.min.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/holder.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/jquery.sidr.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/pace.min.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/jquery.lazyjaxdavis.min.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/davis.min.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/breakpoints.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/jquery.nicescroll.min.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/jquery-migrate.min.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/bootstrap.min.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/modernizr.js"></script><script async="" src="./Social Admin Template Template (v1.0.1-rc2)_files/jquery.min.js"></script>
+	<title>Social Admin Template Template (v1.0.1-rc2)</title>
+	
+	<!-- Meta -->
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	
+	<!-- 
+	**********************************************************
+	In development, use the LESS files and the less.js compiler
+	instead of the minified CSS loaded by default.
+	**********************************************************
+	<link rel="stylesheet/less" href="../assets/less/admin/module.admin.stylesheet-complete.less" />
+	-->
+
+		<!--[if lt IE 9]><link rel="stylesheet" href="http://preview.mosaicpro.biz/shared/components/library/bootstrap/css/bootstrap.min.css" /><![endif]-->
+	<link rel="stylesheet" href="http://cdn.mosaicpro.biz/social/php/assets/less/pages/serveStyles.css?module=admin&url_rewrite=&v=v1.0.1-rc2">
+	
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+	<script src="./Social Admin Template Template (v1.0.1-rc2)_files/script.min.js"></script>
+
+<script>var App = {};</script>
+
+<script data-id="App.Scripts">
+App.Scripts = {
+
+	/* CORE scripts always load first; */
+	core: [
+		'http://cdn.mosaicpro.biz/shared/components/library/jquery/jquery.min.js?v=v1.0.1-rc2&sv=v0.0.1.1', 
+		'http://cdn.mosaicpro.biz/shared/components/library/modernizr/modernizr.js?v=v1.0.1-rc2&sv=v0.0.1.1'
+	],
+
+	/* PLUGINS_DEPENDENCY always load after CORE but before PLUGINS; */
+	plugins_dependency: [
+		'http://cdn.mosaicpro.biz/shared/components/library/bootstrap/js/bootstrap.min.js?v=v1.0.1-rc2&sv=v0.0.1.1', 
+		'http://cdn.mosaicpro.biz/shared/components/library/jquery/jquery-migrate.min.js?v=v1.0.1-rc2&sv=v0.0.1.1'
+	],
+
+	/* PLUGINS always load after CORE and PLUGINS_DEPENDENCY, but before the BUNDLE / initialization scripts; */
+	plugins: [
+		'http://cdn.mosaicpro.biz/shared/components/plugins/nicescroll/jquery.nicescroll.min.js?v=v1.0.1-rc2&sv=v0.0.1.1', 
+		'http://cdn.mosaicpro.biz/shared/components/plugins/breakpoints/breakpoints.js?v=v1.0.1-rc2&sv=v0.0.1.1', 
+		'http://cdn.mosaicpro.biz/shared/components/plugins/ajaxify/davis.min.js?v=v1.0.1-rc2&sv=v0.0.1.1', 
+		'http://cdn.mosaicpro.biz/shared/components/plugins/ajaxify/jquery.lazyjaxdavis.min.js?v=v1.0.1-rc2&sv=v0.0.1.1', 
+		'http://cdn.mosaicpro.biz/shared/components/plugins/preload/pace/pace.min.js?v=v1.0.1-rc2&sv=v0.0.1.1', 
+		'../assets/components/plugins/menus/sidr/jquery.sidr.js?v=v1.0.1-rc2', 
+		'http://cdn.mosaicpro.biz/shared/components/plugins/holder/holder.js?v=v1.0.1-rc2&sv=v0.0.1.1', 
+		'http://cdn.mosaicpro.biz/shared/components/common/gallery/gridalicious/assets/lib/jquery.gridalicious.min.js?v=v1.0.1-rc2&sv=v0.0.1.1', 
+		'http://cdn.mosaicpro.biz/shared/components/common/forms/elements/bootstrap-select/assets/lib/js/bootstrap-select.js?v=v1.0.1-rc2&sv=v0.0.1.1', 
+		'http://cdn.mosaicpro.biz/shared/components/plugins/mixitup/jquery.mixitup.min.js?v=v1.0.1-rc2&sv=v0.0.1.1', 
+		'http://cdn.mosaicpro.biz/shared/components/plugins/less-js/less.min.js?v=v1.0.1-rc2&sv=v0.0.1.1', 
+		'http://cdn.mosaicpro.biz/shared/components/modules/admin/charts/flot/assets/lib/excanvas.js?v=v1.0.1-rc2&sv=v0.0.1.1', 
+		'http://cdn.mosaicpro.biz/shared/components/plugins/browser/ie/ie.prototype.polyfill.js?v=v1.0.1-rc2&sv=v0.0.1.1'
+	],
+
+	/* The initialization scripts always load last and are automatically and dynamically loaded when AJAX navigation is enabled; */
+	bundle: [
+		'http://cdn.mosaicpro.biz/shared/components/plugins/ajaxify/ajaxify.init.js?v=v1.0.1-rc2&sv=v0.0.1.1', 
+		'http://cdn.mosaicpro.biz/shared/components/modules/admin/twitter/assets/js/twitter.init.js?v=v1.0.1-rc2&sv=v0.0.1.1', 
+		'../assets/components/common/gallery/gridalicious/assets/custom/gridalicious.init.js?v=v1.0.1-rc2', 
+		'../assets/components/core/js/sidebar.main.init.js?v=v1.0.1-rc2', 
+		'../assets/components/core/js/sidebar.collapse.init.js?v=v1.0.1-rc2', 
+		'http://cdn.mosaicpro.biz/shared/components/common/forms/elements/bootstrap-select/assets/custom/js/bootstrap-select.init.js?v=v1.0.1-rc2&sv=v0.0.1.1', 
+		'../assets/components/modules/admin/menus/menus.sidebar.chat.init.js?v=v1.0.1-rc2', 
+		'http://cdn.mosaicpro.biz/shared/components/plugins/mixitup/mixitup.init.js?v=v1.0.1-rc2&sv=v0.0.1.1', 
+		'../assets/components/core/js/core.init.js?v=v1.0.1-rc2'
+	]
+
+};
+</script>
+
+<script>
+$script(App.Scripts.core, 'core');
+
+$script.ready(['core'], function(){
+	$script(App.Scripts.plugins_dependency, 'plugins_dependency');
+});
+$script.ready(['core', 'plugins_dependency'], function(){
+	$script(App.Scripts.plugins, 'plugins');
+});
+$script.ready(['core', 'plugins_dependency', 'plugins'], function(){
+	$script(App.Scripts.bundle, 'bundle');
+});
+</script>
+	<script>if (/*@cc_on!@*/false && document.documentMode === 10) { document.documentElement.className+=' ie ie10'; }</script>
+	
+<style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}</style></head>
+<body class="scripts-async menu-right-hidden  breakpoint-992 breakpoint-768 pace-done" style=""><div class="pace  pace-inactive"><div class="pace-progress" style="width: 100%;" data-progress-text="100%" data-progress="99">
+  <div class="pace-progress-inner"></div>
+</div>
+<div class="pace-activity"></div></div>
+	
+	<!-- Main Container Fluid -->
+	<div class="container-fluid" style="visibility: visible;">
+
+				<!-- Main Sidebar Menu -->
+		<div id="menu" class="hidden-print hidden-xs sidebar-default sidebar-brand-primary">
+
+			<div id="sidebar-social-wrapper" class="hasNiceScroll" style="overflow-y: hidden; outline: none;" tabindex="5000">
+	<div id="brandWrapper">
+		<a href="http://cdn.mosaicpro.biz/social/php/admin/index.html?lang=en&v=v1.0.1-rc2"><span class="text">Social Admin Template</span></a>
+	</div>
+	<ul class="menu list-unstyled" id="navigation_current_page">
+		<li class="category">Navigation</li>
+<li class="hasSubmenu active">
+	<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#sidebar-fusion-timelines" data-toggle="collapse"><i class="icon-ship-wheel"></i><span>Timelines</span></a>
+	<ul id="sidebar-fusion-timelines" class="collapse in">
+		<li class="active"><a href="http://cdn.mosaicpro.biz/social/php/admin/index.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-clock-o"></i><span>Timeline #1</span></a></li>
+		<li><a href="http://cdn.mosaicpro.biz/social/php/admin/timeline_2.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-clock-o"></i><span>Timeline #2</span></a></li>
+		<li><a href="http://cdn.mosaicpro.biz/social/php/admin/timeline_3.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-clock-o"></i><span>Timeline #3</span></a></li>
+	</ul>
+</li>
+<li class="hasSubmenu">
+	<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#sidebar-fusion-media" data-toggle="collapse"><i class="icon-flip-camera-fill"></i><span>Photos</span></a>
+	<ul id="sidebar-fusion-media" class="collapse">
+		<li><a href="http://cdn.mosaicpro.biz/social/php/admin/media_1.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-camera"></i><span>Photos #1</span></a></li>
+		<li><a href="http://cdn.mosaicpro.biz/social/php/admin/media_2.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-camera"></i><span>Photos #2</span></a></li>
+		<li><a href="http://cdn.mosaicpro.biz/social/php/admin/media_3.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-camera"></i><span>Photos #3</span></a></li>
+	</ul>
+</li>
+
+<li class="hasSubmenu">
+	<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#sidebar-fusion-contacts" data-toggle="collapse"><i class="icon-group"></i><span>Friends</span></a>
+	<ul id="sidebar-fusion-contacts" class="collapse">
+		<li><a href="http://cdn.mosaicpro.biz/social/php/admin/contacts_1.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-group"></i><span>Friends #1</span></a></li>
+		<li><a href="http://cdn.mosaicpro.biz/social/php/admin/contacts_2.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-group"></i><span>Friends #2</span></a></li>
+		<li><a href="http://cdn.mosaicpro.biz/social/php/admin/contacts_3.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-group"></i><span>Friends #3</span></a></li>
+	</ul>
+</li>
+
+<li class="hasSubmenu">
+	<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#sidebar-fusion-about" data-toggle="collapse"><i class="icon-user-1"></i><span>About</span></a>
+	<ul id="sidebar-fusion-about" class="collapse">
+		<li><a href="http://cdn.mosaicpro.biz/social/php/admin/about_1.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-user"></i><span>About #1</span></a></li>
+		<li><a href="http://cdn.mosaicpro.biz/social/php/admin/about_2.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-user"></i><span>About #2</span></a></li>
+		<li><a href="http://cdn.mosaicpro.biz/social/php/admin/about_3.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-user"></i><span>About #3</span></a></li>
+	</ul>
+</li>
+
+<li><a href="http://cdn.mosaicpro.biz/social/php/admin/messages.html?lang=en&v=v1.0.1-rc2"><i class="icon-comment-typing"></i><span>Messages</span></a></li>
+
+<li class="category border-top">Skins</li>
+<li class="reset">
+	<div class="innerLR innerB border-bottom">
+		<ul class="colors hidden-xs">
+						<li class="active"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=style-default" style="background-color: #25ad9f" class="no-ajaxify innerAll half"><span class="hide">style-default</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=green-army" style="background-color: #9FB478" class="no-ajaxify innerAll half"><span class="hide">green-army</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=alizarin-crimson" style="background-color: #F06F6F" class="no-ajaxify innerAll half"><span class="hide">alizarin-crimson</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=blue-gray" style="background-color: #5577b4" class="no-ajaxify innerAll half"><span class="hide">blue-gray</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=brown" style="background-color: #d39174" class="no-ajaxify innerAll half"><span class="hide">brown</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=purple-gray" style="background-color: #AF86B9" class="no-ajaxify innerAll half"><span class="hide">purple-gray</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=purple-wine" style="background-color: #CC6788" class="no-ajaxify innerAll half"><span class="hide">purple-wine</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=black-and-white" style="background-color: #979797" class="no-ajaxify innerAll half"><span class="hide">black-and-white</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=amazon" style="background-color: #8BC4B9" class="no-ajaxify innerAll half"><span class="hide">amazon</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=amber" style="background-color: #b0b069" class="no-ajaxify innerAll half"><span class="hide">amber</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=android-green" style="background-color: #A9C784" class="no-ajaxify innerAll half"><span class="hide">android-green</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=antique-brass" style="background-color: #B3998A" class="no-ajaxify innerAll half"><span class="hide">antique-brass</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=antique-bronze" style="background-color: #8D8D6E" class="no-ajaxify innerAll half"><span class="hide">antique-bronze</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=artichoke" style="background-color: #B0B69D" class="no-ajaxify innerAll half"><span class="hide">artichoke</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=atomic-tangerine" style="background-color: #F19B69" class="no-ajaxify innerAll half"><span class="hide">atomic-tangerine</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=bazaar" style="background-color: #98777B" class="no-ajaxify innerAll half"><span class="hide">bazaar</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=bistre-brown" style="background-color: #C3A961" class="no-ajaxify innerAll half"><span class="hide">bistre-brown</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=green" style="background-color: #77ac40" class="no-ajaxify innerAll half"><span class="hide">green</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=bittersweet" style="background-color: #d6725e" class="no-ajaxify innerAll half"><span class="hide">bittersweet</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=blueberry" style="background-color: #7789D1" class="no-ajaxify innerAll half"><span class="hide">blueberry</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=bud-green" style="background-color: #6fa362" class="no-ajaxify innerAll half"><span class="hide">bud-green</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=coral" style="background-color: #7eccc2" class="no-ajaxify innerAll half"><span class="hide">coral</span></a></li>
+						<li><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2&skin=burnt-sienna" style="background-color: #E4968A" class="no-ajaxify innerAll half"><span class="hide">burnt-sienna</span></a></li>
+					</ul>
+	</div>
+</li>
+
+<li class="hasSubmenu">
+	<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#sidebar-fusion-components" data-toggle="collapse"><i class="fa fa-th-large"></i><span>Components</span></a>
+	<ul id="sidebar-fusion-components" class="collapse">
+		<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/ui.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-circle-o"></i> UI Elements</a></li>
+		<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/icons.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-circle-o"></i> Icons</a></li>
+		<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/typography.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-circle-o"></i> Typography</a></li>
+		<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/calendar.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-circle-o"></i> Calendar</a></li>
+		<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/tabs.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-circle-o"></i> Tabs</a></li>
+		<li class="hasSubmenu">
+			<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#menu_tables" data-toggle="collapse"><span class="badge badge-primary pull-right">3</span><i class="fa fa-circle-o"></i> Tables</a>
+			<ul class="collapse" id="menu_tables">
+				<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/tables.html?lang=en&v=v1.0.1-rc2">Tables</a></li>
+				<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/tables_responsive.html?lang=en&v=v1.0.1-rc2">Responsive Tables</a></li>
+				<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/pricing_tables.html?lang=en&v=v1.0.1-rc2">Pricing Tables</a></li>
+			</ul>
+		</li>
+		<li class="hasSubmenu">
+			<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#menu_forms" data-toggle="collapse"><span class="badge badge-primary pull-right">4</span><i class="fa fa-circle-o"></i> Forms</a>
+			<ul class="collapse" id="menu_forms">
+				<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/form_wizards.html?lang=en&v=v1.0.1-rc2">Form Wizards</a></li>
+				<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/form_elements.html?lang=en&v=v1.0.1-rc2">Form Elements</a></li>
+				<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/form_validator.html?lang=en&v=v1.0.1-rc2">Form Validator</a></li>
+				<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/file_managers.html?lang=en&v=v1.0.1-rc2">File Managers</a></li>
+			</ul>
+		</li>
+		<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/sliders.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-circle-o"></i> Sliders</a></li>
+		<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/charts.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-circle-o"></i> Charts</a></li>
+		<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/grid.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-circle-o"></i> Grid</a></li>
+		<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/notifications.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-circle-o"></i> Notifications</a></li>
+		<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/modals.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-circle-o"></i> Modals</a></li>
+		<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/thumbnails.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-circle-o"></i> Thumbnails</a></li>
+		<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/carousels.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-circle-o"></i> Carousels</a></li>
+		<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/image_crop.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-circle-o"></i> Image Cropping</a></li>
+		<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/twitter.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-circle-o"></i> Twitter API</a></li>
+		<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/infinite_scroll.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-circle-o"></i> Infinite Scroll</a></li>
+	</ul>
+</li>
+
+<li class="hasSubmenu">
+	<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#sidebar-fusion-extra" data-toggle="collapse"><i class="fa fa-gift"></i><span>Extra</span></a>
+	<ul id="sidebar-fusion-extra" class="collapse">
+		
+		<li class="hasSubmenu">
+			<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#sidebar-fusion-dashboard" data-toggle="collapse"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+			<ul id="sidebar-fusion-dashboard" class="collapse">
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/dashboard_analytics.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-bar-chart-o"></i> Analytics</a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/dashboard_users.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-user"></i> Users</a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/dashboard_overview.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-dashboard"></i> Overview</a></li>
+			</ul>
+		</li>
+		
+		<li class="hasSubmenu">
+			<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#sidebar-fusion-email" class="glyphicons envelope" data-toggle="collapse"><i></i><span class="badge pull-right badge-primary">30</span><span>Email</span></a>
+			<ul id="sidebar-fusion-email" class="animated fadeIn collapse">
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/email.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-envelope"></i> Inbox</a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/email_compose.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-pencil"></i> Compose</a></li>
+			</ul>
+		</li>
+
+		<li><a href="http://cdn.mosaicpro.biz/social/php/admin/events.html?lang=en&v=v1.0.1-rc2" class="glyphicons google_maps"><i></i><span class="badge pull-right badge-primary">5</span><span>Events</span></a></li>
+
+		<li class="hasSubmenu">
+			<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#sidebar-fusion-maps" class="glyphicons google_maps" data-toggle="collapse"><i></i><span>Maps</span></a>
+			<ul id="sidebar-fusion-maps" class="animated fadeIn collapse">
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/maps_vector.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-map-marker"></i> Vector Maps</a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/maps_google.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-map-marker"></i> Google Maps</a></li>
+			</ul>
+		</li>
+
+		<li><a href="http://cdn.mosaicpro.biz/social/php/admin/employees.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-user"></i><span>Employees</span></a></li>
+
+		<li class="hasSubmenu">
+			<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#sidebar-fusion-medical" data-toggle="collapse" class="glyphicons circle_plus"><i></i><span>Medical</span></a>
+			<ul id="sidebar-fusion-medical" class="animated fadeIn collapse">
+				<li class="">
+					<a href="http://cdn.mosaicpro.biz/social/php/admin/medical_overview.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-medkit"></i> Overview</a>
+				</li>
+				<li class="">
+					<a href="http://cdn.mosaicpro.biz/social/php/admin/medical_patients.html?lang=en&v=v1.0.1-rc2"><span class="badge pull-right badge-primary">2</span><i class="fa fa-user-md"></i> Patients</a>
+				</li>
+				<li class="">
+					<a href="http://cdn.mosaicpro.biz/social/php/admin/medical_appointments.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-stethoscope"></i> Appointments</a>
+				</li>
+				<li class="">
+					<a href="http://cdn.mosaicpro.biz/social/php/admin/medical_memos.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-file-text-o"></i> Memos</a>
+				</li>
+				<li class="border-bottom-none">
+					<a href="http://cdn.mosaicpro.biz/social/php/admin/medical_metrics.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-bar-chart-o"></i> Metrics</a>
+				</li>
+			</ul>
+		</li>
+
+		<li class="hasSubmenu">
+			<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#sidebar-fusion-learning" data-toggle="collapse" class="glyphicons crown"><i></i><span>Courses</span></a>
+			<ul id="sidebar-fusion-learning" class="collapse">
+				<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/courses_2.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-book"></i><span>Courses Home</span></a></li>
+				<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/courses_listing.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-book"></i><span>Courses Listing</span></a></li>
+				<li class=""><a href="http://cdn.mosaicpro.biz/social/php/admin/course.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-book"></i><span>Course page</span></a></li>
+			</ul>
+		</li>
+
+		<li class="hasSubmenu">
+			<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#sidebar-fusion-content" data-toggle="collapse" class="glyphicons notes_2"><i></i><span>Content</span></a>
+			<ul id="sidebar-fusion-content" class="collapse">
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/news.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-file-text"></i> News</a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/faq.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-question-circle"></i> FAQ</a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/search.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-search"></i> Search</a></li>
+			</ul>
+		</li>
+
+		<li class="hasSubmenu">
+			<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#sidebar-fusion-financial" data-toggle="collapse" class="glyphicons calculator"><i></i><span>Financial</span></a>
+			<ul id="sidebar-fusion-financial" class="animated fadeIn collapse">
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/invoice.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-file-text-o"></i> Invoice</a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/finances.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-legal"></i> Finances</a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/bookings.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-ticket"></i> Bookings</a></li>
+			</ul>
+		</li>
+
+		<li class="hasSubmenu">
+			<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#sidebar-fusion-support" data-toggle="collapse" class="glyphicons life_preserver"><i></i><span>Support</span></a>
+			<ul id="sidebar-fusion-support" class="collapse">
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/support_tickets.html?lang=en&v=v1.0.1-rc2"><span class="badge pull-right badge-primary">45</span><i class="fa fa-ticket"></i><span>Tickets</span></a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/support_forum_overview.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-folder-o"></i><span>Forum overview</span></a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/support_forum_post.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-folder-o"></i><span>Forum post</span></a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/support_kb.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-file-text-o"></i><span>Knowledge Base</span></a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/support_questions.html?lang=en&v=v1.0.1-rc2"><span class="badge pull-right badge-primary">7</span><i class="fa fa-question"></i><span>Questions</span></a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/support_answers.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-info"></i><span>Answers</span></a></li>
+			</ul>
+		</li>
+
+		<li class="hasSubmenu">
+			<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#sidebar-fusion-shop" data-toggle="collapse" class="glyphicons shopping_cart"><i></i><span>eCommerce</span></a>
+			<ul id="sidebar-fusion-shop" class="collapse">
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/shop_products.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-list"></i><span>Products</span></a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/shop_edit_product.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-edit"></i><span>Edit product</span></a></li>
+			</ul>
+		</li>
+
+		<li class="hasSubmenu">
+			<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#sidebar-fusion-account" data-toggle="collapse" class="glyphicons user"><i></i><span>Account</span></a>
+			<ul id="sidebar-fusion-account" class="animated fadeIn collapse">
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/login.html?lang=en&v=v1.0.1-rc2" class="no-ajaxify"><i class="fa fa-lock"></i> Login</a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/signup.html?lang=en&v=v1.0.1-rc2" class="no-ajaxify"><i class="fa fa-pencil"></i> Signup</a></li>
+			</ul>
+		</li>
+
+		<li><a href="http://cdn.mosaicpro.biz/social/php/admin/surveys_multiple.html?lang=en&v=v1.0.1-rc2" class="glyphicons turtle no-ajaxify"><i></i><span>Surveys</span></a></li>
+
+		<li><a href="http://cdn.mosaicpro.biz/social/php/admin/error.html?lang=en&v=v1.0.1-rc2" class="glyphicons warning_sign"><i></i><span>Error</span></a></li>
+
+	</ul>
+</li>
+
+<li class="hasSubmenu">
+	<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#sidebar-fusion-example" data-toggle="collapse"><span class="badge pull-right badge-primary">4</span><i class="fa fa-stack-exchange"></i><span>Submenus</span></a>
+	<ul id="sidebar-fusion-example" class="collapse">
+		<li><a href=""><i class="fa fa-flash"></i><span>Active</span></a></li>
+		<li><a href=""><i class="fa fa-male"></i><span>Menu item</span></a></li>
+		<li><a href=""><i class="fa fa-comments-o"></i><span>Menu item</span></a></li>
+		<li class="menu hasSubmenu">
+			<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#submenu" data-toggle="collapse"><span class="badge pull-right badge-primary">3</span><i class="fa fa-envelope"></i><span>2nd level</span></a>
+			<ul class="collapse menu" id="submenu">
+				<li><a href=""><i class="fa fa-circle-o"></i><span>Menu item</span></a></li>
+				<li><a href=""><i class="fa fa-circle-o"></i><span>Menu item</span></a></li>
+				<li><a href=""><i class="fa fa-circle-o"></i><span>Menu item</span></a></li>
+			</ul>
+		</li>
+	</ul>
+</li>
+
+<li class="category">News Feeds</li>
+<li class="reset">
+	<ul>
+		<li class="media news-item">
+			<span class="news-item-success pull-right "><i class="fa fa-circle"></i></span>
+			<span class="pull-left media-object">
+				<i class="fa fa-fw fa-bell"></i>
+			</span>
+			<div class="media-body">
+				 <a href="" class="text-white">Adrian</a> just logged in
+				 <span class="time">2 min ago</span>
+			</div>
+		</li>
+		<li class="media news-item">
+			<span class="news-item-success pull-right "><i class="fa fa-circle"></i></span>
+			<span class="pull-left media-object">
+				<i class="fa fa-fw fa-bell"></i>
+			</span>
+			<div class="media-body">
+				 <a href="" class="text-white">Adrian</a> just added  <a href="" class="text-white">mosaicpro</a> as their office
+				 <span class="time">2 min ago</span>
+			</div>
+		</li>
+		<li class="media news-item">
+			<span class="pull-left media-object">
+				<i class="fa fa-fw fa-bell"></i>
+			</span>
+			<div class="media-body">
+				 <a href="" class="text-white">Adrian</a> just logged in
+				 <span class="time">2 min ago</span>
+			</div>
+		</li>
+		<li class="media news-item">
+			<span class="pull-left media-object">
+				<i class="fa fa-fw fa-bell"></i>
+			</span>
+			<div class="media-body">
+				 <a href="" class="text-white">Adrian</a> just logged in
+				 <span class="time">2 min ago</span>
+			</div>
+		</li>
+		<li class="media news-item">	
+			<span class="pull-left media-object">
+				<i class="fa fa-fw fa-bell"></i>
+			</span>
+			<div class="media-body">
+				 <a href="" class="text-white">Adrian</a> just logged in
+				 <span class="time">2 min ago</span>
+			</div>
+		</li>
+	</ul>
+</li>
+<li class="category">Filter</li>
+<li class="reset">
+	<div class="innerLR innerB">
+		<ul>
+			<li><a href=""><span class="fa fa-fw fa-circle-o text-success"></span> Work Related</a></li>
+			<li><a href=""><span class="fa fa-fw fa-circle-o text-primary"></span> Very Important</a></li>
+			<li><a href=""><span class="fa fa-fw fa-circle-o text-info"></span> Friends &amp; Family</a></li>
+		</ul>
+	</div>
+</li>
+	</ul>
+</div>
+
+
+
+
+			
+		<div id="ascrail2000" class="nicescroll-rails" style="width: 5px; z-index: 2; cursor: default; position: absolute; top: 0px; left: 245px; height: 635px; display: block; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 5px; height: 411px; background-color: rgb(37, 173, 159); border: none; background-clip: padding-box; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;"></div></div></div>
+		<!-- // Main Sidebar Menu END -->
+		
+		
+<div id="menu-right" class="sidr right">
+	<div class="hasNiceScroll" style="overflow-y: hidden; outline: none;" tabindex="5001">
+		<button class="btn btn-inverse btn-xs btn-close" data-toggle="sidr-close" data-menu="menu-right"><i class="fa fa-times"></i></button>
+
+		<div class="tab-content">
+			<div class="tab-pane" id="chat-conversation">
+				<ul>
+					<li>
+						<div class="innerAll"><button class="btn btn-primary" data-toggle="tab" data-target="#chat-list"><i class="fa fa-fw fa-user"></i> friends</button></div>
+					</li>
+					<li class="conversation innerAll">
+						<!-- Media item -->
+						<div class="media">
+							<small class="author"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#" title="" class="strong">Jane Doe</a></small>
+							<div class="media-object pull-left"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/1.jpg" alt="Image" class="img-circle"></div>
+							<div class="media-body">
+								<blockquote>
+									<small class="date"><cite>just now</cite></small>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, sit?</p>
+								</blockquote>
+							</div>
+						</div>
+						<!-- // Media item END -->
+						
+						<!-- Media item -->
+						<div class="media primary right">
+							<small class="author"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#" title="" class="strong">John Doe</a></small>
+							<div class="media-object pull-right"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/2.jpg" alt="Image" class="img-circle"></div>
+							<div class="media-body">
+								<blockquote class="pull-right">
+									<small class="date"><cite>15 seconds ago</cite></small>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, molestiae!</p>
+								</blockquote>
+							</div>
+						</div>
+						<!-- // Media item END -->
+						
+						<!-- Media item -->
+						<div class="media">
+							<small class="author"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#" title="" class="strong">Ricky</a></small>
+							<div class="media-object pull-left"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/1.jpg" alt="Image" class="img-circle"></div>
+							<div class="media-body">
+								<blockquote>
+									<small class="date"><cite>5 minutes ago</cite></small>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, distinctio!</p>
+								</blockquote>
+							</div>
+						</div>
+						<!-- // Media item END -->
+					</li>
+				</ul>
+			</div>
+			
+			<div class="tab-pane active" id="chat-list">
+				<div class="mixitup" id="mixitup-chat" data-show-default="mixit-chat-1" data-layout-mode="list" data-target-selector=".mix" data-filter-selector=".filter-chat">
+					<ul>
+						<li class="category">Groups</li>
+						<li class="reset">
+							<div class="innerLR">
+								<ul>
+									<li class="filter-chat active" data-filter="mixit-chat-1"><a href="" class="no-ajaxify"><span class="fa fa-fw fa-circle-o text-success"></span> Work Related</a></li>
+									<li class="filter-chat" data-filter="mixit-chat-2"><a href="" class="no-ajaxify"><span class="fa fa-fw fa-circle-o text-primary"></span> Very Important</a></li>
+									<li class="filter-chat" data-filter="mixit-chat-3"><a href="" class="no-ajaxify"><span class="fa fa-fw fa-circle-o text-info"></span> Friends &amp; Family</a></li>
+								</ul>
+							</div>
+						</li>
+						<li class="category border-bottom">Online</li>
+						<li>
+							
+																					<div class="mixit-chat-1 mix media border-bottom innerAll margin-none mix_all" style="display: block; opacity: 1;">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-left media-object"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/1(1).jpg" class="img-circle"></a>
+								<div class="media-body">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+										<i class="fa fa-comments"></i> 4
+									</a>
+									<h5 class="margin-none"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="text-white">Perpetua Inger</a></h5>
+									<small>Hey, the party is on tonight!</small>
+								</div>
+							</div>
+																					<div class="mixit-chat-1 mix media border-bottom innerAll margin-none mix_all" style="display: block; opacity: 1;">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-left media-object"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/2(1).jpg" class="img-circle"></a>
+								<div class="media-body">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+										<i class="fa fa-comments"></i> 4
+									</a>
+									<h5 class="margin-none"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="text-white">Zoticus Axel</a></h5>
+									<small>Hey, the party is on tonight!</small>
+								</div>
+							</div>
+																					<div class="mixit-chat-1 mix media border-bottom innerAll margin-none mix_all" style="display: block; opacity: 1;">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-left media-object"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/3.jpg" class="img-circle"></a>
+								<div class="media-body">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+										<i class="fa fa-comments"></i> 4
+									</a>
+									<h5 class="margin-none"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="text-white">Yun Ragna</a></h5>
+									<small>Hey, the party is on tonight!</small>
+								</div>
+							</div>
+																					<div class="mixit-chat-1 mix media border-bottom innerAll margin-none mix_all" style="display: block; opacity: 1;">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-left media-object"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/4.jpg" class="img-circle"></a>
+								<div class="media-body">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+										<i class="fa fa-comments"></i> 4
+									</a>
+									<h5 class="margin-none"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="text-white">Victor Tacitus</a></h5>
+									<small>Hey, the party is on tonight!</small>
+								</div>
+							</div>
+																					<div class="mixit-chat-1 mix media border-bottom innerAll margin-none mix_all" style="display: block; opacity: 1;">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-left media-object"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/5.jpg" class="img-circle"></a>
+								<div class="media-body">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+										<i class="fa fa-comments"></i> 4
+									</a>
+									<h5 class="margin-none"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="text-white">Arden Catharine</a></h5>
+									<small>Hey, the party is on tonight!</small>
+								</div>
+							</div>
+																					<div class="mixit-chat-2 mix media border-bottom innerAll margin-none mix_all">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-left media-object"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/6.jpg" class="img-circle"></a>
+								<div class="media-body">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+										<i class="fa fa-comments"></i> 4
+									</a>
+									<h5 class="margin-none"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="text-white">Mihovil Govinda</a></h5>
+									<small>Hey, the party is on tonight!</small>
+								</div>
+							</div>
+																					<div class="mixit-chat-2 mix media border-bottom innerAll margin-none mix_all">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-left media-object"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/7.jpg" class="img-circle"></a>
+								<div class="media-body">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+										<i class="fa fa-comments"></i> 4
+									</a>
+									<h5 class="margin-none"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="text-white">Mariya Hadya</a></h5>
+									<small>Hey, the party is on tonight!</small>
+								</div>
+							</div>
+																					<div class="mixit-chat-2 mix media border-bottom innerAll margin-none mix_all">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-left media-object"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/8.jpg" class="img-circle"></a>
+								<div class="media-body">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+										<i class="fa fa-comments"></i> 4
+									</a>
+									<h5 class="margin-none"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="text-white">Tahir Benedikt</a></h5>
+									<small>Hey, the party is on tonight!</small>
+								</div>
+							</div>
+																					<div class="mixit-chat-2 mix media border-bottom innerAll margin-none mix_all">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-left media-object"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/9.jpg" class="img-circle"></a>
+								<div class="media-body">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+										<i class="fa fa-comments"></i> 4
+									</a>
+									<h5 class="margin-none"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="text-white">Olayinka Kristin</a></h5>
+									<small>Hey, the party is on tonight!</small>
+								</div>
+							</div>
+																					<div class="mixit-chat-2 mix media border-bottom innerAll margin-none mix_all">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-left media-object"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/10.jpg" class="img-circle"></a>
+								<div class="media-body">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+										<i class="fa fa-comments"></i> 4
+									</a>
+									<h5 class="margin-none"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="text-white">Danko Nikodim</a></h5>
+									<small>Hey, the party is on tonight!</small>
+								</div>
+							</div>
+																					<div class="mixit-chat-3 mix media border-bottom innerAll margin-none mix_all">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-left media-object"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/11.jpg" class="img-circle"></a>
+								<div class="media-body">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+										<i class="fa fa-comments"></i> 4
+									</a>
+									<h5 class="margin-none"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="text-white">Zoja Aileas</a></h5>
+									<small>Hey, the party is on tonight!</small>
+								</div>
+							</div>
+																					<div class="mixit-chat-3 mix media border-bottom innerAll margin-none mix_all">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-left media-object"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/12.jpg" class="img-circle"></a>
+								<div class="media-body">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+										<i class="fa fa-comments"></i> 4
+									</a>
+									<h5 class="margin-none"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="text-white">Alphonsus Braidy</a></h5>
+									<small>Hey, the party is on tonight!</small>
+								</div>
+							</div>
+																					<div class="mixit-chat-3 mix media border-bottom innerAll margin-none mix_all">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-left media-object"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/13.jpg" class="img-circle"></a>
+								<div class="media-body">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+										<i class="fa fa-comments"></i> 4
+									</a>
+									<h5 class="margin-none"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="text-white">Helene Liana</a></h5>
+									<small>Hey, the party is on tonight!</small>
+								</div>
+							</div>
+																					<div class="mixit-chat-3 mix media border-bottom innerAll margin-none mix_all">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-left media-object"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/14.jpg" class="img-circle"></a>
+								<div class="media-body">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+										<i class="fa fa-comments"></i> 4
+									</a>
+									<h5 class="margin-none"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="text-white">Sebastian Niklas</a></h5>
+									<small>Hey, the party is on tonight!</small>
+								</div>
+							</div>
+																					<div class="mixit-chat-3 mix media border-bottom innerAll margin-none mix_all">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-left media-object"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/15.jpg" class="img-circle"></a>
+								<div class="media-body">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+										<i class="fa fa-comments"></i> 4
+									</a>
+									<h5 class="margin-none"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="text-white">Elvire Maya</a></h5>
+									<small>Hey, the party is on tonight!</small>
+								</div>
+							</div>
+																					<div class="mix media border-bottom innerAll margin-none mix_all">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-left media-object"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/16.jpg" class="img-circle"></a>
+								<div class="media-body">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="pull-right text-muted innerT half">
+										<i class="fa fa-comments"></i> 4
+									</a>
+									<h5 class="margin-none"><a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#chat-conversation" data-toggle="tab" class="text-white">Kerman Otakar</a></h5>
+									<small>Hey, the party is on tonight!</small>
+								</div>
+							</div>
+							
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</div>
+<div id="ascrail2001" class="nicescroll-rails" style="width: 5px; z-index: 2; cursor: default; position: absolute; top: 0px; left: 95px; height: 100px; display: none;"><div style="position: relative; top: 0px; float: right; width: 5px; height: 0px; background-color: rgb(37, 173, 159); border: none; background-clip: padding-box; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;"></div></div></div>
+
+
+
+
+
+
+
+		
+		<!-- Content -->
+		<div id="content">
+
+			<div class="navbar hidden-print navbar-default box main" role="navigation">
+	<div class="user-action user-action-btn-navbar pull-right border-left">
+		<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#menu-right" class="btn btn-sm btn-navbar btn-open-right"><i class="fa fa-comments fa-2x"></i></a>
+	<div id="chat-notification" style="" data-menu="menu-right" data-toggle="sidr-open">New message from <strong>Mr.Awesome</strong></div></div>
+	<div class="user-action user-action-btn-navbar pull-left">
+		<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#menu" class="btn btn-sm btn-navbar btn-open-left"><i class="fa fa-bars fa-2x"></i></a>
+	</div>
+	<ul class="notifications pull-left hidden-xs">
+		<li class="dropdown notif">
+			<a href="" class="dropdown-toggle dropdown-hover" data-toggle="dropdown"><i class="notif-block icon-envelope-1"></i><span class="fa fa-star"></span></a>
+			<ul class="dropdown-menu chat media-list">
+				<li class="media">
+			        <a class="pull-left" href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#"><img class="media-object thumb" src="./Social Admin Template Template (v1.0.1-rc2)_files/15(1).jpg" alt="50x50" width="50"></a>
+					<div class="media-body">
+			        	<span class="label label-default pull-right">5 min</span>
+			            <h5 class="media-heading">Adrian D.</h5>
+			            <p class="margin-none">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+			        </div>
+				</li>
+		      	<li class="media">
+		          	<a class="pull-left" href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#"><img class="media-object thumb" src="./Social Admin Template Template (v1.0.1-rc2)_files/16(1).jpg" alt="50x50" width="50"></a>
+					<div class="media-body">
+			          	<span class="label label-default pull-right">2 days</span>
+			            <h5 class="media-heading">Jane B.</h5>
+			            <p class="margin-none">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+			        </div>
+		        </li>
+			    <li class="media">
+		          	<a class="pull-left" href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#"><img class="media-object thumb" src="./Social Admin Template Template (v1.0.1-rc2)_files/17.jpg" alt="50x50" width="50"></a>
+			      	<div class="media-body">
+						<span class="label label-default pull-right">3 days</span>
+			            <h5 class="media-heading">Andrew M.</h5>
+			            <p class="margin-none">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+			        </div>
+		        </li>
+	      	</ul>
+		</li>
+	</ul>
+
+	<div class="user-action pull-left menu-right-hidden-xs menu-left-hidden-xs border-left">
+		<div class="dropdown username pull-left">
+			<a class="dropdown-toggle dropdown-hover" data-toggle="dropdown" href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#">
+				<span class="media margin-none">
+					<span class="pull-left"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/16.jpg" alt="user" class="img-circle"></span>
+					<span class="media-body">Bill <span class="caret"></span></span>
+				</span>
+			</a>
+			<ul class="dropdown-menu">
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/about_1.html?lang=en&v=v1.0.1-rc2">About</a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/messages.html?lang=en&v=v1.0.1-rc2">Messages</a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/timeline_3.html?lang=en&v=v1.0.1-rc2">Profile</a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/login.html?lang=en&v=v1.0.1-rc2">Logout</a></li>
+		    </ul>
+		</div>
+	</div>
+	<div class="input-group hidden-xs pull-left">
+	  	<span class="input-group-addon"><i class="icon-search"></i></span>
+	  	<input type="text" class="form-control" placeholder="Search a friend">
+	</div>
+	
+</div>
+
+			<!-- <div class="layout-app"> --><div class="innerAll">
+	<div class="row">
+		<div class="col-lg-9 col-md-8">
+			
+			<div class="timeline-cover">	
+	<div class="widget cover">
+		<div class="widget-body padding-none margin-none">
+			<div class="top">
+				<img src="./Social Admin Template Template (v1.0.1-rc2)_files/photodune-2755655-party-time-s.jpg" class="img-responsive">					
+			</div>
+			<ul class="list-unstyled">
+				<li class="active"><a href="http://cdn.mosaicpro.biz/social/php/admin/index.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-fw fa-clock-o"></i> Timeline</a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/about_1.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-fw fa-user"></i> About</a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/media_1.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-fw icon-photo-camera"></i> Photos <span>(102)</span></a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/contacts_1.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-fw icon-group"></i> Friends <span>(19)</span></a></li>
+				<li><a href="http://cdn.mosaicpro.biz/social/php/admin/messages.html?lang=en&v=v1.0.1-rc2"><i class="fa fa-fw icon-envelope-fill-1"></i> Messages <span>(2 new)</span></a></li>
+			</ul>
+			<div class="status innerAll">
+				<i class="fa fa-quote-left text-muted pull-left fa-fw"></i> 
+				<p class="lead margin-none">What a fun Partyyy</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+			<div class="gridalicious-row gridalicious" data-toggle="gridalicious" data-gridalicious-width="340" data-gridalicious-gutter="12" data-gridalicious-selector=".gridalicious-item">
+				
+				<div class="loaded">
+
+					
+
+					
+
+					
+		
+					
+
+				</div>
+			<div class="galcolumn" id="item0s9tCN" style="width: 49.24433249370277%; padding-left: 12px; padding-bottom: 12px; float: left; box-sizing: border-box;"><div class="widget gridalicious-item not-responsive" style="margin-bottom: 12px; zoom: 1; opacity: 1;">
+
+						<!-- Info -->
+						<div class="bg-primary">
+							<div class="media">
+								<a href="" class="pull-left"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/13(1).jpg" width="50" class="media-object" style="width: auto; height: auto; display: block; margin-left: auto; margin-right: auto;"></a>
+								<div class="media-body innerTB half">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#" class="pull-right innerT innerR text-white">
+										<i class="icon-reply-all-fill fa fa-2x "></i>
+									</a>
+									<a href="" class="text-white strong display-block">Joanne Smith</a>
+									<span>added <a href="" class="text-white strong">Photos</a> on 15th January, 2014 <i class="icon-time-clock"></i></span>
+								</div>
+							</div>
+						</div>
+
+						<!-- Content -->
+						<div class="innerAll">
+							<p class="lead">Late Night Show Photos</p>
+							<a href=""><img src="./Social Admin Template Template (v1.0.1-rc2)_files/1(2).jpg" alt="" class="img-post display-block-inline" style="width: auto; height: auto; display: block; margin-left: auto; margin-right: auto;"></a>
+							<a href=""><img src="./Social Admin Template Template (v1.0.1-rc2)_files/2(2).jpg" alt="" class="img-post display-block-inline" style="width: auto; height: auto; display: block; margin-left: auto; margin-right: auto;"></a>
+							<a href=""><img src="./Social Admin Template Template (v1.0.1-rc2)_files/3(1).jpg" alt="" class="img-post display-block-inline" style="width: auto; height: auto; display: block; margin-left: auto; margin-right: auto;"></a>
+						</div>
+
+						<!-- Comment -->
+						<div class="bg-gray innerAll border-top border-bottom text-small ">
+							<span>View all <a href="" class="text-primary">2 Comments</a></span>
+						</div>
+						
+						<!-- First Comment -->
+						<div class="media border-bottom margin-none bg-gray">
+							<a href="" class="pull-left innerAll"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/2.jpg" width="50" class="media-object" style="width: auto; height: auto; display: block; margin-left: auto; margin-right: auto;"></a>
+							<div class="media-body innerTB">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#" class="pull-right innerT innerR text-muted">
+									<i class="icon-reply-all-fill fa fa-2x "></i>
+								</a>
+								<a href="" class="strong text-inverse">Adrian Demian</a> 	<small class="text-muted ">wrote on Jan 15th, 2014</small> <a href="" class="text-small">mark it</a>
+								<div>- Happy B-Day!</div>
+
+							</div>
+						</div>
+
+						<!-- Second Comment -->
+						<div class="media margin-none bg-gray">
+							<a href="" class="pull-left innerAll"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/11(1).jpg" width="50" class="media-object" style="width: auto; height: auto; display: block; margin-left: auto; margin-right: auto;"></a>
+							<div class="media-body innerTB">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#" class="pull-right innerT innerR"><i class="icon-reply-all-fill fa fa-2x text-muted "></i></a>
+								<a href="" class="strong text-inverse">Jenny Adams</a> 	<small class="text-muted ">wrote on Jan 15th, 2014</small> <a href="" class="text-small">mark it</a>
+								<div>- Happy Birthday Hun...</div>
+							</div>
+						</div>
+
+						<div class="border-top">
+							<input type="text" class="form-control border-none" placeholder="Comment here...">
+						</div>
+					</div><div class="widget gridalicious-item not-responsive" style="margin-bottom: 12px; zoom: 1; opacity: 1;">
+
+						<div class="media">
+							<a href="" class="pull-left"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/3(2).jpg" width="50" class="media-object" style="width: auto; height: auto; display: block; margin-left: auto; margin-right: auto;"></a>
+							<div class="media-body innerTB half">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#" class="pull-right innerT innerR text-muted"><i class="icon-reply-all-fill fa fa-2x "></i></a>
+								<a href="" class="strong display-block">Just Mary</a>
+								<span>on 15th January, 2014</span>
+							</div>
+						</div>
+					
+						<!-- Content -->
+						<a href=""><img src="./Social Admin Template Template (v1.0.1-rc2)_files/photodune-2755655-party-time-s(1).jpg" alt="" class="img-responsive" style="width: auto; height: auto; display: block; margin-left: auto; margin-right: auto;"></a>
+
+						<!-- Comment -->
+						<div class="bg-primary innerAll text-small ">
+							<span>View all <a href="" class="strong text-white">1 Comment</a></span>
+						</div>
+						
+						<!-- First Comment -->
+						<div class="media border-bottom margin-none">
+							<a href="" class="pull-left innerAll"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/5(1).jpg" width="50" class="media-object" style="width: auto; height: auto; display: block; margin-left: auto; margin-right: auto;"></a>
+							<div class="media-body innerTB">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#" class="pull-right innerT innerR text-muted"><i class="icon-reply-all-fill fa fa-2x "></i></a>
+								<a href="" class="strong text-inverse">Adrian Demian</a>
+								<small class="text-muted display-block ">on Jan 15th, 2014</small>
+								<div>- Happy B-Day!</div>
+								<a href="" class="text-small">mark it</a>
+							</div>
+						</div>
+						
+						<div class="border-top">
+							<input type="text" class="form-control border-none" placeholder="Comment here...">
+						</div>
+					</div></div><div class="galcolumn" id="item1s9tCN" style="width: 49.24433249370277%; padding-left: 12px; padding-bottom: 12px; float: left; box-sizing: border-box;"><div class="widget gridalicious-item not-responsive" style="margin-bottom: 12px; zoom: 1; opacity: 1;">
+
+						<!-- Info -->
+						<div class="bg-primary">
+							<div class="media">
+								<a href="" class="pull-left"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/15(2).jpg" width="50" class="media-object" style="width: auto; height: auto; display: block; margin-left: auto; margin-right: auto;"></a>
+								<div class="media-body innerTB half">
+									<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#" class="pull-right innerT innerR text-white">
+										<i class="icon-reply-all-fill fa fa-2x "></i>
+									</a>
+									<a href="" class="text-white strong display-block">Joanne Smith</a>
+									<span>on 15th January, 2014</span>
+
+								</div>
+
+							</div>
+						</div>
+
+						<!-- Content -->
+						<div class="innerAll">
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, pariatur!</p>
+						</div>
+
+						<!-- Comment -->
+						<div class="bg-gray innerAll border-top border-bottom text-small ">
+							<span>View all <a href="" class="text-primary">1 Comment</a></span>
+						</div>
+						
+						<!-- First Comment -->
+						<div class="media border-bottom margin-none bg-gray">
+							<a href="" class="pull-left innerAll"><img src="./Social Admin Template Template (v1.0.1-rc2)_files/18.jpg" width="50" class="media-object" style="width: auto; height: auto; display: block; margin-left: auto; margin-right: auto;"></a>
+							<div class="media-body innerTB">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#" class="pull-right innerT innerR text-muted"><i class="icon-reply-all-fill fa fa-2x "></i></a>
+								<a href="" class="strong text-inverse">Adrian Demian</a> 	<small class="text-muted display-block ">on Jan 15th, 2014</small>			<a href="" class="text-small">mark it</a>
+								<div>- Happy B-Day!</div>
+							</div>
+						</div>
+
+						<div class="border-top">
+							<input type="text" class="form-control border-none" placeholder="Comment here...">
+						</div>
+					</div><div class="widget gridalicious-item not-responsive" style="margin-bottom: 12px; zoom: 1; opacity: 1;">
+						<a href=""><img src="./Social Admin Template Template (v1.0.1-rc2)_files/photodune-6374531-at-celebration-xs.jpg" alt="" class="img-responsive" style="width: auto; height: auto; display: block; margin-left: auto; margin-right: auto;"></a>
+						<!-- Info -->
+						<div class="bg-primary">
+							<div class="innerAll">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#" class="pull-right innerT innerR text-white"><i class="icon-reply-all-fill fa fa-2x "></i></a>
+								<div class="innerAll">
+									<a href="" class="text-white text-medium">Fun Party in Rome </a>
+									<span class="display-block">on 15th January, 2014</span>
+								</div>										
+							</div>
+						</div>	
+
+						<!-- Comment -->
+						<div class="bg-gray border-bottom innerAll text-small ">
+							<span>View all <a href="" class="strong text-primary">1 Comment</a></span>
+						</div>
+						
+						<!-- First Comment -->
+						<div class="media border-bottom margin-none bg-gray">
+							<a href="" class="pull-left innerAll">
+								<img src="./Social Admin Template Template (v1.0.1-rc2)_files/12(1).jpg" width="50" class="media-object" style="width: auto; height: auto; display: block; margin-left: auto; margin-right: auto;">
+							</a>
+							<div class="media-body innerTB">
+								<a href="http://cdn.mosaicpro.biz/social/php/admin/?module=admin&url_rewrite=&v=v1.0.1-rc2#" class="pull-right innerT innerR text-muted">
+									<i class="icon-reply-all-fill fa fa-2x "></i>
+								</a>
+								<a href="" class="strong text-inverse">Adrian Demian</a> 	<small class="text-muted display-block ">on Jan 15th, 2014</small>
+								<div>- Happy B-Day!</div>
+								 <a href="" class="text-small">mark it</a>
+
+							</div>
+						</div>
+						<div class="border-top">
+							<input type="text" class="form-control border-none" placeholder="Comment here...">
+						</div>
+					</div></div><div style="clear: both; height: 0px; width: 0px; display: block;" id="clears9tCN"></div></div>
+
+		</div>
+
+		<div class="col-md-4 col-lg-3">
+
+			<div class="widget">
+				<div class="widget-body text-center">
+					<a href=""><img src="./Social Admin Template Template (v1.0.1-rc2)_files/22.jpg" width="120" alt="" class="img-circle"></a>
+					<h2 class="strong margin-none">Adrian Demian</h2>
+					<div class="innerB">Working at MOSAICPRO</div>
+					<a href="" class="btn btn-primary text-center btn-block">PRO Account</a>
+					<div class="btn-group-vertical btn-block">
+						<a href="" class="btn btn-default"><i class="fa fa-cog pull-right"></i>Edit Account</a>
+						<a href="" class="btn btn-default"><i class="fa fa-cog pull-right"></i>Logout</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="widget">
+	<h5 class="innerAll margin-none border-bottom bg-gray">Recent News</h5>
+	<div class="widget-body padding-none">
+				<div class="media border-bottom innerAll margin-none">
+			<img src="./Social Admin Template Template (v1.0.1-rc2)_files/22(1).jpg" class="pull-left media-object">
+			<div class="media-body">
+				<a href="" class="pull-right text-muted innerT half">
+					<i class="fa fa-comments"></i> 4
+				</a>
+				<h5 class="margin-none"><a href="" class="text-inverse">Social Admin Released</a></h5>
+				<small>on February 2nd, 2014 </small> 
+			</div>
+		</div>
+				<div class="media border-bottom innerAll margin-none">
+			<img src="./Social Admin Template Template (v1.0.1-rc2)_files/22(1).jpg" class="pull-left media-object">
+			<div class="media-body">
+				<a href="" class="pull-right text-muted innerT half">
+					<i class="fa fa-comments"></i> 4
+				</a>
+				<h5 class="margin-none"><a href="" class="text-inverse">Timeline Cover Page</a></h5>
+				<small>on February 2nd, 2014 </small> 
+			</div>
+		</div>
+				<div class="media border-bottom innerAll margin-none">
+			<img src="./Social Admin Template Template (v1.0.1-rc2)_files/22(1).jpg" class="pull-left media-object">
+			<div class="media-body">
+				<a href="" class="pull-right text-muted innerT half">
+					<i class="fa fa-comments"></i> 4
+				</a>
+				<h5 class="margin-none"><a href="" class="text-inverse">1000+ Sales</a></h5>
+				<small>on February 2nd, 2014 </small> 
+			</div>
+		</div>
+				<div class="media border-bottom innerAll margin-none">
+			<img src="./Social Admin Template Template (v1.0.1-rc2)_files/22(1).jpg" class="pull-left media-object">
+			<div class="media-body">
+				<a href="" class="pull-right text-muted innerT half">
+					<i class="fa fa-comments"></i> 4
+				</a>
+				<h5 class="margin-none"><a href="" class="text-inverse">On-Page Optimization</a></h5>
+				<small>on February 2nd, 2014 </small> 
+			</div>
+		</div>
+				<div class="media border-bottom innerAll margin-none">
+			<img src="./Social Admin Template Template (v1.0.1-rc2)_files/22(1).jpg" class="pull-left media-object">
+			<div class="media-body">
+				<a href="" class="pull-right text-muted innerT half">
+					<i class="fa fa-comments"></i> 4
+				</a>
+				<h5 class="margin-none"><a href="" class="text-inverse">14th Admin Template</a></h5>
+				<small>on February 2nd, 2014 </small> 
+			</div>
+		</div>
+			</div>
+</div>
+
+			<!-- Widget -->
+<div class="widget widget-heading-simple widget-body-white">
+		
+	<!-- Widget Heading -->
+	<div class="widget-head">
+		<h4 class="heading glyphicons glyphicons-social twitter"><i></i>Twitter feed</h4>
+	</div>
+	<!-- // Widget Heading END -->
+	
+	<div class="widget-body" data-builder-exclude="element children">
+		<div class="jstwitter" data-gridalicious="false" data-type="slide" data-images="false"><span class="label label-default">Loading .. </span></div>
+	</div>
+</div>
+<!-- // Widget END -->
+
+
+
+		
+		</div>
+	</div>
+</div>
+
+
+	
+		
+		<!-- </div> -->
+		</div>
+		<!-- // Content END -->
+		
+		<div class="clearfix"></div>
+		<!-- // Sidebar menu & content wrapper END -->
+		
+				<!-- Footer -->
+		<div id="footer" class="hidden-print">
+			
+			<!--  Copyright Line -->
+			<div class="copy">© 2012 - 2014 - <a href="http://www.mosaicpro.biz/">MosaicPro</a> - All Rights Reserved. <a href="http://themeforest.net/?ref=mosaicpro" target="_blank">Purchase Social Admin Template</a> - Current version: v1.0.1-rc2 / <a target="_blank" href="http://cdn.mosaicpro.biz/social/CHANGELOG.txt?v=v1.0.1-rc2">changelog</a></div>
+			<!--  End Copyright Line -->
+	
+		</div>
+		<!-- // Footer END -->
+		
+				
+	</div>
+	<!-- // Main Container Fluid END -->
+	
+
+	<!-- Global -->
+	<script data-id="App.Config">
+		var basePath = '',
+		commonPath = '../assets/',
+		rootPath = '../',
+		DEV = false,
+		componentsPath = '../assets/components/';
+	
+	var primaryColor = '#25ad9f',
+		dangerColor = '#b55151',
+		successColor = '#609450',
+		infoColor = '#4a8bc2',
+		warningColor = '#ab7a4b',
+		inverseColor = '#45484d';
+	
+	var themerPrimaryColor = primaryColor;
+
+		App.Config = {
+		ajaxify_menu_selectors: ['#menu'],
+		ajaxify_layout_app: false	};
+		</script>
+	
+		
+
+</body></html>

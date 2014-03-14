@@ -1,4 +1,6 @@
 DatabaseProject::Application.routes.draw do
+  get "check/add"
+  get "check/index"
   get "api/index"
   get "pages/create"
   post "pages/submit"
