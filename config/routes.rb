@@ -1,4 +1,6 @@
 DatabaseProject::Application.routes.draw do
+  resources :pages
+
   resources :users
 
   get "check/add"

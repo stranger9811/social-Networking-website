@@ -1,6 +1,10 @@
 class PagesController < ApplicationController
-  def create
+  before_action :set_page, only: [:show, :edit, :update, :destroy]
 
+  # GET /pages
+  # GET /pages.json
+  def index
+    @pages = Page.all
   end
   def comment
     if params[:comment]!=""
@@ -26,28 +30,34 @@ class PagesController < ApplicationController
   		new_page.description = params[:description]
   		new_page.admin_id = cookies[:user_id]
   		new_page.privacy = params[:privacy]  
-  		new_page.likes = 0 
+  		new_page.like = 0 
   		new_page.save
   		redirect_to action: "show", id: new_page.id
   	end
+    redirect_to action: "show", id: new_page.id
   end
   def pageLike
     if params[:is_liked]=="unlike"
-      PagesLike.find_by_sql("select * from pages_likes where user_id="+cookies[:user_id]+" and page_id="+$global_id.to_s)[0].destroy
-      current_page = Page.find($global_id)
-      current_page.likes=current_page.likes-1
+      PagesLike.find_by_sql("select * from pages_likes where user_id="+cookies[:user_id]+" and page_id="+params[:id])[0].destroy
+      current_page = Page.find(params[:id])
+      current_page.like=current_page.like-1
       current_page.save
     else
+      printf "current controller: page action: pageLike"
       new_like = PagesLike.new
       new_like.user_id = cookies[:user_id]
-      new_like.page_id = $global_id
+      new_like.page_id = params[:id]
       new_like.save
-      current_page = Page.find($global_id)
-      current_page.likes=current_page.likes+1
+      current_page = Page.find(params[:id])
+      print current_page
+      current_page.like=current_page.like+1
       current_page.save
     end
     redirect_to action: "show", id: $global_id
   end
+
+  # GET /pages/1
+  # GET /pages/1.json
   def show
   	begin
   		@page = Page.find(params[:id])
@@ -75,4 +85,66 @@ class PagesController < ApplicationController
   		redirect_to action: "show", id: $global_id
   	end
   end
+
+  # GET /pages/new
+  def new
+    @page = Page.new
+  end
+
+  # GET /pages/1/edit
+  def edit
+  end
+
+  # POST /pages
+  # POST /pages.json
+  def create
+    @page = Page.new(page_params)
+    @page.profile_pic = params[:page][:profile_pic]
+    @page.timeline_pic = params[:page][:timeline_pic]
+    @page.like = 0
+    respond_to do |format|
+      if @page.save
+        format.html { redirect_to @page, notice: 'Page was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @page }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @page.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /pages/1
+  # PATCH/PUT /pages/1.json
+  def update
+    respond_to do |format|
+      if @page.update(page_params)
+        format.html { redirect_to @page, notice: 'Page was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @page.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /pages/1
+  # DELETE /pages/1.json
+  def destroy
+    @page.destroy
+    respond_to do |format|
+      format.html { redirect_to pages_url }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_page
+      @page = Page.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def page_params
+      params.require(:page).permit(:title, :description, :like, :privacy, :admin_id,:profile_pic,:timeline_pic)
+    end
 end

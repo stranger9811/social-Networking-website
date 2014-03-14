@@ -1,0 +1,21 @@
+<h1>New page</h1>
+
+<%= form_for @page, :url => pages_path, :html => { :multipart => true } do |form| %>
+	<p>
+	<%= form.label :title %><br />
+	<%= form.text_field :title %>
+	</p>
+	<p>
+	<%= form.label :description %><br />
+	<%= form.text_field :description %>
+	</p>
+	<p>
+	<%= form.label :profile_pic %><br />
+  <%= form.file_field :profile_pic %>
+  </p>
+  <p>
+  <%= form.label :timeline_pic %><br />
+  <%= form.file_field :timeline_pic %>
+  </p>
+   <%= form.submit 'Create' %>
+<% end %>

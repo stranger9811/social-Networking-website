@@ -17,6 +17,13 @@
 	<%= form.label :password %><br />
 	<%= form.text_field :password %>
 	</p>
+	<p>
+	<%= form.label :profile_pic %><br />
   <%= form.file_field :profile_pic %>
+  </p>
+  <p>
+  <%= form.label :timeline_pic %><br />
+  <%= form.file_field :timeline_pic %>
+  </p>
    <%= form.submit 'Create' %>
 <% end %>

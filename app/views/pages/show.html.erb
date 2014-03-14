@@ -1,7 +1,11 @@
 title : <%= @page.title %><br/>
 description : <%= @page.description %><br/>
 
-likes : <%= @page.likes %><br/>
+<%= image_tag @page.profile_pic.url %>
+<%= image_tag @page.profile_pic.url(:medium) %>
+<%= image_tag @page.profile_pic.url(:thumb) %>
+
+likes : <%= @page.like %><br/>
 
 privacy : <%= @page.privacy %><br/>
 
@@ -39,3 +43,35 @@ privacy : <%= @page.privacy %><br/>
 	</div>
 	<br/>
 <%end%>
+
+
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @page.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @page.description %>
+</p>
+
+<p>
+  <strong>Like:</strong>
+  <%= @page.like %>
+</p>
+
+<p>
+  <strong>Privacy:</strong>
+  <%= @page.privacy %>
+</p>
+
+<p>
+  <strong>Admin:</strong>
+  <%= @page.admin_id %>
+</p>
+
+<%= link_to 'Edit', edit_page_path(@page) %> |
+<%= link_to 'Back', pages_path %>
