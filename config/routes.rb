@@ -1,4 +1,6 @@
 DatabaseProject::Application.routes.draw do
+  resources :users
+
   get "check/add"
   get "check/index"
   get "api/index"

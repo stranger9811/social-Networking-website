@@ -156,9 +156,10 @@ require 'digest/md5'
 		 	for temp in @temp
 		 		 @friend_requests << User.find(temp.user1)
 		 	end
+      @my_posts = WallPost.find_by_sql("select * from wall_posts where to_id="+cookies[:user_id].to_s)
 		 end
 	end
-	@my_posts = WallPost.find_by_sql("select * from wall_posts where to_id="+cookies[:user_id].to_s)
+	
   end
   def logout
   	cookies.delete :user_name
