@@ -1,9 +1,78 @@
 <% if params[:id]==cookies[:user_id]%>
 
 <% elsif params[:id] %>
+
+ <div> 
+      <div style="float:left;width:20%;">
+
+            <div style="padding:10px;margin:10px;" class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Profile </h3>
+                    </div>
+                    <div class="panel-body">
+                        <% user= User.find(params[:id])%>
+                        <%= image_tag  user.profile_pic.url(:thumb) %><br/>
+                        <h4><%= user.fname + " " + user.lname %></h4>
+                        <button class="btn btn-default btn-primary btn-xs btn-block"><span class="glyphicon glyphicon-plus-sign"></span> Add Friend</button>
+
+                    </div>
+                </div>
+            </div>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active">
+                    <a href="/main/profile">
+                    <span class="badge pull-right"></span>
+                    Home
+                    </a>
+                </li>
+                <li >
+                    <a href="/main/photos">
+                    <span class="badge pull-right">0</span>
+                    Photos
+                    </a>
+                </li>
+                <li >
+                    <a href="/main/friends">
+                    <span class="badge pull-right"><%=Friend.find(:all, :conditions => { :user1 => cookies[:user_id] }).count%></span>
+                    Friends
+                    </a>
+                </li>
+            </ul>
+
+            
+      </div>
+      <div style="float:left;width:55%;padding:10px;margin:10px">
+            <div style="padding:10px;">
+                  <input id ="autocomplete" type="text" class="form-control" placeholder="Search"> 
+            </div>
+
+            <div style="heigth:300px;background-image:url('/images/cover.jpg')">
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            </div>
+            <div>
+              <div style="padding:10px;margin:10px;width:45%;float:left">
+                  <% if Friend.find_by_sql("select * from friends where user2="+params[:id]+" and user1="+cookies[:user_id])[0]!=nil %>
+                      <%= form_tag "/main/post_submit" do %>
+                        <%= hidden_field_tag 'id', params[:id] %>
+                 
+                        <label for="text"></label> <textarea id="text"  name="content"  rows="3" cols="35" class="required"></textarea>
+                        <br/>
+                        <input type="submit" value="Post"/>
+                      <%end%>
+                <%end%>
+            </div>      
+      </div>
+      <div style="padding:20px;">
+                
+      </div>
+  </div>
+
+
+
     <%= @status %>
-    <a href=<%="/main/profile?id="+params[:id]%>><%=@user.fname+" "+@user.lname%></a>
-    <%= button_to @status,{:action => "manageFriends", :status => @status, :id => params[:id]},{:class => "myButton"} %>
+
+    <%= button_to @status,{:action => "manageFriends", :status => @status, :id => params[:id]},{:class => "btn btn-default btn-primary btn-xs btn-block"} %>
     <% if Friend.find_by_sql("select * from friends where user2="+params[:id]+" and user1="+cookies[:user_id])[0]!=nil %>
         <%= form_tag "/main/post_submit" do %>
           <%= hidden_field_tag 'id', params[:id] %>
@@ -65,26 +134,51 @@
 
 
   <div> 
-      <div style="float:left;width:25%;">
+      <div style="float:left;width:20%;">
+
             <div style="padding:10px;margin:10px;"class="row">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">Profile 
                     </div>
                     <div class="panel-body">
-                        <img src="/images/ashok.jpg" style="width:150px;height:150px"/><br/>
-                        <a href="/main/profile"><%= cookies[:fname] %></a>
-                        <a href="/main/logout" style="width:200px" class="btn btn-success btn-lg">logout</a>
+                        <% user= User.find(cookies[:user_id])%>
+                        <%= image_tag  user.profile_pic.url(:thumb) %><br/>
+                        <h4><%= user.fname + " " + user.lname %></h4>
+                        <a href="/main/profile"><%= cookies[:fname] %></a><a href="#" class="btn btn-default btn-primary btn-xs btn-block"><span class="glyphicon glyphicon-play-circle"></span> Edit Account</a>
+
+                        <a href="/main/logout" class="btn btn-default btn-primary btn-xs btn-block"><span class="glyphicon glyphicon-off"></span> Logout</a>
                     </div>
                 </div>
             </div>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active">
+                    <a href="#">
+                    <span class="badge pull-right"></span>
+                    Home
+                    </a>
+                </li>
+                <li >
+                    <a href="/main/photos">
+                    <span class="badge pull-right">0</span>
+                    Photos
+                    </a>
+                </li>
+                <li >
+                    <a href="/main/friends">
+                    <span class="badge pull-right"><%=Friend.find(:all, :conditions => { :user1 => cookies[:user_id] }).count%></span>
+                    Friends
+                    </a>
+                </li>
+            </ul>
 
             
       </div>
-      <div style="float:left;width:50%;padding:10px;margin:10px">
-            <div style="padding:10px;height:5%;">
-                <input id="autocomplete" type="text" width="2" name="search_box"/>
+      <div style="float:left;width:55%;padding:10px;margin:10px">
+            <div style="padding:10px;">
+                  <input id ="autocomplete" type="text" class="form-control" placeholder="Search"> 
             </div>
+
             <div style="heigth:300px;background-image:url('/images/cover.jpg')">
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             </div>
