@@ -1,6 +1,90 @@
+<script>
+
+  $(document).ready(function() {
+        $(".like").click(function() {
+          window.h=$(this);
+            window.a=$(this).attr('id').slice(0,-4);
+            $.ajax({url:"/main/like_p",data:{"post_id":a,"current_user_id":'<%= cookies[:user_id]%>'},success:function(b){
+                
+                if(b.result)
+                {
+                      window.h.attr('src',"/images/unlike.png");
+
+                      $('#'+window.a).text("likes : "+b.likes);
+
+
+                }
+                else
+                {
+                      window.h.attr('src',"/images/like.png");
+                      $('#'+window.a).text("likes : "+b.likes);
+                  }
+            }
+          });
+        });
+        $("#other_profile_friendship_status").click(function() {
+          window.h=$(this);
+            $.ajax({url:"/main/manageFriends",data:{"id":'<%= params[:id]%>'},success:function(b){
+                
+                if(b.result)
+                {
+                      window.h.text(b.status);
+
+                }
+                else
+                {
+                      alert("error occured")
+                  }
+            }
+          });
+        });
+
+        $(".cancel_request").click(function() {
+          
+          window.h=$(this);
+            window.a=$(this).attr('id').split("_");
+            
+            $.ajax({url:"/main/FriendRequests",data:{"status":"cancel_request","user1":a[1],"user2":a[2]},success:function(b){
+                
+                if(b.result)
+                {
+                    $('#PendingFriend_'+a[1]+'_' +a[2]).remove();
+                }
+                else
+                {
+                      alert("error")
+                  }
+            }
+          });
+        });
+        $(".confirm_request").click(function() {
+          
+          window.h=$(this);
+            window.a=$(this).attr('id').split("_");
+          
+            $.ajax({url:"/main/FriendRequests",data:{"status":"confirm_request","user1":a[1],"user2":a[2]},success:function(b){
+                
+                if(b.result)
+                {
+                    $('#PendingFriend_'+a[1]+'_' +a[2]).remove();
+                   
+                }
+                else
+                {
+                      alert("error")
+                  }
+            }
+          });
+        });
+        
+
+  });
+</script>
+
 <% if params[:id]==cookies[:user_id]%>
 
 <% elsif params[:id] %>
+<% user = User.find(params[:id]) %>
 
  <div> 
       <div style="float:left;width:20%;">
@@ -14,7 +98,7 @@
                         <% user= User.find(params[:id])%>
                         <%= image_tag  user.profile_pic.url(:thumb) %><br/>
                         <h4><%= user.fname + " " + user.lname %></h4>
-                        <button class="btn btn-default btn-primary btn-xs btn-block"><span class="glyphicon glyphicon-plus-sign"></span> Add Friend</button>
+                        <button id="other_profile_friendship_status" class="btn btn-default btn-primary btn-xs btn-block"><%= $status %></button>
 
                     </div>
                 </div>
@@ -47,8 +131,8 @@
                   <input id ="autocomplete" type="text" class="form-control" placeholder="Search"> 
             </div>
 
-            <div style="heigth:300px;background-image:url('/images/cover.jpg')">
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <div style="heigth:300px;">
+              <%= image_tag  user.timeline_pic.url, size: "700x300" %>
             </div>
             <div>
               <div style="padding:10px;margin:10px;width:45%;float:left">
@@ -61,7 +145,83 @@
                         <input type="submit" value="Post"/>
                       <%end%>
                 <%end%>
-            </div>      
+            </div> 
+
+              <% for post in @my_posts %>
+                    <div class="WallPost" id='<%= post.id.to_s+"wall_post"%>' style="background-color: white;margin:10px;width:45%;float:left" >
+                      <div style="background-color:<%= $color %>">
+                        <% post_by = User.find(post.from_id) %>
+                        <div style="float:left;width:20%;">
+                            <%= image_tag  user.profile_pic.url(:thumb),size: "50x50" %>
+                        </div>
+                        <div>
+                            <p>
+                              <% if post.from_id == post.to_id %> 
+                              <h4><%= post_by.fname + " " + post_by.lname + ' on '%></h4> 
+                                  <%= "on " + post.created_at.to_formatted_s %> 
+
+                              <%else %>
+                                  <% second_user = User.find(post.to_id) %>
+                                  <%= post_by.fname + " " + post_by.lname + " posted on " + second_user.fname + "'s wall " %>
+                                  <%= "on " + post.created_at.to_formatted_s %> 
+                              <%end%>
+                            </p>
+                        </div>
+                    </div>
+
+                    <br/>
+                        <div>
+                              <p>
+                                <%= post.content %>
+                              </p>
+                              <p id="<%= post.id %>">
+                            likes: <%= post.likes %></p>
+                            
+                            <% if WallPostLike.find_by_sql("select * from wall_post_likes where wall_post_id="+post.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
+                                  <img class="like" id='<%= post.id.to_s + "like"%>'   width="20px" height="10px" src="/images/like.png"  alt="like"/> 
+                                     
+                            <%else%>
+                                  <img class="like" id='<%= post.id.to_s + "like"%>'  width="20px" height="10px" src="/images/unlike.png"  alt="unlike"/> 
+                                       
+                            <%end%>
+                       
+                        </div>
+
+                      
+                      <div style="background-color: white; padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;">
+                        <% comments = WallPostComment.find_by_sql("select * from wall_post_comments where wall_post_id="+post.id.to_s) %>
+                        <% for comment in comments %>
+                          <div style="background-color: grey;padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;margin-bottom:5px">
+                            <% comment_by = User.find(comment.added_by) %>
+                              <%= image_tag  comment_by.profile_pic.url(:thumb),size: "40x40" %>
+                            <%= comment.comment%><br/>
+                            likes: <%= comment.likes %>
+                            <%= form_tag "/main/like_comment" do %>
+                                <%= hidden_field_tag 'comment_id', comment.id %>
+                                <%= hidden_field_tag 'id', params[:id] %>
+                                <% if WallCommentLike.find_by_sql("select * from wall_comment_likes where wall_comment_id="+comment.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
+                                    <input type="image" width="20px" height="10px" src="/images/like.png"  alt="like"/> 
+                                    <%= hidden_field_tag 'is_liked', "like" %>
+                                <%else%>
+                                    <input type="image" width="20px" height="10px" src="/images/unlike.png"  alt="unlike"/> 
+                                    <%= hidden_field_tag 'is_liked', "unlike" %>
+                                <%end%>
+                            <%end%>
+                          </div>
+                        <% end %>
+                        <%= form_tag "/main/add_comment" do %>
+                             <label for="text"></label> <textarea id="text"name="comment" ></textarea>
+                             <%= hidden_field_tag 'post_id', post.id %>
+                             <%= hidden_field_tag 'id', params[:id] %>
+                             <input type="submit" value="comment"/> 
+                        <%end%>
+                      </div>
+                    </div>
+                    <br/>
+                  <%end%>
+
+
+
       </div>
       <div style="padding:20px;">
                 
@@ -70,64 +230,7 @@
 
 
 
-    <%= @status %>
-
-    <%= button_to @status,{:action => "manageFriends", :status => @status, :id => params[:id]},{:class => "btn btn-default btn-primary btn-xs btn-block"} %>
-    <% if Friend.find_by_sql("select * from friends where user2="+params[:id]+" and user1="+cookies[:user_id])[0]!=nil %>
-        <%= form_tag "/main/post_submit" do %>
-          <%= hidden_field_tag 'id', params[:id] %>
-   
-          <label for="text"></label> <textarea id="text"  name="content"  rows="3" cols="35" class="required"></textarea>
-          <br/>
-          <input type="submit" value="Post"/>
-        <%end%>
-    <%end%>
-
-    <% for post in @my_posts %>
-  <div style="background-color: orange; width: 25em;padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;">
-    <%= post.content %>
-    <br/><br/>
-    likes: <%= post.likes %>
-    <%= form_tag "/main/like_post" do %>
-              <%= hidden_field_tag 'post_id', post.id %>
-              <%= hidden_field_tag 'id', params[:id] %>
-              <% if WallPostLike.find_by_sql("select * from wall_post_likes where wall_post_id="+post.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
-                  <input type="image" width="20px" height="10px" src="/images/like.png"  alt="like"/> 
-                  <%= hidden_field_tag 'is_liked', "like" %>
-              <%else%>
-                  <input type="image" width="20px" height="10px" src="/images/unlike.png"  alt="unlike"/> 
-                  <%= hidden_field_tag 'is_liked', "unlike" %>
-              <%end%>
-    <%end%>
-    <div style="background-color: white; padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;">
-      <% comments = WallPostComment.find_by_sql("select * from wall_post_comments where wall_post_id="+post.id.to_s) %>
-      <% for comment in comments %>
-        <div style="background-color: grey;padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;margin-bottom:5px">
-          <%= comment.comment%><br/>
-          likes: <%= comment.likes %>
-          <%= form_tag "/main/like_comment" do %>
-              <%= hidden_field_tag 'comment_id', comment.id %>
-              <%= hidden_field_tag 'id', params[:id] %>
-              <% if WallCommentLike.find_by_sql("select * from wall_comment_likes where wall_comment_id="+comment.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
-                  <input type="image" width="20px" height="10px" src="/images/like.png"  alt="like"/> 
-                  <%= hidden_field_tag 'is_liked', "like" %>
-              <%else%>
-                  <input type="image" width="20px" height="10px" src="/images/unlike.png"  alt="unlike"/> 
-                  <%= hidden_field_tag 'is_liked', "unlike" %>
-              <%end%>
-          <%end%>
-        </div>
-      <% end %>
-      <%= form_tag "/main/add_comment" do %>
-           <label for="text"></label> <textarea id="text"name="comment" ></textarea>
-           <%= hidden_field_tag 'post_id', post.id %>
-           <%= hidden_field_tag 'id', params[:id] %>
-           <input type="submit" value="comment"/> 
-      <%end%>
-    </div>
-  </div>
-  <br/>
-<%end%>
+    
 
 
 <%else%>
@@ -136,18 +239,23 @@
   <div> 
       <div style="float:left;width:20%;">
 
-            <div style="padding:10px;margin:10px;"class="row">
+            <div style="padding:10px;margin:10px;" class="row">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Profile 
+                        <h3 class="panel-title">Profile </h3>
                     </div>
                     <div class="panel-body">
                         <% user= User.find(cookies[:user_id])%>
-                        <%= image_tag  user.profile_pic.url(:thumb) %><br/>
-                        <h4><%= user.fname + " " + user.lname %></h4>
-                        <a href="/main/profile"><%= cookies[:fname] %></a><a href="#" class="btn btn-default btn-primary btn-xs btn-block"><span class="glyphicon glyphicon-play-circle"></span> Edit Account</a>
+                        <%= image_tag  user.profile_pic.url(:thumb), class: "img-circle" %><br/>
+                        
 
-                        <a href="/main/logout" class="btn btn-default btn-primary btn-xs btn-block"><span class="glyphicon glyphicon-off"></span> Logout</a>
+                        <h4><%= user.fname + " " + user.lname %></h4>
+                        <a href="/main/profile"><%= cookies[:fname] %></a><br/>
+                        <a href="#" class="btn btn-default btn-info btn-xs btn-block"><span class="glyphicon glyphicon-cog"></span> <b>Edit Profile</b></a>
+                       
+                        <a href="/main/logout" class="btn btn-default btn-info btn-xs btn-block"><span class="glyphicon glyphicon-off"></span> <b>Logout</b></a>
+
+                        
                     </div>
                 </div>
             </div>
@@ -179,8 +287,8 @@
                   <input id ="autocomplete" type="text" class="form-control" placeholder="Search"> 
             </div>
 
-            <div style="heigth:300px;background-image:url('/images/cover.jpg')">
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <div style="heigth:300px;">
+              <%= image_tag  user.timeline_pic.url, size: "700x300" %>
             </div>
             <div>
               <div style="padding:10px;margin:10px;width:45%;float:left">
@@ -193,25 +301,52 @@
             </div>
 
             <% for post in @my_posts %>
-            <div style="background-color: white;margin:10px;padding:10px;width:45%;float:left" >
-                        <%= post.content %>
-                        <br/><br/>
-                        likes: <%= post.likes %>
-                        <%= form_tag "/main/like_post" do %>
-                                  <%= hidden_field_tag 'post_id', post.id %>
-                                  <%= hidden_field_tag 'id', cookies[:user_id] %>
-                                  <% if WallPostLike.find_by_sql("select * from wall_post_likes where wall_post_id="+post.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
-                                      <input type="image" width="20px" height="10px" src="/images/like.png"  alt="like"/> 
-                                      <%= hidden_field_tag 'is_liked', "like" %>
-                                  <%else%>
-                                      <input type="image" width="20px" height="10px" src="/images/unlike.png"  alt="unlike"/> 
-                                      <%= hidden_field_tag 'is_liked', "unlike" %>
-                                  <%end%>
-                        <%end%>
+            <div class="WallPost" id='<%= post.id.to_s+"wall_post"%>' style="background-color: white;margin:10px;width:45%;float:left" >
+                  <div style="background-color:<%= $color %>">
+                        <% post_by = User.find(post.from_id) %>
+                        <div style="float:left;width:20%;">
+                            <%= image_tag  user.profile_pic.url(:thumb),size: "50x50" %>
+                        </div>
+                        <div>
+                            <p>
+                              <% if post.from_id == post.to_id %> 
+                              <h4><%= post_by.fname + " " + post_by.lname + ' on '%></h4> 
+                                  <%= "on " + post.created_at.to_formatted_s %> 
+
+                              <%else %>
+                                  <%= post_by.fname + " " + post_by.lname + " posted on " + post.to_id.to_s + " s wall " %>
+                              <%end%>
+                            </p>
+                        </div>
+                  </div>
+                        <br/>
+                        <div>
+                              <p>
+                                <%= post.content %>
+                              </p>
+                              <p id="<%= post.id %>">
+                            likes: <%= post.likes %></p>
+                            
+                            <% if WallPostLike.find_by_sql("select * from wall_post_likes where wall_post_id="+post.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
+                                  <img class="like" id='<%= post.id.to_s + "like"%>'   width="20px" height="10px" src="/images/like.png"  alt="like"/> 
+                                     
+                            <%else%>
+                                  <img class="like" id='<%= post.id.to_s + "like"%>'  width="20px" height="10px" src="/images/unlike.png"  alt="unlike"/> 
+                                       
+                            <%end%>
+                       
+                        </div>
+                       
+                                  
+                      
                         <div style="background-color: white; padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;">
                           <% comments = WallPostComment.find_by_sql("select * from wall_post_comments where wall_post_id="+post.id.to_s) %>
+
                           <% for comment in comments %>
+
                             <div style="background-color: grey;padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;margin-bottom:5px">
+                              <% comment_by = User.find(comment.added_by) %>
+                              <%= image_tag  comment_by.profile_pic.url(:thumb),size: "40x40",class: "img-circle" %>
                               <%= comment.comment%><br/>
                               likes: <%= comment.likes %>
                               <%= form_tag "/main/like_comment" do %>
@@ -229,7 +364,7 @@
                           <% end %>
                           <%= form_tag "/main/add_comment" do %>
                                <label for="text"></label> 
-                               <textarea id="text"name="comment" ></textarea>
+                               <textarea id="text" name="comment" ></textarea>
                                <%= hidden_field_tag 'post_id', post.id %>
                                <%= hidden_field_tag 'id', cookies[:user_id] %>
                                <input type="submit" value="comment"/> 
@@ -245,14 +380,21 @@
 
 
 
+  <div>
+
+          <% for current_friend in @friend_requests %>
+            <% user_who_send_me_friend_request = User.find(current_friend.user1) %>
+            <div id='<%="PendingFriend_" + current_friend.user1.to_s+"_"+current_friend.user2.to_s %>'>
+              <%= user_who_send_me_friend_request.fname%>
+              
+              <button id='<%="confirm_"+current_friend.user1.to_s + "_" +current_friend.user2.to_s %>' class="btn btn-default btn-success confirm_request"><span class="glyphicon glyphicon-ok"></span> Confirm</button>
+              <button id='<%="reject_"+current_friend.user1.to_s + "_" +current_friend.user2.to_s %>' class="btn btn-default btn-danger cancel_request"><span class="glyphicon glyphicon-remove"></span> Reject</button>
+              
+            </div>
+          <%end%>
 
 
-  <% for current_friend in @friend_requests %>
-    <div>
-      <%= current_friend.fname%>
-      <%= button_to "confirm",:action => "manageFriends", :status => "accept", :id => current_friend.id, :check => "1"%>
-      <%= button_to "reject", :action => "manageFriends", :status => "cancel others friend requests", :id => current_friend.id, :check => "1" %>
-  <%end%>
+  </div>
   
 
 

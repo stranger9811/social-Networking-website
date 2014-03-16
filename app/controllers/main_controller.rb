@@ -6,6 +6,49 @@ require 'digest/md5'
  def update
  	@user = Users.find(cookies[:user_id])
  end
+def FriendRequests
+  	new_hash = {}
+  	print params
+  	if params[:status]=="confirm_request"
+  		new_friend = Friend.new
+ 		new_friend.user1 = params[:user1]
+ 		new_friend.user2 = params[:user2]
+ 		new_friend.save
+ 		new_friend = Friend.new
+ 		new_friend.user2 = params[:user1]
+ 		new_friend.user1 = params[:user2]
+ 		new_friend.save
+ 		PendingFriend.find_by_sql("select * from pending_friends where user1="+params[:user1]+" and user2=\""+params[:user2]+"\"")[0].destroy
+  	elsif params[:status]=="cancel_request"
+  		PendingFriend.find_by_sql("select * from pending_friends where user1="+params[:user1]+" and user2=\""+params[:user2]+"\"")[0].destroy
+  	end
+  	new_hash["result"] = 1
+  	render json: new_hash
+  end
+def like_p
+	@new_hash = {}
+	if WallPostLike.find_by_sql("select * from wall_post_likes where wall_post_id="+params[:post_id]+" and liked_by="+params[:current_user_id])[0]==nil
+		find_post = WallPost.find(params[:post_id])
+ 		find_post.likes = find_post.likes + 1 
+ 		find_post.save
+ 		new_like = WallPostLike.new
+ 		new_like.liked_by = cookies[:user_id]
+ 		new_like.wall_post_id = params[:post_id]
+ 		new_like.save
+ 		@new_hash["result"] = 1
+ 		@new_hash["likes"] = find_post.likes
+ 	else
+ 		WallPostLike.find_by_sql("select * from wall_post_likes where wall_post_id="+params[:post_id]+" and liked_by="+params[:current_user_id])[0].destroy
+ 		find_post = WallPost.find(params[:post_id])
+ 		find_post.likes = find_post.likes - 1 
+ 		find_post.save
+ 		@new_hash["result"] = 0
+ 		@new_hash["likes"] = find_post.likes
+ 		
+ 	end
+ 	render json: @new_hash
+end
+
  def like_post
  	if params[:is_liked]=="like"
  		new_like = WallPostLike.new
@@ -80,14 +123,20 @@ require 'digest/md5'
  		redirect_to action: "profile", id: params[:id]
  	end
  end
- 
+ def friends
+ 	@all_friends = Friend.where(:user1 => cookies[:user_id])
+ end
  def manageFriends
- 	if params[:status] == "Add friend"
+ 	output = {}
+ 	output["result"] = 0
+ 	if $status == "Add_friend"
  		new_friend = PendingFriend.new
  		new_friend.user1 = cookies[:user_id]
  		new_friend.user2 = params[:id]
  		new_friend.save
- 	elsif params[:status] == "accept"
+ 		output["status"] = "cancel friend request"
+ 		$status = "cancel_friend_request"
+ 	elsif $status == "accept"
  		new_friend = Friend.new
  		new_friend.user1 = cookies[:user_id]
  		new_friend.user2 = params[:id]
@@ -96,23 +145,28 @@ require 'digest/md5'
  		new_friend.user2 = cookies[:user_id]
  		new_friend.user1 = params[:id]
  		new_friend.save
+ 		$status = "unfriend"
+ 		output["status"] = "unfriend"
  		PendingFriend.find_by_sql("select * from pending_friends where user1="+params[:id]+" and user2=\""+cookies[:user_id]+"\"")[0].destroy
- 	elsif params[:status] == "cancel friend request"
+ 	elsif $status == "cancel_friend_request"
+ 		$status = "Add_friend"
+ 		output["status"] = "Add Friend"
  		PendingFriend.find_by_sql("select * from pending_friends where user1=\""+cookies[:user_id]+"\" and user2="+params[:id])[0].destroy
- 	elsif params[:status] == "cancel others friend requests"
+ 	elsif $status == "cancel others friend requests"
  		PendingFriend.find_by_sql("select * from pending_friends where user2=\""+cookies[:user_id]+"\" and user1="+params[:id])[0].destroy
  	else
+ 		$status = "Add_friend"
+ 		output["status"] = "Add Friend"
  		Friend.find_by_sql("select * from friends where user1="+params[:id]+" and user2="+cookies[:user_id])[0].destroy
  		Friend.find_by_sql("select * from friends where user2="+params[:id]+" and user1="+cookies[:user_id])[0].destroy
  	end
- 	if params[:check]
- 		redirect_to action: "profile"
- 	else
- 		redirect_to action: "profile", id: params[:id]
- 	end
-
+ 	
+ 	
+ 	output["result"] = 1
+ 	render json: output
  end
   def profile
+  	$color = "pink"
   	@style = "background-color: red; width: 25em;padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;"
   	if params[:id]
   		@user = User.find_by_sql("select * from users where id="+params[:id])
@@ -122,13 +176,13 @@ require 'digest/md5'
   			@my_posts = WallPost.find_by_sql("select * from wall_posts where to_id="+params[:id])
   			@user = @user[0]
   			if Friend.find_by_sql("select * from friends where user1="+params[:id]+" and user2=\""+cookies[:user_id]+"\"")[0]!=nil
-  				@status = "unfriend"
+  				$status = "unfriend"
   			elsif PendingFriend.find_by_sql("select * from pending_friends where user1=\""+cookies[:user_id]+"\" and user2="+params[:id])[0]!=nil
-  				@status = "cancel friend request"
+  				$status = "cancel_friend_request"
   			elsif PendingFriend.find_by_sql("select * from pending_friends where user1="+params[:id]+" and user2=\""+cookies[:user_id]+"\"")[0]!=nil
-  				@status = "accept"
+  				$status = "accept"
   			else
-  				@status = "Add friend"
+  				$status = "Add_friend"
   			end	 	 
   		end
   	else
@@ -151,12 +205,8 @@ require 'digest/md5'
 		 end
 
 		 if cookieCheck==1
-		 	@temp = PendingFriend.where(:user2 => cookies[:user_id])
-		 	@friend_requests=[]
-		 	for temp in @temp
-		 		 @friend_requests << User.find(temp.user1)
-		 	end
-      @my_posts = WallPost.find_by_sql("select * from wall_posts where to_id="+cookies[:user_id].to_s)
+		 	@friend_requests = PendingFriend.where(:user2 => cookies[:user_id])
+      		@my_posts = WallPost.find_by_sql("select * from wall_posts where to_id="+cookies[:user_id].to_s)
 		 end
 	end
 	

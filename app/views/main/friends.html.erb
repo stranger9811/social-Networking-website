@@ -1,0 +1,61 @@
+  <div> 
+      <div style="float:left;width:20%;">
+
+            <div style="padding:10px;margin:10px;"class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Profile 
+                    </div>
+                    <div class="panel-body">
+                        <% user= User.find(cookies[:user_id])%>
+                        <%= image_tag  user.profile_pic.url(:thumb) %><br/>
+                        <h4><%= user.fname + " " + user.lname %></h4>
+                        <a href="/main/profile"><%= cookies[:fname] %></a><br/>
+                        <a href="#" class="btn btn-default btn-info btn-xs btn-block"><span class="glyphicon glyphicon-cog"></span> <b>Edit Profile</b></a>
+                       
+                        <a href="#" class="btn btn-default btn-info btn-xs btn-block"><span class="glyphicon glyphicon-off"></span> <b>Logout</b></a>
+
+                        
+                    </div>
+                </div>
+            </div>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active">
+                    <a href="/main/profile">
+                    <span class="badge pull-right"></span>
+                    Home
+                    </a>
+                </li>
+                <li >
+                    <a href="/main/photos">
+                    <span class="badge pull-right">0</span>
+                    Photos
+                    </a>
+                </li>
+                <li >
+                    <a href="/main/friends">
+                    <span class="badge pull-right"><%=Friend.find(:all, :conditions => { :user1 => cookies[:user_id] }).count%></span>
+                    Friends
+                    </a>
+                </li>
+            </ul>
+
+            
+      </div>
+      <div style="float:left;width:55%;padding:10px;margin:10px">
+            <div style="padding:10px;">
+                  <input id ="autocomplete" type="text" class="form-control" placeholder="Search"> 
+            </div>
+            <div>
+                <% for friend in @all_friends %>
+                    <% friend_tuple = User.find(friend.user2) %>
+                    <%= image_tag  friend_tuple.profile_pic.url(:medium),size: "150x150", class: "img-thumbnail" %>
+                <%end%>
+                              
+            </div>
+          
+      </div>
+      <div style="padding:20px;">
+                
+      </div>
+  </div>

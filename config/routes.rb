@@ -2,7 +2,8 @@ DatabaseProject::Application.routes.draw do
   resources :pages
 
   resources :users
-
+  get "main/like_p"
+  get "main/friends"
   get "check/add"
   get "check/index"
   get "api/index"
@@ -49,6 +50,7 @@ DatabaseProject::Application.routes.draw do
   post "pages/pageLike"
    post "main/manageFriends"
   get "main/manageFriends"
+  get "main/FriendRequests"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
