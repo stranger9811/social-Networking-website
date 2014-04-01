@@ -1,100 +1,21 @@
-title : <%= @page.title %><br/>
-description : <%= @page.description %><br/>
-
-<%= image_tag @page.profile_pic.url %>
-<%= image_tag @page.profile_pic.url(:medium) %>
-<%= image_tag @page.profile_pic.url(:thumb) %>
-
-likes : <%= @page.like %><br/>
-
-privacy : <%= @page.privacy %><br/>
-
- <%= button_to @is_liked, :action => "pageLike", :is_liked => @is_liked, :id => params[:id]%>
-
-<%= form_tag "/pages/submit" do %>
-   
-    <label for="text"></label> <textarea id="text"  name="post"  rows="3" cols="35" class="required"></textarea>
-   <br/>
-   <%= params[:error_post] %> <br/>
-    <input type="submit" value="Post"/>
-    
-<%end%>
-
-
-<% for post in @page_posts %>
-	<div style="background-color: orange; width: 25em;padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;">
-		<%= post.content %>
-		<br/><br/>
-		likes: <%= post.likes %>
-		<div style="background-color: white; padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;">
-			<% comments = PostComment.find_by_sql("select * from post_comments where post_id="+post.id.to_s) %>
-			<% for comment in comments %>
-				<div style="background-color: grey;padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;margin-bottom:5px">
-					<%= comment.comment%><br/>
-					likes: <%= comment.likes %>
-				</div>
-			<% end %>
-			<%= form_tag "/pages/comment" do %>
-   				 <label for="text"></label> <textarea id="text"name="comment" ></textarea>
-   				 <%= hidden_field_tag 'post_id', post.id %>
-    			 <input type="submit" value="comment"/> 
-			<%end%>
-		</div>
-	</div>
-	<br/>
-<%end%>
-
-
-
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @page.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @page.description %>
-</p>
-
-<p>
-  <strong>Like:</strong>
-  <%= @page.like %>
-</p>
-
-<p>
-  <strong>Privacy:</strong>
-  <%= @page.privacy %>
-</p>
-
-<p>
-  <strong>Admin:</strong>
-  <%= @page.admin_id %>
-</p>
-
-<%= link_to 'Edit', edit_page_path(@page) %> |
-<%= link_to 'Back', pages_path %>
-
-
-
-
  <div> 
       <div style="float:left;width:20%;">
 
-            <div style="padding:10px;margin:10px;"class="row">
+            <div style="padding:10px;margin:10px;" class="row">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Profile 
+                        <h3 class="panel-title">Profile </h3>
                     </div>
                     <div class="panel-body">
                         <% user= User.find(cookies[:user_id])%>
-                        <%= image_tag  user.profile_pic.url(:thumb) %><br/>
+                        <%= image_tag  user.profile_pic.url(:thumb), class: "img-circle" %><br/>
+                        
+
                         <h4><%= user.fname + " " + user.lname %></h4>
                         <a href="/main/profile"><%= cookies[:fname] %></a><br/>
                         <a href="#" class="btn btn-default btn-info btn-xs btn-block"><span class="glyphicon glyphicon-cog"></span> <b>Edit Profile</b></a>
                        
-                        <a href="#" class="btn btn-default btn-info btn-xs btn-block"><span class="glyphicon glyphicon-off"></span> <b>Logout</b></a>
+                        <a href="/main/logout" class="btn btn-default btn-info btn-xs btn-block"><span class="glyphicon glyphicon-off"></span> <b>Logout</b></a>
 
                         
                     </div>
@@ -102,7 +23,7 @@ privacy : <%= @page.privacy %><br/>
             </div>
             <ul class="nav nav-pills nav-stacked">
                 <li class="active">
-                    <a href="#">
+                    <a href="/main/profile">
                     <span class="badge pull-right"></span>
                     Home
                     </a>
@@ -118,6 +39,10 @@ privacy : <%= @page.privacy %><br/>
                     <span class="badge pull-right"><%=Friend.find(:all, :conditions => { :user1 => cookies[:user_id] }).count%></span>
                     Friends
                     </a>
+                    <a href="/main/messages">
+                    <span class="badge pull-right"></span>
+                      Messages
+                    </a>
                 </li>
             </ul>
 
@@ -128,19 +53,42 @@ privacy : <%= @page.privacy %><br/>
                   <input id ="autocomplete" type="text" class="form-control" placeholder="Search"> 
             </div>
 
-            <div style="heigth:300px;background-image:url('/images/cover.jpg')">
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <div style="heigth:300px;">
+              <%= image_tag  @page.profile_pic.url, size: "700x300" %>
             </div>
             <div>
               <div style="padding:10px;margin:10px;width:45%;float:left">
-                <%= form_tag "/main/post_submit" do %>
-                <%= hidden_field_tag 'id', cookies[:user_id] %>
-                <label for="text"></label> <textarea id="text"  name="content"  rows="3" cols="35" class="required"></textarea>
-                <br/>
-                <input type="submit" value="Post"/>
-                <%end%>
+                <%= form_tag "/pages/submit" do %>
+   
+                  <label for="text"></label> <textarea id="text"  name="post"  rows="3" cols="35" class="required"></textarea>
+                 <br/>
+                 <%= params[:error_post] %> <br/>
+                  <input type="submit" value="Post"/>
+                  
+              <%end%>
             </div>
-
+              <% for post in @page_posts %>
+                <div  style="background-color: white;margin:10px;width:45%;float:left">
+                  <%= post.content %>
+                  <br/><br/>
+                  likes: <%= post.likes %>
+                  <div style="background-color: white; padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;">
+                    <% comments = PostComment.find_by_sql("select * from post_comments where post_id="+post.id.to_s) %>
+                    <% for comment in comments %>
+                      <div style="background-color: grey;padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;margin-bottom:5px">
+                        <%= comment.comment%><br/>
+                        likes: <%= comment.likes %>
+                      </div>
+                    <% end %>
+                    <%= form_tag "/pages/comment" do %>
+                         <label for="text"></label> <textarea id="text"name="comment" ></textarea>
+                         <%= hidden_field_tag 'post_id', post.id %>
+                         <input type="submit" value="comment"/> 
+                    <%end%>
+                  </div>
+                </div>
+                <br/>
+              <%end%>
                 
       </div>
       <div style="padding:20px;">
@@ -149,3 +97,34 @@ privacy : <%= @page.privacy %><br/>
   </div>
 
 
+
+  <div>
+likes : <%= @page.like %><br/>
+
+privacy : <%= @page.privacy %><br/>
+
+ <%= button_to @is_liked, :action => "pageLike", :is_liked => @is_liked, :id => params[:id]%>
+
+<%= link_to 'Edit', edit_page_path(@page) %> |
+<%= link_to 'Back', pages_path %>
+          
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

@@ -11,7 +11,7 @@ class ApiController < ApplicationController
 	  		image = '<img src="/images/ashok.jpg"  width="42" height="42">'
 	  		temp_hash["value"] = a.title
 	  		temp_hash["data"] = a.title
-	  		temp_hash["link"] = "/pages/show?id="+a.id.to_s
+	  		temp_hash["link"] = "/pages/"+a.id.to_s
 	  		names << temp_hash
 	  	end
 	  	results["suggestions"] = names

@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.profile_pic = params[:user][:profile_pic]
     @user.timeline_pic = params[:user][:timeline_pic]
+    @user.password = Digest::MD5.hexdigest(@user.password)
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }

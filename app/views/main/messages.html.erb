@@ -1,0 +1,135 @@
+  <script type="text/javascript">
+jQuery(document).ready(function(){       
+    var $t = $('.messageScrollArea');
+    $t.animate({"scrollTop": $('.messageScrollArea')[0].scrollHeight}, "fast");
+});
+  </script>
+
+  <div> 
+      <div style="float:left;width:20%;">
+
+            <div style="padding:10px;margin:10px;"class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Profile 
+                    </div>
+                    <div class="panel-body">
+                        <% user= User.find(cookies[:user_id])%>
+                        <%= image_tag  user.profile_pic.url(:thumb) %><br/>
+                        <h4><%= user.fname + " " + user.lname %></h4>
+                        <a href="/main/profile"><%= cookies[:fname] %></a><br/>
+                        <a href="#" class="btn btn-default btn-info btn-xs btn-block"><span class="glyphicon glyphicon-cog"></span> <b>Edit Profile</b></a>
+                       
+                        <a href="#" class="btn btn-default btn-info btn-xs btn-block"><span class="glyphicon glyphicon-off"></span> <b>Logout</b></a>
+
+                        
+                    </div>
+                </div>
+            </div>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active">
+                    <a href="/main/profile">
+                    <span class="badge pull-right"></span>
+                    Home
+                    </a>
+                </li>
+                <li >
+                    <a href="/main/photos">
+                    <span class="badge pull-right">0</span>
+                    Photos
+                    </a>
+                </li>
+                <li >
+                    <a href="/main/friends">
+                    <span class="badge pull-right"><%=Friend.find(:all, :conditions => { :user1 => cookies[:user_id] }).count%></span>
+                    Friends
+                    </a>
+                </li>
+            </ul>
+
+            
+      </div>
+      <div style="float:left;width:55%;padding:10px;margin:10px">
+            <div style="padding:10px;">
+                  <input id ="autocomplete" type="text" class="form-control" placeholder="Search"> 
+            </div>
+            <div>
+
+                <div style="float:left;width:30%" class="list-group">
+                    <% if params[:id] %>
+                        <% active =  ""%>
+                    <% else %>
+                        <% active =  "active"%>
+                    <% end %>
+                    <% for friend in @all_friends %>
+
+                        <% friend_tuple = User.find(friend.user2) %>
+
+
+                        <% if params[:id].to_s==friend_tuple.id.to_s %>
+                            <a href= <%= "messages?id=" + friend_tuple.id.to_s %> class="list-group-item active">
+                        <% else%>
+                            <a href= <%= "messages?id=" + friend_tuple.id.to_s %> class="list-group-item <%=active%> ">
+
+                        <% end %>
+                        <h4 class="list-group-item-heading"><%= friend_tuple.fname + " " + friend_tuple.lname %></h4>
+                        <%= image_tag  friend_tuple.profile_pic.url(:thumb),size: "50x50", class: "img-thumbnail" %>
+                        </a>
+                        <% active ="" %>
+                    <%end%>
+                </div >
+
+                <div style="float:right;width:65%">
+
+                    <div class="pre-scrollable messageScrollArea" >
+                        <% me = User.find(cookies[:user_id]) %>
+                        <% chat = [] %>
+                        <% if params[:id] %>
+                        <% chat = Message.find_by_sql("select * from messages where (user_from="+cookies[:user_id]+" and user_to="+params[:id]+") or (user_to="+cookies[:user_id]+" and user_from="+params[:id]+")") %>
+                            <% my_friend = User.find(params[:id]) %>
+                        <% elsif @first_friend!="" %>
+                            <% chat = Message.find_by_sql("select * from messages where (user_from="+cookies[:user_id]+" and user_to="+@first_friend.id.to_s+") or (user_to="+cookies[:user_id]+" and user_from="+@first_friend.id.to_s+")") %>
+                            <% my_friend = User.find(@first_friend.id) %>
+                        <% end %>
+                        <div class="list-group">
+                            <%for a in chat %>
+                                  <div class="list-group-item">
+                                    <%if a.user_from.to_s==cookies[:user_id] %>
+                                         <%= image_tag  me.profile_pic.url(:thumb),size: "50x50", class: "img-thumbnail" %>
+                                    <% else %>
+                                        <%= image_tag  my_friend.profile_pic.url(:thumb),size: "50x50", class: "img-thumbnail" %>
+                                    <% end %>
+                                    <%= a.content %>
+                                  </div>
+                            <% end %>
+                        </div>
+
+                    </div>
+                    
+                    <div>
+                        <% if @first_friend!="" %>
+                        <% if params[:id] %>
+                            <%= form_tag "/main/add_messages?id="+params[:id].to_s do %>
+                            <label for="text"></label> <textarea id="text"  name="content"  rows="3" cols="70" class="required"></textarea>
+                            <br/>
+                            <input type="submit" value="Post"/>
+                            <%end%>
+                        <% elsif @first_friend!="" %>
+                            <%= form_tag "/main/add_messages?id="+@first_friend.id.to_s do %>
+                            <label for="text"></label> <textarea id="text"  name="content"  rows="3" cols="70" class="required"></textarea>
+                            <br/>
+                            <input type="submit" value="Post"/>
+                            <%end%>
+                        <%end %>
+                        <% end %>
+                    </div>
+                </div>
+
+                              
+            </div>
+          
+      </div>
+      <div style="padding:20px;">
+                
+      </div>
+  </div>

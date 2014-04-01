@@ -126,6 +126,26 @@ end
  def friends
  	@all_friends = Friend.where(:user1 => cookies[:user_id])
  end
+ def add_messages
+ 	@message = Message.new
+ 	if params[:content]
+ 		@message.user_from = cookies[:user_id]
+ 		@message.user_to = params[:id]
+ 		@message.content = params[:content]
+ 		@message.status = "unread"
+ 		@message.save
+ 	end
+
+ 	redirect_to action: "messages", id: params[:id]
+ end
+ def messages
+ 	@all_friends = Friend.where(:user1 => cookies[:user_id])
+ 	@first_friend = ""
+ 	for friend in @all_friends
+ 		@first_friend = User.find(friend.user2)
+ 		break
+ 	end
+ end
  def manageFriends
  	output = {}
  	output["result"] = 0

@@ -152,7 +152,7 @@
                       <div style="background-color:<%= $color %>">
                         <% post_by = User.find(post.from_id) %>
                         <div style="float:left;width:20%;">
-                            <%= image_tag  user.profile_pic.url(:thumb),size: "50x50" %>
+                            <%= image_tag  post_by.profile_pic.url(:thumb),size: "50x50" %>
                         </div>
                         <div>
                             <p>
@@ -277,6 +277,10 @@
                     <span class="badge pull-right"><%=Friend.find(:all, :conditions => { :user1 => cookies[:user_id] }).count%></span>
                     Friends
                     </a>
+                    <a href="/main/messages">
+                    <span class="badge pull-right"></span>
+                      Messages
+                    </a>
                 </li>
             </ul>
 
@@ -305,7 +309,7 @@
                   <div style="background-color:<%= $color %>">
                         <% post_by = User.find(post.from_id) %>
                         <div style="float:left;width:20%;">
-                            <%= image_tag  user.profile_pic.url(:thumb),size: "50x50" %>
+                            <%= image_tag  post_by.profile_pic.url(:thumb),size: "50x50" %>
                         </div>
                         <div>
                             <p>

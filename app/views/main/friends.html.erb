@@ -49,7 +49,7 @@
             <div>
                 <% for friend in @all_friends %>
                     <% friend_tuple = User.find(friend.user2) %>
-                    <%= image_tag  friend_tuple.profile_pic.url(:medium),size: "150x150", class: "img-thumbnail" %>
+                    <a href= <%="/main/profile?id=" + friend_tuple.id.to_s%> ><%= image_tag  friend_tuple.profile_pic.url,size: "100x100", class: "img-thumbnail" %></a>
                 <%end%>
                               
             </div>
