@@ -54,7 +54,7 @@
             </div>
 
             <div style="heigth:300px;">
-              <%= image_tag  @page.profile_pic.url, size: "700x300" %>
+              <%= image_tag  @page.timeline_pic.url, size: "700x300" %>
             </div>
             <div>
               <div style="padding:10px;margin:10px;width:45%;float:left">
@@ -99,17 +99,47 @@
 
 
   <div>
-likes : <%= @page.like %><br/>
-
-privacy : <%= @page.privacy %><br/>
-
- <%= button_to @is_liked, :action => "pageLike", :is_liked => @is_liked, :id => params[:id]%>
-
-<%= link_to 'Edit', edit_page_path(@page) %> |
-<%= link_to 'Back', pages_path %>
-          
 
 
+ <%= button_to  @is_liked, {:action => "pageLike", :is_liked => @is_liked, :id => params[:id]},:class => 'btn btn-default btn-primary btn-lg' %>
+<%if @page.admin_id==cookies[:user_id] %>
+<%= link_to 'Edit', edit_page_path(@page) %> 
+<% end %>
+<div class="bs-example">
+    <div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Description</a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <p><%= @page.description%></p>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Likes (<%= @page.like%>)</a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>
+          <% @liked_by = PagesLike.find_by_sql("select * from pages_likes where page_id=2") %>
+          <% for @like in @liked_by %>
+            <% user = User.find(@like.user_id) %>
+             <a href= <%= "/main/profile?id="+user.id.to_s %> > <%= image_tag  user.profile_pic.url, size: "50x50" %></a>
+          <%end %>
+        </p>
+      </div>
+    </div>
+  </div>
+  
+</div>
+</div>
   </div>
 
 

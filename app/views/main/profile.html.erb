@@ -81,9 +81,7 @@
   });
 </script>
 
-<% if params[:id]==cookies[:user_id]%>
-
-<% elsif params[:id] %>
+<% if params[:id] and params[:id]!=cookies[:user_id] %>
 <% user = User.find(params[:id]) %>
 
  <div> 
@@ -267,9 +265,9 @@
                     </a>
                 </li>
                 <li >
-                    <a href="/main/photos">
-                    <span class="badge pull-right">0</span>
-                    Photos
+                    <a href="/pages/new">
+                    <span class="badge pull-right"></span>
+                    Create Page
                     </a>
                 </li>
                 <li >

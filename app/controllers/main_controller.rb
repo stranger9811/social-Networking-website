@@ -186,6 +186,9 @@ end
  	render json: output
  end
   def profile
+  	if params[:id]==cookies[:user_id]
+  		params[:id] = nil
+  	end
   	$color = "pink"
   	@style = "background-color: red; width: 25em;padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;"
   	if params[:id]
