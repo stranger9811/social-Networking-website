@@ -24,16 +24,9 @@
       <%= q.content %>
     </td>  
  
-  <% for answer in q.answers %>
+  <% for ans in q.answers %>
 <td>
- <%= "upvote:" + answer.upvote.to_s    + "downvote:"+ answer.downvote.to_s %> <br\> 
-          <%= answer.content %> <br/>
-          <% user = User.find(answer.added_by) %> 
-          <%= user.fname + " " + user.lname %>
-          <%= button_to "Upvote", :action => "upvote",:id => answer.id %>
-          <%= button_to "Downvote", :action => "downvote",:id => answer.id %>
-
-      <br/><br/>
+  <%= ans.content %> <br>
 </td>
 <% end %>
  </tr>

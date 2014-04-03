@@ -1,3 +1,4 @@
+
   <div> 
       <div style="float:left;width:20%;">
 
@@ -47,12 +48,41 @@
                   <input id ="autocomplete" type="text" class="form-control" placeholder="Search"> 
             </div>
             <div>
-                <% for friend in @all_friends %>
-                    <% friend_tuple = User.find(friend.user2) %>
-                    <a href= <%="/main/profile?id=" + friend_tuple.id.to_s%> ><%= image_tag  friend_tuple.profile_pic.url,size: "100x100", class: "img-thumbnail" %></a>
-                <%end%>
-                              
-            </div>
+
+
+
+                    <div class="container" style="float:left;width:100%;padding:10px;margin:10px">
+
+                            <div class="row">
+
+                                <div class="col-lg-12">
+                                    <h1 class="page-header">Thumbnail Gallery</h1>
+                                </div>
+
+                                <% for friend in @all_friends %>
+                                        <% friend_tuple = User.find(friend.user2) %>
+                     
+                                        <div class="col-lg-3 col-md-3 col-xs-6 thumb">
+                                            <a class="thumbnail" href=<%="/main/profile?id=" + friend_tuple.id.to_s%> >
+                                                <%= image_tag  friend_tuple.profile_pic.url, class: "img-responsive",:html_width => 50, :html_height => 75 %>
+                                            </a>
+                                        </div>
+                                <% end %>
+                                
+                            </div>
+
+                            <hr>
+
+                            <footer>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </footer>
+
+                        </div>
+                </div>
           
       </div>
       <div style="padding:20px;">

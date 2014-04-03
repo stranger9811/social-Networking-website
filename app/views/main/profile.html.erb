@@ -176,10 +176,10 @@
                             likes: <%= post.likes %></p>
                             
                             <% if WallPostLike.find_by_sql("select * from wall_post_likes where wall_post_id="+post.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
-                                  <img class="like" id='<%= post.id.to_s + "like"%>'   width="20px" height="10px" src="/images/like.png"  alt="like"/> 
+                                  <img class="like" id='<%= post.id.to_s + "like"%>'   width="35px" height="20px" src="/images/like.png"  alt="like"/> 
                                      
                             <%else%>
-                                  <img class="like" id='<%= post.id.to_s + "like"%>'  width="20px" height="10px" src="/images/unlike.png"  alt="unlike"/> 
+                                  <img class="like" id='<%= post.id.to_s + "like"%>'  width="35px" height="20px" src="/images/unlike.png"  alt="unlike"/> 
                                        
                             <%end%>
                        
@@ -198,10 +198,11 @@
                                 <%= hidden_field_tag 'comment_id', comment.id %>
                                 <%= hidden_field_tag 'id', params[:id] %>
                                 <% if WallCommentLike.find_by_sql("select * from wall_comment_likes where wall_comment_id="+comment.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
-                                    <input type="image" width="20px" height="10px" src="/images/like.png"  alt="like"/> 
+                                    <input type="image" width="35px" height="20px" src="/images/like.png"  alt="like"/> 
+
                                     <%= hidden_field_tag 'is_liked', "like" %>
                                 <%else%>
-                                    <input type="image" width="20px" height="10px" src="/images/unlike.png"  alt="unlike"/> 
+                                    <input type="image" width="35px" height="20px" src="/images/unlike.png"  alt="unlike"/> 
                                     <%= hidden_field_tag 'is_liked', "unlike" %>
                                 <%end%>
                             <%end%>
@@ -330,10 +331,10 @@
                             likes: <%= post.likes %></p>
                             
                             <% if WallPostLike.find_by_sql("select * from wall_post_likes where wall_post_id="+post.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
-                                  <img class="like" id='<%= post.id.to_s + "like"%>'   width="20px" height="10px" src="/images/like.png"  alt="like"/> 
+                                  <img class="like" id='<%= post.id.to_s + "like"%>'   width="35px" height="20px" src="/images/like.png"  alt="like"/> 
                                      
                             <%else%>
-                                  <img class="like" id='<%= post.id.to_s + "like"%>'  width="20px" height="10px" src="/images/unlike.png"  alt="unlike"/> 
+                                  <img class="like" id='<%= post.id.to_s + "like"%>'  width="35px" height="20px" src="/images/unlike.png"  alt="unlike"/> 
                                        
                             <%end%>
                        
@@ -355,10 +356,10 @@
                                   <%= hidden_field_tag 'comment_id', comment.id %>
                                   <%= hidden_field_tag 'id', cookies[:user_id] %>
                                   <% if WallCommentLike.find_by_sql("select * from wall_comment_likes where wall_comment_id="+comment.id.to_s+" and liked_by="+cookies[:user_id].to_s)[0]==nil%>
-                                      <input type="image" width="20px" height="10px" src="/images/like.png"  alt="like"/> 
+                                      <input type="image" width="35px" height="20px" src="/images/like.png"  alt="like"/> 
                                       <%= hidden_field_tag 'is_liked', "like" %>
                                   <%else%>
-                                      <input type="image" width="20px" height="10px" src="/images/unlike.png"  alt="unlike"/> 
+                                      <input type="image" width="35px" height="20px" src="/images/unlike.png"  alt="unlike"/> 
                                       <%= hidden_field_tag 'is_liked', "unlike" %>
                                   <%end%>
                               <%end%>
