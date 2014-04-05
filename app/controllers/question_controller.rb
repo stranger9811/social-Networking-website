@@ -44,13 +44,15 @@ class QuestionController < ApplicationController
   def addAnswer
     if params[:your_answer]
       @question = Question.find($id)
-      new_answer = @question.answers.new
+      new_answer = Answer.new
       new_answer.question_id  = $id
       new_answer.content = params[:your_answer]
       new_answer.added_by = cookies[:user_id]
       new_answer.upvote = 0
       new_answer.downvote = 0
+
       new_answer.save
+      @question.answers << new_answer
     end
     redirect_to action: "view", id: $id
 
@@ -62,6 +64,7 @@ class QuestionController < ApplicationController
   	@title = params[:title]
   	@content = params[:content]
   	@error_title=""
+
   	@error_content=""
   	if params[:title]==""
   		redirect_to action: "ask", error_title: "title not entered"
@@ -76,7 +79,15 @@ class QuestionController < ApplicationController
   		new_question.upvote = 0
       new_question.downvote = 0      
   		new_question.save
-  		redirect_to action: "ask"
+      tags = params[:tags].split(",")
+      for tag in tags
+        @n = QuestionTag.new
+        @n.question_id = new_question.id
+        @n.tag_name = tag
+        @n.save
+        new_question.question_tags << @n
+      end
+  		redirect_to action: "view",:id => new_question.id
   	end
   end
 end
