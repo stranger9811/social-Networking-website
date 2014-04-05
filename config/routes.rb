@@ -4,10 +4,12 @@ DatabaseProject::Application.routes.draw do
   resources :users
   get "main/like_p"
   get "main/friends"
+  get "question/index"
   get "check/add"
   get "check/index"
   post "main/add_messages"
   get "api/index"
+  get "main/profile2"
   get "pages/create"
   post "pages/submit"
   get "main/messages"

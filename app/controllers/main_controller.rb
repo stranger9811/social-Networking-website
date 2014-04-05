@@ -185,6 +185,55 @@ end
  	output["result"] = 1
  	render json: output
  end
+ def profile2
+  	if params[:id]==cookies[:user_id]
+  		params[:id] = nil
+  	end
+  	$color = "pink"
+  	@style = "background-color: red; width: 25em;padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;"
+  	if params[:id]
+  		@user = User.find_by_sql("select * from users where id="+params[:id])
+  		if @user[0]==nil
+  			redirect_to action: "profile"
+  		else
+  			@my_posts = WallPost.find_by_sql("select * from wall_posts where to_id="+params[:id])
+  			@user = @user[0]
+  			if Friend.find_by_sql("select * from friends where user1="+params[:id]+" and user2=\""+cookies[:user_id]+"\"")[0]!=nil
+  				$status = "unfriend"
+  			elsif PendingFriend.find_by_sql("select * from pending_friends where user1=\""+cookies[:user_id]+"\" and user2="+params[:id])[0]!=nil
+  				$status = "cancel_friend_request"
+  			elsif PendingFriend.find_by_sql("select * from pending_friends where user1="+params[:id]+" and user2=\""+cookies[:user_id]+"\"")[0]!=nil
+  				$status = "accept"
+  			else
+  				$status = "Add_friend"
+  			end	 	 
+  		end
+  	else
+  		
+	  	if params[:password] and params[:email]
+		  	@error=""
+		  	password = Digest::MD5.hexdigest(params[:password])
+		  	email = params[:email]
+		  	@user = User.find_by_sql("SELECT * from users where password=\""+password+"\" and email=\""+email+"\"")
+		  	@user = @user[0]
+		  	if @user==nil
+		  		redirect_to action: "index", error_login: "user not registered/ wrong password"
+		  	else
+		  		@name = @user.fname
+		  		cookies[:user_name]=@name
+		  		cookies[:user_id]=@user.id
+		  	end
+		 elsif cookieCheck==0
+		 	redirect_to action: "index"
+		 end
+
+		 if cookieCheck==1
+		 	@friend_requests = PendingFriend.where(:user2 => cookies[:user_id])
+      		@my_posts = WallPost.find_by_sql("select * from wall_posts where to_id="+cookies[:user_id].to_s)
+		 end
+	end
+	
+  end
   def profile
   	if params[:id]==cookies[:user_id]
   		params[:id] = nil

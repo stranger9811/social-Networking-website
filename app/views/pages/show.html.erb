@@ -131,7 +131,7 @@
           <% @liked_by = PagesLike.find_by_sql("select * from pages_likes where page_id=2") %>
           <% for @like in @liked_by %>
             <% user = User.find(@like.user_id) %>
-             <a href= <%= "/main/profile?id="+user.id.to_s %> > <%= image_tag  user.profile_pic.url, :height => "50%",:width => "100%" %></a>
+             <a href= <%= "/main/profile?id="+user.id.to_s %> > <%= image_tag  user.profile_pic.url, :height => "50",:width => "50" %></a>
           <%end %>
         </p>
       </div>
