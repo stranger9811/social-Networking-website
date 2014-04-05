@@ -1,42 +1,111 @@
-<a href="/main/profile"><%= cookies[:user_name] %></a>
-<a href="/question/ask">Ask Question</a>
-<a href="/question/myquestions">My Question</a>
 
-<a href="/main/logout">logout</a>
-<table>
-  <tr>
-    <td> 
-      <h1>Title</h1>
-    </td>
-    <td>
-      <h1>Content</h1>
-    </td>
-    
-  </tr>
-<% for q in @myQuestions %>
-  <tr>
-    <td>
-      <% viewQuestion = "/question/view?id="+q.id.to_s %>
-      <a href="<%= viewQuestion %>" > <%= q.title %> </a>
-      
-    </td>
-    <td>
-      <%= q.content %>
-    </td>  
- 
-  <% for answer in q.answers %>
-<td>
- <%= "upvote:" + answer.upvote.to_s    + "downvote:"+ answer.downvote.to_s %> <br\> 
-          <%= answer.content %> <br/>
-          <% user = User.find(answer.added_by) %> 
-          <%= user.fname + " " + user.lname %>
-          <%= button_to "Upvote", :action => "upvote",:id => answer.id %>
-          <%= button_to "Downvote", :action => "downvote",:id => answer.id %>
+        
+<header class="navbar navbar-default navbar-fixed-top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav class="collapse navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/main/profile">Home</a>
+        </li>
+        <li>
+          <a href="#">Pages</a>
+        </li>
+        <li>
+          <a href="/main/friends">Friends</a>
+        </li>
+        <li>
+          <a href="#">Groups</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-      <br/><br/>
-</td>
-<% end %>
- </tr>
+<div id="masthead">  
+  <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <h1>Question and Answers
+            <p class="lead"></p>
+          </h1>
+        </div>
+       
+      </div> 
+  </div><!-- /cont -->
+</div>
 
-<% end %>
-</table>
+<!-- Begin Body -->
+<div class="container">
+  <div class="row">
+        <div class="col-md-3" id="leftCol">
+              
+                <ul class="nav nav-stacked" id="sidebar">
+                  <li><a href="#sec0">Section 0</a></li>
+                  <li><a href="#sec1">Section 1</a></li>
+                  <li><a href="#sec2">Section 2</a></li>
+                  <li><a href="#sec3">Section 3</a></li>
+                  <li><a href="#sec4">Section 4</a></li>
+                </ul>
+              
+          </div>  
+          <div class="col-md-9">
+               
+       
+                
+              
+              
+                <h2 id="sec1">Your Questions</h2>
+                
+                
+                    <% for q in @myQuestions %>
+                          <% viewQuestion = "/question/view?id="+q.id.to_s %>
+                          <h2><a href="<%= viewQuestion %>" > <%= q.title %> </a></h2>
+                          <br>
+                      
+                          <%= q.content %>
+                        </td>  
+              
+                    <% end %>
+                
+                
+          </div> 
+    </div>
+</div>
+
+
+
+        
+         
+       
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

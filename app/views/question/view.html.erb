@@ -1,73 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-      
 
-
-
-
-        <!-- CSS code from Bootply.com editor -->
-        
-        <style type="text/css">
-            body {
-  padding-top:50px;
-}
-
-#masthead {
-  min-height:250px;
-}
-
-#masthead h1 {
-  font-size: 30px;
-  line-height: 1;
-    padding-top:20px;
-}
-
-#masthead .well {
-  margin-top:8%;
-}
-
-@media screen and (min-width: 768px) {
-  #masthead h1 {
-    font-size: 50px;
-  }
-}
-
-.navbar-bright {
-  background-color:#111155;
-    color:#fff;
-}
-
-.affix-top,.affix{
-  position: static;
-}
-
-@media (min-width: 979px) {
-  #sidebar.affix-top {
-    position: static;
-    margin-top:30px;
-    width:228px;
-  }
-  
-  #sidebar.affix {
-    position: fixed;
-    top:70px;
-    width:228px;
-  }
-}
-
-#sidebar li.active {
-    border:0 #eee solid;
-    border-right-width:4px;
-}
-
-        </style>
-    </head>
-    
-    <!-- HTML code from Bootply.com editor -->
-    
-    <body  >
-        
         
 <header class="navbar navbar-default navbar-fixed-top" role="banner">
   <div class="container">
@@ -78,7 +9,6 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand">Bootply</a>
     </div>
     <nav class="collapse navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
@@ -144,7 +74,12 @@
                 
                 
                 <%= @question.content %>
-                
+                <hr>
+                <%if @question.added_by.to_s == cookies[:user_id] %>
+                  <a href=<%= '/questions/edit?='+@question.id.to_s %> >Edit </a>
+
+                <% end %>
+                <hr>
        
                 
               
@@ -159,6 +94,8 @@
                       <div class="panel-heading"><h3><%= answered_by.fname + ' ' +answered_by.lname %> </h3></div>
                       <div class="panel-body">
                           <%= answer.content %>
+                          
+                           
                       </div>
                     </div>
                   </div>
@@ -192,79 +129,6 @@
 
 
         
-        <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-
-        <script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-
-
-
-
-
-
-        
-        <!-- JavaScript jQuery code from Bootply.com editor  -->
-        
-        <script type='text/javascript'>
-        
-        $(document).ready(function() {
-        
-            $('#sidebar').affix({
-      offset: {
-        top: 235
-      }
-});
-
-var $body   = $(document.body);
-var navHeight = $('.navbar').outerHeight(true) + 10;
-
-$body.scrollspy({
-  target: '#leftCol',
-  offset: navHeight
-});
-
-/* smooth scrolling sections */
-$('a[href*=#]:not([href=#])').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
-        $('html,body').animate({
-          scrollTop: target.offset().top - 50
-        }, 1000);
-        return false;
-      }
-    }
-});
-        
-        });
-        
-        </script>
-        
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-          ga('create', 'UA-40413119-1', 'bootply.com');
-          ga('send', 'pageview');
-        </script>
-        <!-- Quantcast Tag -->
-        <script type="text/javascript">
-        var _qevents = _qevents || [];
-        
-        (function() {
-        var elem = document.createElement('script');
-        elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
-        elem.async = true;
-        elem.type = "text/javascript";
-        var scpt = document.getElementsByTagName('script')[0];
-        scpt.parentNode.insertBefore(elem, scpt);
-        })();
-        
-        _qevents.push({
-        qacct:"p-0cXb7ATGU9nz5"
-        });
-        </script>
-    </body>
-</html>
+         
+       
+   
