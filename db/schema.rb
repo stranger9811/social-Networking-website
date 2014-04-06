@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140405185847) do
+ActiveRecord::Schema.define(version: 20140406101608) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -28,6 +28,33 @@ ActiveRecord::Schema.define(version: 20140405185847) do
     t.integer  "user2"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "group_members", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "group_requests", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "privacy"
+    t.integer  "admin_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "timeline_pic_file_name"
+    t.string   "timeline_pic_content_type"
+    t.integer  "timeline_pic_file_size"
+    t.datetime "timeline_pic_updated_at"
   end
 
   create_table "messages", force: true do |t|

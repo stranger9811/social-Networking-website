@@ -1,4 +1,6 @@
 DatabaseProject::Application.routes.draw do
+  resources :groups
+
   resources :pages
 
   resources :users
@@ -6,6 +8,10 @@ DatabaseProject::Application.routes.draw do
   get "main/friends"
   get "question/index"
   get "check/add"
+  post "groups/add_member"
+  post "groups/leave_member"
+  post "groups/add_request"
+  post "groups/delete_request"
   get "main/editprofile"
   post "main/updateinfo"
   get "check/index"

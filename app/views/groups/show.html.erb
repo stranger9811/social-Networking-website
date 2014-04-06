@@ -8,7 +8,7 @@
                     </div>
                     <div class="panel-body">
                         <% user= User.find(cookies[:user_id])%>
-                        <%= image_tag  user.profile_pic.url(:thumb), class: "img-circle", :height => "40%",:width => "80%" %><br/>
+                        <%= image_tag  user.profile_pic.url(:thumb), class: "img-circle", :height => "100",:width => "100" %><br/>
                         
 
                         <h4><%= user.fname + " " + user.lname %></h4>
@@ -54,7 +54,7 @@
             </div>
 
             <div style="heigth:300px;">
-              <%= image_tag  @page.timeline_pic.url, :height => "50%",:width => "100%"  %>
+              <%= image_tag  @group.timeline_pic.url, :height => "250",:width => "650"  %>
             </div>
             <div>
               <div style="padding:10px;margin:5px;width:45%;float:left">
@@ -67,28 +67,7 @@
                   
               <%end%>
             </div>
-              <% for post in @page_posts %>
-                <div  style="background-color: white;margin:10px;width:45%;float:left">
-                  <%= post.content %>
-                  <br/><br/>
-                  likes: <%= post.likes %>
-                  <div style="background-color: white; padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;">
-                    <% comments = PostComment.find_by_sql("select * from post_comments where post_id="+post.id.to_s) %>
-                    <% for comment in comments %>
-                      <div style="background-color: grey;padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;margin-bottom:5px">
-                        <%= comment.comment%><br/>
-                        likes: <%= comment.likes %>
-                      </div>
-                    <% end %>
-                    <%= form_tag "/pages/comment" do %>
-                         <label for="text"></label> <textarea id="text"name="comment" ></textarea>
-                         <%= hidden_field_tag 'post_id', post.id %>
-                         <input type="submit" value="comment"/> 
-                    <%end%>
-                  </div>
-                </div>
-                <br/>
-              <%end%>
+             
                 
       </div>
       <div style="padding:20px;">
@@ -101,12 +80,22 @@
   <div>
 
 
- <%= button_to  @is_liked, {:action => "pageLike", :is_liked => @is_liked, :id => params[:id]},:class => 'btn btn-default btn-primary btn-lg' %>
-<%if @page.admin_id.to_s==cookies[:user_id].to_s %>
-<%= link_to 'Edit', edit_page_path(@page) %> 
+
+<%if @group.admin_id.to_s==cookies[:user_id].to_s %>
+<%= link_to 'Edit', edit_group_path(@group) %> 
 <% end %>
+<% if GroupRequest.where(:user_id => cookies[:user_id],:group_id => @group.id)[0]!=nil%>
+<%= button_to  "cancel request", {:action => "delete_request",  :id => params[:id],:new_user_id => cookies[:user_id]},:class => 'btn btn-default btn-warning btn-sm' %>
+<% elsif GroupMember.where(:user_id => cookies[:user_id],:group_id => @group.id)[0]==nil  %>
+    
+<%= button_to  "join group", {:action => "add_member",  :id => params[:id]},:class => 'btn btn-default btn-success btn-sm' %>
+<%elsif @group.admin_id.to_s!=cookies[:user_id].to_s %>
+  <%= button_to  "leave group", {:action => "leave_member",  :id => params[:id]},:class => 'btn btn-default btn-danger btn-sm' %>
+<% end %>
+
 <div class="bs-example">
     <div class="panel-group" id="accordion">
+
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
@@ -115,28 +104,68 @@
     </div>
     <div id="collapseOne" class="panel-collapse collapse in">
       <div class="panel-body">
-        <p><%= @page.description%></p>
+        <p><%= @group.description%></p>
       </div>
     </div>
   </div>
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Likes (<%= @page.like%>)</a>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Members</a>
       </h4>
     </div>
     <div id="collapseTwo" class="panel-collapse collapse">
       <div class="panel-body">
         <p>
-          <% @liked_by = PagesLike.find_by_sql("select * from pages_likes where page_id=2") %>
-          <% for @like in @liked_by %>
-            <% user = User.find(@like.user_id) %>
-             <a href= <%= "/main/profile?id="+user.id.to_s %> > <%= image_tag  user.profile_pic.url, :height => "50",:width => "50" %></a>
-          <%end %>
+            <% members = @group.group_members %>
+            <% for n in members %>
+            
+                    <% user_new = User.find(n.user_id) %>
+                    <a href= <%= "/main/profile?id="+user_new.id.to_s %> > <%= image_tag  user_new.profile_pic.url, :height => "50",:width => "50" %></a>
+                 
+            <% end %>
+
+          
         </p>
       </div>
     </div>
   </div>
+  <% if @group.admin_id.to_s == cookies[:user_id].to_s %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">New Member Requests</a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        <p>
+          <table>
+            <% new_request = @group.group_requests %>
+            <% for n in new_request %>
+            <tr>
+                <td>
+                    <% user_new = User.find(n.user_id) %>
+                    <a href= <%= "/main/profile?id="+user_new.id.to_s %> > <%= image_tag  user_new.profile_pic.url, :height => "50",:width => "50" %></a>
+                  </td>
+                  <td>
+                      <h5><%='  ' + user_new.fname%> </h5>
+                  </td>
+                  <td>
+                      <%= button_to  "Add", {:action => "add_request",  :id => params[:id],:new_user_id => user_new.id},:class => 'btn btn-default btn-success btn-sm' %>
+                  </td>
+                  <td>
+                     <%= button_to  "Delete", {:action => "delete_request",  :id => params[:id],:new_user_id => user_new.id},:class => 'btn btn-default btn-danger btn-sm' %>
+                  </td>
+            </tr>
+            <% end %>
+          </table>
+        </p>
+      </div>
+    </div>
+  </div>
+  <%end %>
+
   
 </div>
 </div>
