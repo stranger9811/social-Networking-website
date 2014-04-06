@@ -6,6 +6,8 @@ DatabaseProject::Application.routes.draw do
   get "main/friends"
   get "question/index"
   get "check/add"
+  get "main/editprofile"
+  post "main/updateinfo"
   get "check/index"
   post "main/add_messages"
   get "api/index"

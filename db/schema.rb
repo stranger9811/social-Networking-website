@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140405164636) do
+ActiveRecord::Schema.define(version: 20140405185847) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -86,6 +86,17 @@ ActiveRecord::Schema.define(version: 20140405164636) do
   create_table "pending_friends", force: true do |t|
     t.integer  "user1"
     t.integer  "user2"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "personal_informations", force: true do |t|
+    t.string   "gender"
+    t.string   "city"
+    t.string   "university"
+    t.string   "phone"
+    t.string   "birthday"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

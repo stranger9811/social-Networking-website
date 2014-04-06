@@ -108,6 +108,22 @@ end
  		redirect_to action: "profile", id: params[:id]
  	end
  end
+ def updateinfo
+    print "gender ",params[:Gender] 
+    @q = PersonalInformation.where(:user_id => cookies[:user_id])
+    @q = @q[0]
+    if @q==nil
+      @q =PersonalInformation.new
+      @q.user_id = cookies[:user_id]
+    end
+    @q.gender = params[:Gender]
+    @q.birthday = params[:Birthday]
+    @q.city = params[:City]
+    @q.university = params[:University]
+    @q.phone = params[:Phone]
+    @q.save
+    redirect_to action: "editprofile"
+ end
  def add_comment
  	if params[:comment]!=""
       new_comment = WallPostComment.new
@@ -138,6 +154,15 @@ end
 
  	redirect_to action: "messages", id: params[:id]
  end
+ def editprofile
+  @all_friends = Friend.where(:user1 => cookies[:user_id])
+  @first_friend = ""
+  for friend in @all_friends
+    @first_friend = User.find(friend.user2)
+    break
+  end
+ end
+
  def messages
  	@all_friends = Friend.where(:user1 => cookies[:user_id])
  	@first_friend = ""
