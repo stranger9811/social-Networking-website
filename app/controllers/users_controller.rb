@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    redirect_to action: "profile", controller: "main"
   end
 
   # GET /users/new
@@ -27,7 +28,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.profile_pic = params[:user][:profile_pic]
     @user.timeline_pic = params[:user][:timeline_pic]
-    @user.password = Digest::MD5.hexdigest(@user.password)
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }

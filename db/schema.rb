@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140406101608) do
+ActiveRecord::Schema.define(version: 20140406110941) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -30,9 +30,25 @@ ActiveRecord::Schema.define(version: 20140406101608) do
     t.datetime "updated_at"
   end
 
+  create_table "group_comments", force: true do |t|
+    t.integer  "post_id"
+    t.string   "comment"
+    t.integer  "added_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "group_members", force: true do |t|
     t.integer  "user_id"
     t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "group_posts", force: true do |t|
+    t.string   "content"
+    t.integer  "group_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

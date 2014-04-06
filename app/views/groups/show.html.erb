@@ -13,7 +13,7 @@
 
                         <h4><%= user.fname + " " + user.lname %></h4>
                         <a href="/main/profile"><%= cookies[:fname] %></a><br/>
-                        <a href="#" class="btn btn-default btn-info btn-xs btn-block"><span class="glyphicon glyphicon-cog"></span> <b>Edit Profile</b></a>
+                        <a href="/main/editprofile" class="btn btn-default btn-info btn-xs btn-block"><span class="glyphicon glyphicon-cog"></span> <b>Edit Profile</b></a>
                        
                         <a href="/main/logout" class="btn btn-default btn-info btn-xs btn-block"><span class="glyphicon glyphicon-off"></span> <b>Logout</b></a>
 
@@ -21,30 +21,36 @@
                     </div>
                 </div>
             </div>
-            <ul class="nav nav-pills nav-stacked">
-                <li class="active">
-                    <a href="/main/profile">
-                    <span class="badge pull-right"></span>
-                    Home
-                    </a>
-                </li>
-                <li >
-                    <a href="/main/photos">
-                    <span class="badge pull-right">0</span>
-                    Photos
-                    </a>
-                </li>
-                <li >
-                    <a href="/main/friends">
-                    <span class="badge pull-right"><%=Friend.find(:all, :conditions => { :user1 => cookies[:user_id] }).count%></span>
-                    Friends
-                    </a>
-                    <a href="/main/messages">
-                    <span class="badge pull-right"></span>
-                      Messages
-                    </a>
-                </li>
+            <hr>
+      
+            <ul class="list-unstyled">
+              <li class="nav-header">
+              <a href="#" data-toggle="collapse" data-target="#menu3">
+                <h5>Groups<i class="glyphicon glyphicon-chevron-right"></i></h5>
+                </a>
+              
+                  <ul class="list-unstyled collapse" id="menu3">
+                      <% my_groups = GroupMember.where(:user_id => cookies[:user_id]) %>
+                      <% for groups in my_groups %>
+                        <% g = Group.find(groups.group_id) %>
+                      <li><a href=<%='/groups/'+g.id.to_s %>><i class="glyphicon glyphicon-circle"></i> <%= g.name %></a></li>
+                      <% end %>
+                  </ul>
+              </li>
+              <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu">
+                  
+                  <ul class="list-unstyled collapse in" id="userMenu">
+                      <li class="active"> <a href="/main/profile"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+                      <li><a href="/main/messages"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info"></span></a></li>
+                      <li><a href="/pages/new"><i class="glyphicon glyphicon-cog"></i> Create Page</a></li>
+                      <li><a href="/groups/new"><i class="glyphicon glyphicon-cog"></i> Create group</a></li>
+                      <li><a href="/main/friends"><i class="glyphicon glyphicon-user"></i> Friends <span class="badge badge-info"><%=Friend.find(:all, :conditions => { :user1 => cookies[:user_id] }).count%></span></a></li>
+                  </ul>
+              
+              
             </ul>
+                 
+            <hr>
 
             
       </div>
@@ -56,9 +62,8 @@
             <div style="heigth:300px;">
               <%= image_tag  @group.timeline_pic.url, :height => "250",:width => "650"  %>
             </div>
-            <div>
               <div style="padding:10px;margin:5px;width:45%;float:left">
-                <%= form_tag "/pages/submit" do %>
+                <%= form_tag "/groups/submit" do %>
    
                   <label for="text"></label> <textarea id="text"  name="post"  rows="3" cols="35" class="required"></textarea>
                  <br/>
@@ -67,7 +72,49 @@
                   
               <%end%>
             </div>
-             
+              
+              <% for post in @group_posts %>
+                <div class="WallPost" id='<%= post.id.to_s+"wall_post"%>' style="background-color:aquamarine;margin:10px;width:45%;float:left" >
+                      <div style="background-color:pink">
+                          <% post_by = User.find(post.user_id) %>
+                          <div style="float:left;width:20%;">
+                                <%= image_tag  post_by.profile_pic.url(:thumb),size: "50x50" %>
+                          </div>
+                          <div>
+                              <p>
+                                <h4><%= post_by.fname + " " + post_by.lname + ' on '%></h4> 
+                                      <%= "on " + post.created_at.to_formatted_s %> 
+                              </p>
+                          </div>
+                      </div>
+                            <br/>
+                      <div>
+                          <p>
+                              <%= post.content %>
+                          </p>
+                         
+                      </div>
+                             
+                      <div style="background-color: white; padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;">
+                          <% comments = GroupComment.find_by_sql("select * from group_comments where post_id="+post.id.to_s) %>
+
+                          <% for comment in comments %>
+
+                              <div style="background-color: grey;padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;margin-bottom:5px">
+                                  <% comment_by = User.find(comment.added_by) %>
+                                  <%= image_tag  comment_by.profile_pic.url(:thumb),size: "40x40",class: "img-circle" %>
+                                  <%= comment.comment%><br/>
+                                  
+                              </div>
+                          <% end %>
+                              <%= form_tag "/groups/comment" do %>
+                                   <label for="text"></label> <textarea id="text"name="comment" ></textarea>
+                                   <%= hidden_field_tag 'post_id', post.id %>
+                                   <input type="submit" value="comment"/> 
+                              <%end%>
+                      </div>
+                  </div>
+              <%end%> 
                 
       </div>
       <div style="padding:20px;">

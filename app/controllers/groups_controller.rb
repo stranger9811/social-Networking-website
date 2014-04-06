@@ -12,7 +12,36 @@ class GroupsController < ApplicationController
 
   # GET /groups/1
   # GET /groups/1.json
+  def submit
+    if params[:post]==""
+      redirect_to action: "show", id: $global_id, error_post: "empty post"
+    else
+      new_post  = GroupPost.new
+      new_post.content = params[:post]
+      new_post.group_id = $global_id
+      new_post.user_id = cookies[:user_id]
+      new_post.save
+      redirect_to action: "show", id: $global_id
+    end
+  end
+  def comment
+    if params[:comment]!=""
+      new_comment = GroupComment.new
+      new_comment.added_by = cookies[:user_id]
+      new_comment.comment = params[:comment]
+      new_comment.post_id = params[:post_id]
+      new_comment.save
+    end
+    redirect_to action: "show",id: $global_id
+  end
   def show
+    begin
+      $global_id = params[:id]
+     
+      @group_posts = GroupPost.find_by_sql("select * from group_posts where group_id="+params[:id])
+    rescue
+      redirect_to action: "profile",controller: "main"
+    end
   end
 
   # GET /groups/new

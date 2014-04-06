@@ -1,33 +1,44 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+
+
+
+
+
+
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="well well-sm">
+        <%= form_for(@user) do |form| %>
+          <fieldset>
+          
+          
+          
+          <div class="form-group">
+                <label class="col-md-3 control-label" for="message">Timeline Pic</label>
+                 <div class="col-md-9">
+                    <%= form.file_field :timeline_pic %>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="message">Profile Pic</label>
+                 <div class="col-md-9">
+                    <%= form.file_field :profile_pic %>
+                </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12 text-right">
+           <%= form.submit 'Create',:class=>"btn btn-default btn-info btn-lg btn-block" %>
+           </div>
+            </div>
+
+          </fieldset>
+        <% end %>
     </div>
-  <% end %>
+  </div>
+  </div>
+</div>
 
-  <div class="field">
-    <%= f.label :fname %><br>
-    <%= f.text_field :fname %>
-  </div>
-  <div class="field">
-    <%= f.label :lname %><br>
-    <%= f.text_field :lname %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.text_field :password %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+

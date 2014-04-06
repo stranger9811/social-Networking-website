@@ -65,6 +65,22 @@ class ApiController < ApplicationController
 	  	results["suggestions"] = names
 	  	print results
 	  	render json: results
+	elsif params[:query].split(":")[0]=="group"
+  		array = Group.find_by_sql("select * from groups where name like \""+params[:query].split(":")[1]+"%\"")
+	  	results = {}
+	  	results["query"] = "Unit"
+	  	names = []
+	  	for a in array
+	  		temp_hash ={}
+	  		 div = '<div style="background-color:aliceblue;padding:10px;"><h5><i class="glyphicon glyphicon-tree-conifer"></i>  ' + a.name+'</h5></div> '
+	  		temp_hash["value"] = div
+	  		temp_hash["data"] = div
+	  		temp_hash["link"] = "/groups/"+a.id.to_s
+	  		names << temp_hash
+	  	end
+	  	results["suggestions"] = names
+	  	print results
+	  	render json: results
   	else
 	  	array = User.find_by_sql("select * from users where fname like \""+params[:query]+"%\"")
 	  	results = {}

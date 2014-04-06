@@ -155,12 +155,14 @@ end
  	redirect_to action: "messages", id: params[:id]
  end
  def editprofile
-  @all_friends = Friend.where(:user1 => cookies[:user_id])
-  @first_friend = ""
-  for friend in @all_friends
-    @first_friend = User.find(friend.user2)
-    break
-  end
+    @q = PersonalInformation.where(:user_id => cookies[:user_id])
+    @q = @q[0]
+    if @q==nil
+      @q =PersonalInformation.new
+      @q.user_id = cookies[:user_id]
+      @q.gender = "Male"
+      @q.save
+    end
  end
 
  def messages
@@ -296,6 +298,8 @@ end
 		  		@name = @user.fname
 		  		cookies[:user_name]=@name
 		  		cookies[:user_id]=@user.id
+          random_number = SecureRandom.hex(15)
+          cookies[:checksum] = random_number
 		  	end
 		 elsif cookieCheck==0
 		 	redirect_to action: "index"

@@ -20,6 +20,8 @@ DatabaseProject::Application.routes.draw do
   get "main/profile2"
   get "pages/create"
   post "pages/submit"
+  post "groups/submit"
+  post "groups/comment"
   get "main/messages"
   post "main/messages"
    post "main/post_submit"
