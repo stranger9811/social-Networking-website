@@ -381,11 +381,11 @@ end
 	  	if params[:password]!=params[:repassword]
 	  		@error = "password do not match"
 	  	end
-	  	user = User.find_by_sql("select * from non_verified_users where email=\""+params[:email]+"\"")
+	  	user = User.where(email=\""+params[:email]+"\"")
 	  	if user[0]!=nil
 	  		@error = "user already exists"
 	  	end
-	  	user = User.find_by_sql("select * from users where email=\""+params[:email]+"\"")
+	  	user = User.where(:email => params[:email])
 	  	if user[0]!=nil
 	  		@error = "user already exists"
 	  	end
