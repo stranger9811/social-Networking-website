@@ -3,6 +3,19 @@ require "httparty"
 require 'digest/md5'
  require 'securerandom'
  layout 'application', :except => "index"
+ before_action :cookieCheck
+ def cookieCheck
+      temp = CookieCheck.where(:user_id => cookies[:user_id])[0]
+      if cookies[:user_id]!=nil and temp!=nil
+        if temp.checksum.to_s == cookies[:checksum].to_s
+          return 1
+        end
+      end
+      if cookies[:user_id]!=nil
+        logout
+      end
+      return 0
+  end
  def update
  	@user = Users.find(cookies[:user_id])
  end
@@ -250,14 +263,9 @@ end
 		  		cookies[:user_name]=@name
 		  		cookies[:user_id]=@user.id
 		  	end
-		 elsif cookieCheck==0
-		 	redirect_to action: "index"
 		 end
-
-		 if cookieCheck==1
 		 	@friend_requests = PendingFriend.where(:user2 => cookies[:user_id])
-      		@my_posts = WallPost.find_by_sql("select * from wall_posts where to_id="+cookies[:user_id].to_s)
-		 end
+      @my_posts = WallPost.find_by_sql("select * from wall_posts where to_id="+cookies[:user_id].to_s)
 	end
 	
   end
@@ -300,33 +308,40 @@ end
 		  		cookies[:user_id]=@user.id
           random_number = SecureRandom.hex(15)
           cookies[:checksum] = random_number
-		  	end
-		 elsif cookieCheck==0
-		 	redirect_to action: "index"
-		 end
+          temp =CookieCheck.where(:user_id => cookies[:user_id])[0]
+          if temp!=nil
+            temp.checksum = random_number.to_s
+            temp.save
+          else
+            x = CookieCheck.new
+            x.user_id = cookies[:user_id]
+            x.checksum = random_number.to_s
+            x.save
+          end
 
-		 if cookieCheck==1
-		 	@friend_requests = PendingFriend.where(:user2 => cookies[:user_id])
-      		@my_posts = WallPost.find_by_sql("select * from wall_posts where to_id="+cookies[:user_id].to_s)
+		  	end
 		 end
+		 	@friend_requests = PendingFriend.where(:user2 => cookies[:user_id])
+      @my_posts = WallPost.find_by_sql("select * from wall_posts where to_id="+cookies[:user_id].to_s)
+		 
 	end
 	
   end
   def logout
+    temp = CookieCheck.where(:user_id => cookies[:user_id])[0]
+    if temp!=nil
+      temp.destroy
+    end
   	cookies.delete :user_name
   	cookies.delete :user_id
+    cookies.delete  :checksum
   	redirect_to action: "index"
+    
   end
-  def cookieCheck
-  		if cookies[:user_name]!=nil
-  			return 1
-  		else
-  			return 0
-  		end
-  end
+  
   def index
   	@error_login = params[:error_login]
-  	if cookieCheck==1
+  	if cookies[:user_id]!=nil
   		redirect_to action: "profile"
   	end
   end
