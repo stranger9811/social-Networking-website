@@ -84,8 +84,9 @@
 <% if params[:id] and params[:id]!=cookies[:user_id] %>
 <% user = User.find(params[:id]) %>
 
- <div> 
-      <div style="float:left;width:20%;">
+ <div class="row">
+      
+      <div class="col-md-3">
 
             <div style="padding:10px;margin:10px;" class="row">
                 <div class="panel panel-primary">
@@ -94,7 +95,7 @@
                     </div>
                     <div class="panel-body">
                         <% user= User.find(params[:id])%>
-                        <%= image_tag  user.profile_pic.url(:thumb) %><br/>
+                        <%= image_tag  user.profile_pic.url(:thumb), :height => "60",:width => "60" %><br/>
                         <h4><%= user.fname + " " + user.lname %></h4>
                         <button id="other_profile_friendship_status" class="btn btn-default btn-primary btn-xs btn-block"><%= $status %></button>
 
@@ -124,7 +125,7 @@
                       <li><a href="/main/messages"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info"></span></a></li>
                       <li><a href="/pages/new"><i class="glyphicon glyphicon-cog"></i> Create Page</a></li>
                       <li><a href="/groups/new"><i class="glyphicon glyphicon-cog"></i> Create group</a></li>
-                      <li><a href="/main/friends"><i class="glyphicon glyphicon-user"></i> Friends <span class="badge badge-info"><%=Friend.find(:all, :conditions => { :user1 => cookies[:user_id] }).count%></span></a></li>
+                      <li><a href=<%='/main/friends?friend='+user.id.to_s%>><i class="glyphicon glyphicon-user"></i> Friends <span class="badge badge-info"><%=Friend.find(:all, :conditions => { :user1 => user.id }).count%></span></a></li>
                   </ul>
               
               
@@ -135,13 +136,13 @@
 
             
       </div>
-      <div style="float:left;width:55%;padding:10px;margin:10px">
+      <div class="col-md-6">
             <div style="padding:10px;">
                   <input id ="autocomplete" type="text" class="form-control" placeholder="Search"> 
             </div>
 
             <div style="heigth:300px;">
-              <%= image_tag  user.timeline_pic.url, size: "650x250" %>
+              <%= image_tag  user.timeline_pic.url, :height => "250",:width => "620"  %>
             </div>
             <div>
               <div style="padding:10px;margin:10px;width:45%;float:left">
@@ -157,7 +158,7 @@
             </div> 
 
               <% for post in @my_posts %>
-                    <div class="WallPost" id='<%= post.id.to_s+"wall_post"%>' style="background-color: white;margin:10px;width:45%;float:left" >
+                    <div class="WallPost" id='<%= post.id.to_s+"wall_post"%>' style="background-color: white;margin:5px;padding:5px;width:45%;float:left;border:4px solid;border-radius:25px;" >
                       <div style="background-color:<%= $color %>">
                         <% post_by = User.find(post.from_id) %>
                         <div style="float:left;width:20%;">
@@ -233,7 +234,7 @@
 
 
       </div>
-      <div style="padding:20px;">
+      <div class="col-md-2">
                 
       </div>
   </div>
@@ -244,7 +245,6 @@
 
 
 <%else%>
-<div class="container">
 <div class="row">
       <div class="col-md-3">
 
@@ -302,13 +302,13 @@
 
             
       </div>
-      <div class="col-md-7">
+      <div class="col-md-6">
             <div style="padding:5px;">
                   <input id ="autocomplete" type="text" class="form-control" placeholder="user page:(page name) for searching pages"> 
             </div>
 
             <div style="heigth:300px;">
-              <%= image_tag  user.timeline_pic.url, size: "645x300" %>
+              <%= image_tag  user.timeline_pic.url, :height => "50%",:width => "100%"  %>
             </div>
             <div>
                 <div style="padding:10px;margin:10px;width:45%;float:left">
@@ -321,11 +321,11 @@
                 </div>
 
                 <% for post in @my_posts %>
-                <div class="WallPost" id='<%= post.id.to_s+"wall_post"%>' style="background-color: white;margin:10px;width:45%;float:left" >
+                <div class="WallPost" id='<%= post.id.to_s+"wall_post"%>' style="background-color: white;margin:5px;padding:5px;width:45%;float:left;border:4px solid;border-radius:25px;" >
                       <div style="background-color:<%= $color %>">
                             <% post_by = User.find(post.from_id) %>
                             <div style="float:left;width:20%;">
-                                <%= image_tag  post_by.profile_pic.url(:thumb),size: "50x50" %>
+                                <%= image_tag  post_by.profile_pic.url(:thumb),size: "60x60" %>
                             </div>
                             <div>
                                 <p>
@@ -334,7 +334,8 @@
                                       <%= "on " + post.created_at.to_formatted_s %> 
 
                                   <%else %>
-                                      <%= post_by.fname + " " + post_by.lname + " posted on " + post.to_id.to_s + " s wall " %>
+                                      <% temp_user = User.find(post.to_id) %>
+                                      <%= post_by.fname + " " + post_by.lname + " posted on " + temp_user.fname.to_s + " " + temp_user.lname.to_s + "'s wall " %>
                                   <%end%>
                                 </p>
                             </div>
@@ -413,7 +414,6 @@
 
       </div>
   
-</div>
 </div>
 
 <%end%>

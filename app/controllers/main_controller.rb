@@ -153,7 +153,11 @@ end
  	end
  end
  def friends
- 	@all_friends = Friend.where(:user1 => cookies[:user_id])
+  if params[:friend]
+    @all_friends = Friend.where(:user1 => params[:friend])
+  else
+ 	  @all_friends = Friend.where(:user1 => cookies[:user_id])
+  end
  end
  def add_messages
  	@message = Message.new

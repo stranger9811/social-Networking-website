@@ -1,12 +1,92 @@
 class ApiController < ApplicationController
   def index
   	print params
-  	if params[:query].split(":")[0]=="question"
+  	if params[:query].split(":")[0]=="graph"
+  		params[:query] = params[:query].split(":")[1]
+  		results = {}
+	  	results["query"] = "Unit"
+	  	input_words = params[:query].split(" ")
+	  	city = input_words[input_words.length - 1]
+	  	study = input_words[input_words.length - 1]
+  		results = {}
+  		results["query"] = "Unit"
+	  	top_5 = []
+	  	if (input_words.include? "friends" or input_words.include? "friend") and input_words.include? "live"
+	  		array = PersonalInformation.find_by_sql("select * from personal_informations where city like \""+city+"%\"")
+	  		names = []
+		  	for x in array
+		  		a = User.find(x.user_id)
+		  		if Friend.where(:user1 => a.id,:user2 => cookies[:user_id])[0]==nil
+		  			next
+		  		end
+		  		temp_hash ={}
+		  		image = '<img src="'+a.profile_pic(:thumb)+'" width="42" height="42">'
+		  		
+		  		div = '<div style="background-color:aliceblue;padding:10px;">'+image+'<h5>'+ a.fname + " " + a.lname+ '</h5></div>'
+		  		temp_hash["value"] = div
+		  		temp_hash["data"] = div
+		  		temp_hash["link"] = "/main/profile?id="+a.id.to_s
+		  		names << temp_hash
+		  	end
+		  	results["suggestions"] = names[0,5]
+	  	elsif input_words.include? "people" and input_words.include? "live"
+	  		array = PersonalInformation.find_by_sql("select * from personal_informations where city like \""+city+"%\"")
+	  		names = []
+		  	for x in array
+		  		a = User.find(x.user_id)
+		  		temp_hash ={}
+		  		image = '<img src="'+a.profile_pic(:thumb)+'" width="42" height="42">'
+		  		
+		  		div = '<div style="background-color:aliceblue;padding:10px;">'+image+'<h5>'+ a.fname + " " + a.lname+ '</h5></div>'
+		  		temp_hash["value"] = div
+		  		temp_hash["data"] = div
+		  		temp_hash["link"] = "/main/profile?id="+a.id.to_s
+		  		names << temp_hash
+		  	end
+		  	results["suggestions"] = names[0,5]
+		  elsif (input_words.include? "friends" or input_words.include? "friend") and input_words.include? "study"
+	  		array = PersonalInformation.find_by_sql("select * from personal_informations where university like \""+study+"%\"")
+	  		names = []
+		  	for x in array
+		  		a = User.find(x.user_id)
+		  		if Friend.where(:user1 => a.id,:user2 => cookies[:user_id])[0]==nil
+		  			next
+		  		end
+		  		temp_hash ={}
+		  		image = '<img src="'+a.profile_pic(:thumb)+'" width="42" height="42">'
+		  		
+		  		div = '<div style="background-color:aliceblue;padding:10px;">'+image+'<h5>'+ a.fname + " " + a.lname+ '</h5></div>'
+		  		temp_hash["value"] = div
+		  		temp_hash["data"] = div
+		  		temp_hash["link"] = "/main/profile?id="+a.id.to_s
+		  		names << temp_hash
+		  	end
+		  	results["suggestions"] = names[0,5]
+	  	elsif input_words.include? "people" and input_words.include? "study"
+	  		array = PersonalInformation.find_by_sql("select * from personal_informations where university like \""+study+"%\"")
+	  		names = []
+		  	for x in array
+		  		a = User.find(x.user_id)
+		  		temp_hash ={}
+		  		image = '<img src="'+a.profile_pic(:thumb)+'" width="42" height="42">'
+		  		
+		  		div = '<div style="background-color:aliceblue;padding:10px;">'+image+'<h5>'+ a.fname + " " + a.lname+ '</h5></div>'
+		  		temp_hash["value"] = div
+		  		temp_hash["data"] = div
+		  		temp_hash["link"] = "/main/profile?id="+a.id.to_s
+		  		names << temp_hash
+		  	end
+		  	results["suggestions"] = names[0,5]
+	  	end
+  		render json: results
+  	elsif params[:query].split(":")[0]=="question"
+  		params[:query] = params[:query].split(":")[1]
   		@questions = Question.all
   		results = {}
 	  	results["query"] = "Unit"
 	  	top_5 = []
 	  	input_words = params[:query].split(" ")
+	  	print input_words
 	  	for question in @questions
 	  		
 	  		question_title = question.title.split(" ")
@@ -15,7 +95,6 @@ class ApiController < ApplicationController
 	  		for t in temp 
 	  			question_tags << t.tag_name
 	  		end
-	  		print question_title,question_tags,params[:query]
 	  		count = 0
 	  		for word in input_words
 	  			if question_title.include? word
@@ -46,7 +125,6 @@ class ApiController < ApplicationController
 	  		names << temp_hash
 	  	end
 	  	results["suggestions"] = names
-	  	print results
 	  	render json: results
 
   	elsif params[:query].split(":")[0]=="page"
@@ -63,7 +141,6 @@ class ApiController < ApplicationController
 	  		names << temp_hash
 	  	end
 	  	results["suggestions"] = names
-	  	print results
 	  	render json: results
 	elsif params[:query].split(":")[0]=="group"
   		array = Group.find_by_sql("select * from groups where name like \""+params[:query].split(":")[1]+"%\"")
@@ -79,7 +156,6 @@ class ApiController < ApplicationController
 	  		names << temp_hash
 	  	end
 	  	results["suggestions"] = names
-	  	print results
 	  	render json: results
   	else
 	  	array = User.find_by_sql("select * from users where fname like \""+params[:query]+"%\"")
@@ -89,7 +165,7 @@ class ApiController < ApplicationController
 	  	for a in array
 	  		temp_hash ={}
 	  		image = '<img src="'+a.profile_pic(:thumb)+'" width="42" height="42">'
-	  		print image
+	  		
 	  		div = '<div style="background-color:aliceblue;padding:10px;">'+image+'<h5>'+ a.fname + " " + a.lname+ '</h5></div>'
 	  		temp_hash["value"] = div
 	  		temp_hash["data"] = div
@@ -97,7 +173,7 @@ class ApiController < ApplicationController
 	  		names << temp_hash
 	  	end
 	  	results["suggestions"] = names
-	  	print results
+	  
 	  	render json: results
 	end
   end
