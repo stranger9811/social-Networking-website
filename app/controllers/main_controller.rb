@@ -3,7 +3,7 @@ require "httparty"
 require 'digest/md5'
  require 'securerandom'
  layout 'application', :except => "index"
- before_action :cookieCheck
+ before_action :cookieCheck, only: [:index]
  def cookieCheck
       temp = CookieCheck.where(:user_id => cookies[:user_id])[0]
       if cookies[:user_id]!=nil and temp!=nil
@@ -277,8 +277,8 @@ end
   	if params[:id]==cookies[:user_id]
   		params[:id] = nil
   	end
+    @user = nil
   	$color = "pink"
-  	@style = "background-color: red; width: 25em;padding-top:5px;padding-left:5px;padding-bottom:5px;padding-right:5px;"
   	if params[:id]
   		@user = User.find_by_sql("select * from users where id="+params[:id])
   		if @user[0]==nil
@@ -302,8 +302,8 @@ end
 		  	@error=""
 		  	password = Digest::MD5.hexdigest(params[:password])
 		  	email = params[:email]
-		  	@user = User.find_by_sql("SELECT * from users where password=\""+password+"\" and email=\""+email+"\"")
-		  	@user = @user[0]
+		  	@user = User.where(:password => password, :email =>email)[0]
+		    print email
 		  	if @user==nil
 		  		redirect_to action: "index", error_login: "user not registered/ wrong password"
 		  	else
@@ -325,8 +325,10 @@ end
 
 		  	end
 		 end
+     if @user!=nil
 		 	@friend_requests = PendingFriend.where(:user2 => cookies[:user_id])
       @my_posts = WallPost.find_by_sql("select * from wall_posts where to_id="+cookies[:user_id].to_s)
+    end
 		 
 	end
 	

@@ -117,6 +117,7 @@
                       <li><a href=<%='/groups/'+g.id.to_s %>><i class="glyphicon glyphicon-circle"></i> <%= g.name %></a></li>
                       <% end %>
                   </ul>
+
               </li>
               <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu">
                   
@@ -272,7 +273,7 @@
       
             <ul class="list-unstyled">
               <li class="nav-header">
-              <a href="#" data-toggle="collapse" data-target="#menu3">
+              <a  data-toggle="collapse" data-target="#menu3">
                 <h5>Groups<i class="glyphicon glyphicon-chevron-right"></i></h5>
                 </a>
               
@@ -284,6 +285,18 @@
                       <% end %>
                   </ul>
               </li>
+              <li class="nav-header">
+              <a  data-toggle="collapse" data-target="#menu4">
+                <h5>Question<i class="glyphicon glyphicon-chevron-right"></i></h5>
+                </a>
+              
+                  <ul class="list-unstyled collapse" id="menu4">
+                     
+                      <li><a href="/question/ask"><i class="glyphicon glyphicon-circle"></i> Ask Question</a></li>
+                      <li><a href="/question/myquestions"><i class="glyphicon glyphicon-circle"></i>My Questions</a></li>
+                  </ul>
+              </li>
+
               <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu">
                   
                   <ul class="list-unstyled collapse in" id="userMenu">
@@ -324,7 +337,7 @@
                 <div class="WallPost" id='<%= post.id.to_s+"wall_post"%>' style="background-color: white;margin:5px;padding:5px;width:45%;float:left;border:4px solid;border-radius:25px;" >
                       <div style="background-color:<%= $color %>">
                             <% post_by = User.find(post.from_id) %>
-                            <div style="float:left;width:20%;">
+                            <div style="float:left;padding:3px;margin:3pxl">
                                 <%= image_tag  post_by.profile_pic.url(:thumb),size: "60x60" %>
                             </div>
                             <div>

@@ -4,7 +4,11 @@ class PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
+    if cookies[:user_id]!="4"
+      redirect_to action: "profile",controller: "main"
+    end
     @pages = Page.all
+
   end
   def comment
     if params[:comment]!=""
