@@ -31,7 +31,7 @@ def FriendRequests
  		new_friend.user2 = params[:user1]
  		new_friend.user1 = params[:user2]
  		new_friend.save
- 		PendingFriend.find_by_sql("select * from pending_friends where user1="+params[:user1]+" and user2=\""+params[:user2]+"\"")[0].destroy
+ 		PendingFriend.where( :user1=>  params[:user1], :user2 => params[:user2])[0].destroy
   	elsif params[:status]=="cancel_request"
   		PendingFriend.find_by_sql("select * from pending_friends where user1="+params[:user1]+" and user2=\""+params[:user2]+"\"")[0].destroy
   	end
@@ -278,6 +278,9 @@ end
   		params[:id] = nil
   	end
     @user = nil
+    if cookies[:user_id]
+      @user = User.find(cookies[:user_id])
+    end
   	$color = "pink"
   	if params[:id]
   		@user = User.find_by_sql("select * from users where id="+params[:id])
