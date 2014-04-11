@@ -356,7 +356,7 @@ end
   	@error = "hello"
   	if @passcode!=nil
   		@error ="hii"
-  		user = NonVerifiedUser.find_by_sql("SELECT * from non_verified_users where passcode=\""+@passcode+"\" and email=\""+params[:email]+"\"")
+  		user = NonVerifiedUser.where(:passcode => @passcode, :email => params[:email])
   		user_current = user[0]
   		if user_current == nil
   			@error = "wrong verification link"
