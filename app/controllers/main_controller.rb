@@ -387,7 +387,7 @@ end
 	  	if params[:password]!=params[:repassword]
 	  		@error = "password do not match"
 	  	end
-	  	user = NonVerifiedUser.where(:email =>params[:email])
+	  	user = NonVerifiedUser.where(:email => params[:email])
 	  	if user[0]!=nil
 	  		@error = "user already exists"
 	  	end
