@@ -60,11 +60,8 @@
         <div class="col-md-3" id="leftCol">
               
                 <ul class="nav nav-stacked" id="sidebar">
-                  <li><a href="#sec0">Section 0</a></li>
-                  <li><a href="#sec1">Section 1</a></li>
-                  <li><a href="#sec2">Section 2</a></li>
-                  <li><a href="#sec3">Section 3</a></li>
-                  <li><a href="#sec4">Section 4</a></li>
+                  <li><a href="#sec0">Question</a></li>
+                  <li><a href="#sec1">Answers</a></li>
                 </ul>
               
           </div>  
@@ -76,7 +73,9 @@
                 <%= @question.content %>
                 <hr>
                 <%if @question.added_by.to_s == cookies[:user_id] %>
-                  <a href=<%= '/questions/edit?='+@question.id.to_s %> >Edit </a>
+                  <a href=<%= '/question/edit?id='+@question.id.to_s %> >Edit </a>
+                  <a href= <%= '/question/delete?id='+@question.id.to_s %> class="btn btn-default btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+
 
                 <% end %>
                 <hr>

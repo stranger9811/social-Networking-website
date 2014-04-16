@@ -63,6 +63,8 @@
               <%= image_tag  @group.timeline_pic.url, :height => "250",:width => "650"  %>
             </div>
               <div style="padding:10px;margin:5px;width:45%;float:left">
+                <% user= User.find(cookies[:user_id])%>
+                <% if GroupMember.where(:user_id => user.id, :group_id => @group.id)[0]!=nil %>
                 <%= form_tag "/groups/submit" do %>
    
                   <label for="text"></label> <textarea id="text"  name="post"  rows="3" cols="35" class="required"></textarea>
@@ -71,6 +73,7 @@
                   <input type="submit" value="Post"/>
                   
               <%end%>
+              <% end %>
             </div>
               
               <% for post in @group_posts %>

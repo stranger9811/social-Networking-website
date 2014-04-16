@@ -5,6 +5,8 @@ DatabaseProject::Application.routes.draw do
 
   resources :users
   get "main/like_p"
+  get "main/forgotpassword"
+  post "main/forgotpassword"
   get "main/friends"
   get "question/index"
   get "check/add"
@@ -14,7 +16,9 @@ DatabaseProject::Application.routes.draw do
   post "groups/delete_request"
   get "main/editprofile"
   post "main/updateinfo"
+  post "main/updateinfo2"
   get "check/index"
+  get "question/delete"
   post "main/add_messages"
   get "api/index"
   get "main/profile2"

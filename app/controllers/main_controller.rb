@@ -121,6 +121,26 @@ end
  		redirect_to action: "profile", id: params[:id]
  	end
  end
+ def forgotpassword
+    if params[:email]
+      url = "https://sendgrid.com/api/mail.send.json"
+          random_number = SecureRandom.hex(15)
+          user = User.where(:email => params[:email])[0]
+          if user
+            response = HTTParty.post url, :body => {
+              "api_user" => "stranger9811",
+              "api_key" => "SecretPassword",
+              "to" => params[:email],
+              "from" => "dbms@sendgrid.me",
+              "subject" => "Email Verfication for DBMS_project",
+              "text" => "New password ="+random_number
+            }
+          end
+          user.password = Digest::MD5.hexdigest(random_number)
+          user.save
+
+    end
+ end
  def updateinfo
     print "gender ",params[:Gender] 
     @q = PersonalInformation.where(:user_id => cookies[:user_id])
@@ -135,6 +155,21 @@ end
     @q.university = params[:University]
     @q.phone = params[:Phone]
     @q.save
+    redirect_to action: "editprofile"
+ end
+ def updateinfo2
+    user = User.find(cookies[:user_id])
+    if (params[:newpassword]) and (params[:newpassword]==params[:repassword])
+        oldpassword = Digest::MD5.hexdigest(params[:oldpassword])
+        if oldpassword==user.password
+            user.password= Digest::MD5.hexdigest(params[:newpassword])
+        end
+    end
+    if params[:fname] and params[:lname]
+      user.fname  = params[:fname]
+      user.lname  = params[:lname]
+    end
+    user.save
     redirect_to action: "editprofile"
  end
  def add_comment

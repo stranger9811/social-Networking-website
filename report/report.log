@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.10.30)  11 APR 2014 22:21
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.10.30)  12 APR 2014 21:36
 entering extended mode
  %&-line parsing enabled.
 **report.tex
@@ -202,76 +202,72 @@ LaTeX Font Info:    ... okay on input line 23.
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<fig1.jpg, id=10, 3276.24pt x 1842.885pt>
-File: fig1.jpg Graphic file (type jpg)
- <use fig1.jpg>
-Overfull \hbox (221.61641pt too wide) in paragraph at lines 59--60
- [][] 
+Underfull \hbox (badness 10000) in paragraph at lines 57--59
+
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 65.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 66.
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 65.
- [2 <./fig1.jpg>]
-<fig2.jpg, id=16, 3276.24pt x 1842.885pt>
-File: fig2.jpg Graphic file (type jpg)
- <use fig2.jpg>
-Overfull \hbox (221.61641pt too wide) in paragraph at lines 72--73
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 66.
+
+<user_friend.png, id=10, 935.495pt x 276.03125pt>
+File: user_friend.png Graphic file (type png)
+ <use user_friend.png>
+[2] <user_pages.png, id=16, 1296.845pt x 706.64pt>
+File: user_pages.png Graphic file (type png)
+ <use user_pages.png>
+Overfull \hbox (20.28256pt too wide) in paragraph at lines 97--98
  [][] 
  []
 
-[3 <./fig2.jpg>] <fig3.jpg, id=20, 3276.24pt x 1842.885pt>
-File: fig3.jpg Graphic file (type jpg)
- <use fig3.jpg>
-Overfull \hbox (221.61641pt too wide) in paragraph at lines 86--87
+[3 <./user_friend.png (PNG copy)> <./user_pages.png (PNG copy)>]
+<user_groups.png, id=20, 1390.19376pt x 706.64pt>
+File: user_groups.png Graphic file (type png)
+ <use user_groups.png>
+Overfull \hbox (52.95511pt too wide) in paragraph at lines 111--112
  [][] 
  []
 
-[4 <./fig3.jpg>] <fig4.jpg, id=24, 3276.24pt x 1842.885pt>
-File: fig4.jpg Graphic file (type jpg)
- <use fig4.jpg>
-Overfull \hbox (221.61641pt too wide) in paragraph at lines 99--100
+<user_question.png, id=21, 1120.185pt x 685.56125pt>
+File: user_question.png Graphic file (type png)
+ <use user_question.png>
+Overfull \hbox (14.44606pt too wide) in paragraph at lines 124--125
  [][] 
  []
 
-<fig5.jpg, id=25, 3276.24pt x 1842.885pt>
-File: fig5.jpg Graphic file (type jpg)
- <use fig5.jpg>
-Overfull \hbox (221.61641pt too wide) in paragraph at lines 112--113
- [][] 
- []
-
-[5 <./fig4.jpg>] <fig6.jpg, id=29, 3276.24pt x 1842.885pt>
-File: fig6.jpg Graphic file (type jpg)
- <use fig6.jpg>
-Overfull \hbox (221.61641pt too wide) in paragraph at lines 125--126
- [][] 
- []
-
+[4 <./user_groups.png (PNG copy)>]
+<user_wall.png, id=25, 1071.00125pt x 706.64pt>
+File: user_wall.png Graphic file (type png)
+ <use user_wall.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[6 <./fig5.jpg>] [7 <./fig6.jpg>] [8] (./report.aux) ) 
+[5 <./user_question.png (PNG copy)>]
+<user_messages.png, id=30, 902.37125pt x 374.39874pt>
+File: user_messages.png Graphic file (type png)
+ <use user_messages.png>
+[6 <./user_wall.png (PNG copy)> <./user_messages.png (PNG copy)>] [7] [8]
+(./report.aux) ) 
 Here is how much of TeX's memory you used:
- 2765 strings out of 495061
- 33679 string characters out of 1182620
- 110823 words of memory out of 3000000
- 5941 multiletter control sequences out of 15000+50000
+ 2772 strings out of 495061
+ 33977 string characters out of 1182620
+ 114841 words of memory out of 3000000
+ 5948 multiletter control sequences out of 15000+50000
  9192 words of font info for 34 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 32i,6n,21p,453b,237s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive
-/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type
-1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/am
-sfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
-sr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/tex
-mf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/
-fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on report.pdf (8 pages, 5948035 bytes).
+ 32i,6n,21p,509b,238s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10
+.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/
+share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf
+-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fon
+ts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/pub
+lic/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt12.
+pfb>
+Output written on report.pdf (8 pages, 567953 bytes).
 PDF statistics:
  67 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

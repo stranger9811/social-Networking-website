@@ -143,7 +143,7 @@
             </div>
 
             <div style="heigth:300px;">
-              <%= image_tag  user.timeline_pic.url, :height => "250",:width => "620"  %>
+              <%= image_tag  user.timeline_pic.url, :height => "300",:width => "720"  %>
             </div>
             <div>
               <div style="padding:10px;margin:10px;width:45%;float:left">
@@ -256,7 +256,7 @@
                     </div>
                     <div class="panel-body">
                         <% user= User.find(cookies[:user_id])%>
-                        <%= image_tag  user.profile_pic.url(:thumb), class: "img-circle",:height => "70",:width => "120" %><br/>
+                        <%= image_tag  user.profile_pic.url(:thumb), class: "img-circle",:height => "100",:width => "120" %><br/>
                         
 
                         <h4><%= user.fname + " " + user.lname %></h4>
@@ -321,7 +321,7 @@
             </div>
 
             <div style="heigth:300px;">
-              <%= image_tag  user.timeline_pic.url, :height => "50%",:width => "100%"  %>
+              <%= image_tag  user.timeline_pic.url, :height => "300",:width => "100%"  %>
             </div>
             <div>
                 <div style="padding:10px;margin:10px;width:45%;float:left">

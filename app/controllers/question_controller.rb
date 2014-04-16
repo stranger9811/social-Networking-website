@@ -13,6 +13,10 @@ class QuestionController < ApplicationController
     question_id = @answer.question_id
     redirect_to action: "view", id: question_id
   end  
+  def delete
+    Question.find(params[:id]).destroy
+    redirect_to action: "ask"
+  end
   def index 
     @question = Question.find(params[:id])
     @answers = Answer.find_by_sql("select * from answers where question_id="+params[:id])

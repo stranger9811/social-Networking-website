@@ -6,11 +6,13 @@
     Password:<br />
     <input name="password" type="password" value="" size="30"/><br/>
     
-    <input type="submit" value="SUBMIT"/>
+    <input type="submit" class="btn btn-default btn-success btn-sm" value="login"/>
     
 <%end%>
+<a href="/main/forgotpassword" class="btn btn-default btn-warning btn-sm"><span class="glyphicon glyphicon-new-window"></span> Forgot password</a>
 <br/>
 <%= @error_login %>
+
 
 <div class="drop-shadow curled">
       <h1>Registration form</h1>
